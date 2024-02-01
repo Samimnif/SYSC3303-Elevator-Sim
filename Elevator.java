@@ -6,6 +6,8 @@ public class Elevator {
     private int id;
     private ArrayList<Button> ElevatorButton;
 
+    private boolean goingUp = true;
+
     public Elevator(int id, int numButtons){
         this.id = id;
         this.currentFloor = 1;
@@ -31,4 +33,8 @@ public class Elevator {
     public int getCurrentFloor() {
         return currentFloor;
     }
+
+    public boolean isGoingUp() { return goingUp; }
+
+    public void setGoingUp(boolean goingUp) { this.goingUp = goingUp; }
 }
