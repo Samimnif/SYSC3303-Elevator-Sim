@@ -2,22 +2,26 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class FloorSubsystem implements Runnable {
     Scheduler scheduler;
     BufferedReader reader;
     Job job;
-    int ID;
-    FloorSubsystem(int ID,Scheduler scheduler) {
+    ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
+    FloorSubsystem(int numOfFloors, Scheduler scheduler) {
         this.scheduler = scheduler;
-        this.ID = ID;
         try {
             reader = new BufferedReader(new FileReader("events.txt"));
         } catch (IOException e) {
         }
         if (reader == null) {
             System.out.println("reader is null :(");
+        }
+
+        for (int i = 0; i < numOfFloors; i++) {
+            Floor floor = new Floor(i + 1);
+            floorsArrayList.add(floor);
         }
     }
 
