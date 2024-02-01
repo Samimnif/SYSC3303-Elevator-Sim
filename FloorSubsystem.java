@@ -5,9 +5,11 @@ import java.io.IOException;
 public class FloorSubsystem implements Runnable {
     Scheduler scheduler;
     BufferedReader reader;
-
-    FloorSubsystem(Scheduler scheduler) {
+    Job job;
+    int ID;
+    FloorSubsystem(int ID,Scheduler scheduler) {
         this.scheduler = scheduler;
+        this.ID = ID;
         try {
             reader = new BufferedReader(new FileReader("events.txt"));
         } catch (IOException e) {
@@ -28,7 +30,17 @@ public class FloorSubsystem implements Runnable {
         return line;
     }
 
-    public synchronized void run () {}
+    public synchronized void run () {
+
+        while(scheduler.getProgramStatus()){
+            if(this.job!= null) {
+                scheduler.put(job);
+            }
+        }
+
+    }
+
+
 
     public static void main(String[] args) {
         String info;

@@ -3,7 +3,9 @@ import java.util.ArrayList;
 public class Scheduler {
     private boolean empty = true;
     private ArrayList<Job> jobList= new ArrayList<>();
+    private ArrayList<Elevator> elevatorsList= new ArrayList<>();
     private int MAX_SIZE;
+    private boolean endProgram = false;
 
     public Scheduler(int maxJobs) {
         this.jobList = new ArrayList<Job>(maxJobs); //sets the max jobs depending on number of elevators
@@ -40,10 +42,14 @@ public class Scheduler {
         return returnedJob;
     }
 
-    public static void main(String args[]){
+    public boolean getProgramStatus(){
+        return this.endProgram;
+    }
 
-        Thread Elevator = new Thread(new ElevatorSubsystem(1));
-        Thread Floor = new Thread(new FloorSubsystem());
+    public static void main(String args[]){
+        Scheduler scheduler = new Scheduler(1);
+        Thread Elevator = new Thread(new ElevatorSubsystem(1,scheduler));
+        Thread Floor = new Thread(new FloorSubsystem(1,scheduler));
 
 
 

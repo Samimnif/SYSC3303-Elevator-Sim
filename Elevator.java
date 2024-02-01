@@ -1,8 +1,15 @@
 public class Elevator {
     private int currentFloor;
     private static int floorsPassed;
+    private int id;
+
 
     public Elevator(){
+        this.currentFloor = 1;
+        floorsPassed = 0;
+    }
+    public Elevator(int id){
+        this.id = id;
         this.currentFloor = 1;
         floorsPassed = 0;
     }
