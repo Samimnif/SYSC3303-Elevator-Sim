@@ -30,16 +30,16 @@ public class FloorSubsystem implements Runnable {
 
     public synchronized void run () {}
 
-    public static void main(String[] args) {
-        String info;
-        Scheduler scheduler = new Scheduler();
-
-        FloorSubsystem floor = new FloorSubsystem(scheduler);
-
-        info = floor.readFile();
-
-        System.out.println(info);
-
-    }
+//    public static void main(String[] args) {
+//        String info;
+//        Scheduler scheduler = new Scheduler();
+//
+//        FloorSubsystem floor = new FloorSubsystem(scheduler);
+//
+//        info = floor.readFile();
+//
+//        System.out.println(info);
+//
+//    }
 
 }
