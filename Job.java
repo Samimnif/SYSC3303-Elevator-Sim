@@ -27,4 +27,11 @@ public class Job {
         return button;
     }
 
+    public void setTimeStamp(String timeStamp) { this.timeStamp = timeStamp; }
+
+    public void setElevatorID(int elevatorID) { this.elevatorID = elevatorID; }
+
+    public void setFloor(int floor) { this.floor = floor; }
+
+    public void setButton(String button) { this.button = button; }
 }

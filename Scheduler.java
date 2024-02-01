@@ -51,8 +51,5 @@ public class Scheduler {
         Elevator elevator = new Elevator(1, 3);
         Thread Elevator = new Thread(new ElevatorSubsystem(elevator,scheduler));
         Thread Floor = new Thread(new FloorSubsystem(1,scheduler));
-
-
-
     }
 }

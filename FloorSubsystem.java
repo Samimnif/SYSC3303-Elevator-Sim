@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FloorSubsystem implements Runnable {
     Scheduler scheduler;
@@ -29,14 +31,26 @@ public class FloorSubsystem implements Runnable {
         return line;
     }
 
+    private Job getNextJob() {
+        String raw = readFile();
+        String[] rawSplit = raw.split(" ");
+
+        job.setElevatorID(Integer.valueOf(rawSplit[0].replace(":", "")));
+        job.setElevatorID(Integer.valueOf(rawSplit[1]));
+        job.setFloor(Integer.valueOf(rawSplit[2]));
+        job.setButton(rawSplit[3]);
+
+        return job;
+    }
+
     public synchronized void run () {
 
         while(scheduler.getProgramStatus()){
+            this.job = getNextJob();
             if(this.job!= null) {
                 scheduler.put(job);
             }
         }
-
     }
 
 
