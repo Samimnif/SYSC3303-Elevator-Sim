@@ -13,7 +13,6 @@ public class FloorSubsystem implements Runnable {
         try {
             reader = new BufferedReader(new FileReader("events.txt"));
         } catch (IOException e) {
-            //do nothing
         }
         if (reader == null) {
             System.out.println("reader is null :(");
