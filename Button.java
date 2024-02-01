@@ -1,16 +1,34 @@
 public class Button {
 
-    boolean button;
+    private boolean button ; //no need for this line
+    private int ID;
+    private Lamp lamp;
 
-    public Button(boolean button){
-        this.button = button;
+    //set to true if the button is pressed, and false otherwise
+    public Button(int id, Lamp floorLamp){
+        this.button = false;
+        this.ID = id;
+        this.lamp = floorLamp;
     }
-
     //returns true if the button is pressed and false if it's not
-    public boolean getButtons(){
+    public boolean isButtonPressed(){
         return button;
     }
 
-    public setB
+    public void setButton(boolean button) {
+        this.button = button;
+    }
+
+    public void pressButton(){
+        //if we press the button we set the lamp indicator to on
+        this.button = true;
+        this.lamp.setLamp(true);
+    }
+
+    public void resetButton(){
+        this.button = false;
+        this.lamp.setLamp(false);
+    }
+
 
 }

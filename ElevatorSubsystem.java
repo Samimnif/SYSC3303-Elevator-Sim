@@ -1,11 +1,9 @@
 public class ElevatorSubsystem implements Runnable {
-    int ID;
     private Scheduler scheduler;
     private Elevator elevator;
     public Job currentJob;
 
     public ElevatorSubsystem(Elevator elevatorObj, Scheduler scheduler){
-            this.ID = ID
             this.scheduler = scheduler;
             this.elevator = elevatorObj;
     }
@@ -19,10 +17,4 @@ public class ElevatorSubsystem implements Runnable {
             this.currentJob = null;
         }
     }
-
-    public int getID(){
-        return ID;
-    }
-
-
 }
