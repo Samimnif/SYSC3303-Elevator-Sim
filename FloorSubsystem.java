@@ -35,7 +35,7 @@ public class FloorSubsystem implements Runnable {
         return line;
     }
 
-    private Job getNextJob() {
+    public Job getNextJob() {
         String raw = readFile();
         String[] rawSplit = raw.split(" ");
 
