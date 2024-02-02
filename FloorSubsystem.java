@@ -51,10 +51,16 @@ public class FloorSubsystem implements Runnable {
         while(!scheduler.getProgramStatus()){
             this.job = getNextJob();
             if(this.job!= null) {
+                System.out.println("Sending Job @"+job.getTimeStamp()+" for floor #"+job.getFloor()+" Pressed the Button "+job.getButton());
                 scheduler.put(job);
             }
             else{
                 return;
+            }
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
             //this.job = null;
         }
