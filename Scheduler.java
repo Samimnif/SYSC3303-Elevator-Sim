@@ -74,6 +74,10 @@ public class Scheduler implements Runnable{
         System.out.print("END\n");
     }
 
+    public ArrayList<Job> getJobList() {
+        return jobList;
+    }
+
     @Override
     public void run() {
         try {
