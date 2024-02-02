@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Scheduler implements Runnable{
+public class Scheduler {
     private boolean empty = true;
     private ArrayList<Job> jobList= new ArrayList<>();
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
@@ -46,29 +46,10 @@ public class Scheduler implements Runnable{
         return this.endProgram;
     }
 
-    public void info(){
-        if (getProgramStatus() == true ){
-            System.out.println("program is currently running");
-        }
-        else {
-            System.out.println("program is currently offline");
-        }
-        System.out.println(jobList);
-        System.out.println(" \n max size is: "+ MAX_SIZE);
-
-
-    }
-
-    @Override
-    public void run() {
-
-    }
-/*
     public static void main(String args[]){
         Scheduler scheduler = new Scheduler(1);
         Elevator elevator = new Elevator(1, 3);
         Thread Elevator = new Thread(new ElevatorSubsystem(elevator,scheduler));
         Thread Floor = new Thread(new FloorSubsystem(1, scheduler));
     }
- */
 }

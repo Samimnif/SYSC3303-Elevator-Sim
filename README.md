@@ -25,7 +25,7 @@ Usage:
 
 Credits:
 --------
-Jalal Mourad, Sami Mnif,Omar Hamzat
+Jalal Mourad, Sami Mnif,
 
 Copyright 2024 Jalal Mourad
 
