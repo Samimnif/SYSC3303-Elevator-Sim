@@ -42,6 +42,10 @@ Usage:
 
 Credits:
 --------
-Jalal Mourad, Sami Mnif, Omar Hamzat
+Jalal Mourad:
+Sami Mnif:
+Omar Hamzat:
+Muaadh Ali:
+Jordan Bayne:
 
 Copyright 2024 Jalal Mourad, Sami Mnif, Omar Hamzat
