@@ -56,7 +56,7 @@ public class FloorSubsystem implements Runnable {
         while(!scheduler.getProgramStatus()){
             this.job = getNextJob();
             if(this.job!= null) {
-                System.out.println("Sending Job @"+job.getTimeStamp()+" for floor #"+job.getFloor()+" Pressed the Button "+job.getButton());
+                System.out.println(Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getFloor()+" Pressed the Button "+job.getButton());
                 scheduler.put(job);
             }
             else{
@@ -69,7 +69,7 @@ public class FloorSubsystem implements Runnable {
             }
             //this.job = null;
         }
-        System.out.println("Floor Subsystem Job ended");
+        System.out.println(Thread.currentThread().getName()+": Floor Subsystem Job ended");
     }
 
 /*

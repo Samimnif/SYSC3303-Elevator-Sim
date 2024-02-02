@@ -21,9 +21,12 @@ public class Scheduler implements Runnable{
         }
 
         // This Box is empty, so store obj.
-        if (jobList.size() < MAX_SIZE){
+        System.out.println("JOB size:"+this.jobList.size()+" MAX SiZE: "+MAX_SIZE);
+        if (this.jobList.size() < MAX_SIZE){
             this.jobList.add(newJob);
         }
+        System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getFloor()+" Pressed the Button "+newJob.getButton());
+        //printJobList();
         empty = jobList.isEmpty(); // Mark the box as empty if ArrayList isn't filled
         notifyAll();
     }
@@ -34,9 +37,10 @@ public class Scheduler implements Runnable{
                 wait();
             } catch (InterruptedException e) {}
         }
+        //printJobList();
         // Mark the box as empty.
-        Job returnedJob = jobList.get(0); //save the first
-        jobList.remove(0);
+        //Job returnedJob = jobList.get(0); //save the first // we just use remove below
+        Job returnedJob = jobList.remove(0);
         empty = jobList.isEmpty();
         notifyAll();
         return returnedJob;
@@ -47,7 +51,7 @@ public class Scheduler implements Runnable{
     }
 
     public void info(){
-        if (getProgramStatus() == true){
+        if (endProgram){
             System.out.println("program is running");
         }
         else{
@@ -58,9 +62,25 @@ public class Scheduler implements Runnable{
         System.out.println(jobList);
     }
 
+    private void printJobList(){
+        for (int i = 0; i < MAX_SIZE; i++) {
+            try {
+                System.out.print(jobList.get(i)+" -> ");
+            }catch (IndexOutOfBoundsException e)
+            {
+                System.out.print("NULL -> ");
+            }
+        }
+        System.out.print("END\n");
+    }
+
     @Override
     public void run() {
-
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /*

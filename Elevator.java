@@ -5,12 +5,16 @@ public class Elevator {
     private static int floorsPassed;
     private int id;
     private ArrayList<Button> ElevatorButton;
+    private Motor mainMotor;
+    private Door mainDoor;
 
     private boolean goingUp = true;
 
     public Elevator(int id, int numButtons){
         this.id = id;
         this.currentFloor = 1;
+        this.mainDoor = new Door();
+        this.mainMotor = new Motor();
         floorsPassed = 0;
         this.ElevatorButton = new ArrayList<Button>(numButtons);
         for (int i = 0; i < numButtons; i++) {
