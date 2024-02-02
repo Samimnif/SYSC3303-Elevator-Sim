@@ -37,14 +37,19 @@ public class FloorSubsystem implements Runnable {
 
     private Job getNextJob() {
         String raw = readFile();
-        String[] rawSplit = raw.split(" ");
+        if (raw != null) {
+            String[] rawSplit = raw.split(" ");
 
-        job.setTimeStamp(rawSplit[0]);
-        job.setElevatorID(Integer.valueOf(rawSplit[1]));
-        job.setFloor(Integer.valueOf(rawSplit[2]));
-        job.setButton(rawSplit[3]);
-
+            job.setTimeStamp(rawSplit[0]);
+            job.setElevatorID(Integer.valueOf(rawSplit[1]));
+            job.setFloor(Integer.valueOf(rawSplit[2]));
+            job.setButton(rawSplit[3]);
+        }
+        else{
+            job = null;
+        }
         return job;
+
     }
 
     public synchronized void run () {
@@ -66,7 +71,6 @@ public class FloorSubsystem implements Runnable {
         }
     }
 
-
 /*
     public static void main(String[] args) {
         String info;
@@ -81,6 +85,4 @@ public class FloorSubsystem implements Runnable {
     }
 
  */
-
-
 }
