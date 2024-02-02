@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String args[]){
-        Scheduler scheduler = new Scheduler(1);
+        Scheduler scheduler = new Scheduler(5);
         scheduler.info();
         Elevator elevator = new Elevator(1, 3);
         Thread Scheduler = new Thread(scheduler, "Scheduler Thread");

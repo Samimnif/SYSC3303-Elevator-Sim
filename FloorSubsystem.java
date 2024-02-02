@@ -37,13 +37,18 @@ public class FloorSubsystem implements Runnable {
 
     public Job getNextJob() {
         String raw = readFile();
-        String[] rawSplit = raw.split(" ");
 
-        job.setTimeStamp(rawSplit[0]);
-        job.setElevatorID(Integer.valueOf(rawSplit[1]));
-        job.setFloor(Integer.valueOf(rawSplit[2]));
-        job.setButton(rawSplit[3]);
+        if (raw != null) {
+            String[] rawSplit = raw.split(" ");
 
+            job.setTimeStamp(rawSplit[0]);
+            job.setElevatorID(Integer.valueOf(rawSplit[1]));
+            job.setFloor(Integer.valueOf(rawSplit[2]));
+            job.setButton(rawSplit[3]);
+        }
+        else{
+            job = null;
+        }
         return job;
     }
 
@@ -51,11 +56,11 @@ public class FloorSubsystem implements Runnable {
         while(!scheduler.getProgramStatus()){
             this.job = getNextJob();
             if(this.job!= null) {
-                System.out.println("Sending Job @"+job.getTimeStamp()+" for floor #"+job.getFloor()+" Pressed the Button "+job.getButton());
+                System.out.println(Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getFloor()+" Pressed the Button "+job.getButton());
                 scheduler.put(job);
             }
             else{
-                return;
+                break;
             }
             try {
                 Thread.sleep(10);
@@ -64,8 +69,8 @@ public class FloorSubsystem implements Runnable {
             }
             //this.job = null;
         }
+        System.out.println(Thread.currentThread().getName()+": Floor Subsystem Job ended");
     }
-
 
 /*
     public static void main(String[] args) {
@@ -81,6 +86,4 @@ public class FloorSubsystem implements Runnable {
     }
 
  */
-
-
 }
