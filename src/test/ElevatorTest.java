@@ -8,5 +8,6 @@ public class ElevatorTest {
     @Test
     @DisplayName("Temp test")
     public void tempTest(){
+        System.out.println("Hello World");
     }
 }
