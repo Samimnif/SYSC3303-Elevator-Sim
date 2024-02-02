@@ -38,15 +38,18 @@ public class FloorSubsystem implements Runnable {
     private Job getNextJob() {
         String raw = readFile();
 
+        if (raw != null) {
             String[] rawSplit = raw.split(" ");
 
             job.setTimeStamp(rawSplit[0]);
-            job.setElevatorID(Integer.parseInt(rawSplit[1]));
-            job.setFloor(Integer.parseInt(rawSplit[2]));
+            job.setElevatorID(Integer.valueOf(rawSplit[1]));
+            job.setFloor(Integer.valueOf(rawSplit[2]));
             job.setButton(rawSplit[3]);
-
-            return job;
-
+        }
+        else{
+            job = null;
+        }
+        return job;
     }
 
     public synchronized void run () {
@@ -57,7 +60,7 @@ public class FloorSubsystem implements Runnable {
                 scheduler.put(job);
             }
             else{
-                return;
+                break;
             }
             try {
                 Thread.sleep(10);
@@ -66,8 +69,8 @@ public class FloorSubsystem implements Runnable {
             }
             //this.job = null;
         }
+        System.out.println("Floor Subsystem Job ended");
     }
-
 
 /*
     public static void main(String[] args) {
@@ -83,6 +86,4 @@ public class FloorSubsystem implements Runnable {
     }
 
  */
-
-
 }
