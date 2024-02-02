@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class FloorSubsystem implements Runnable {
     Scheduler scheduler;
     BufferedReader reader;
-    Job job;
+    Job job = new Job(null,0,0,null);
     ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
     FloorSubsystem(int numOfFloors, Scheduler scheduler) {
         this.scheduler = scheduler;
@@ -39,7 +39,7 @@ public class FloorSubsystem implements Runnable {
         String raw = readFile();
         String[] rawSplit = raw.split(" ");
 
-        job.setElevatorID(Integer.valueOf(rawSplit[0].replace(":", "")));
+        job.setTimeStamp(rawSplit[0]);
         job.setElevatorID(Integer.valueOf(rawSplit[1]));
         job.setFloor(Integer.valueOf(rawSplit[2]));
         job.setButton(rawSplit[3]);
@@ -48,17 +48,20 @@ public class FloorSubsystem implements Runnable {
     }
 
     public synchronized void run () {
-
-        while(scheduler.getProgramStatus()){
+        while(!scheduler.getProgramStatus()){
             this.job = getNextJob();
             if(this.job!= null) {
                 scheduler.put(job);
             }
+            else{
+                return;
+            }
+            //this.job = null;
         }
     }
 
 
-
+/*
     public static void main(String[] args) {
         String info;
         Scheduler scheduler = new Scheduler(4);
@@ -70,5 +73,8 @@ public class FloorSubsystem implements Runnable {
         System.out.println(info);
 
     }
+
+ */
+
 
 }
