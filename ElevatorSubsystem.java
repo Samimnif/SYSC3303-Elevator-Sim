@@ -50,6 +50,7 @@ public class ElevatorSubsystem implements Runnable {
             }
             this.currentJob = null;
         }
+        scheduler.setElevatorProgram(true);
         System.out.println(Thread.currentThread().getName() + "Elevator Subsystem Job ended");
     }
 }
