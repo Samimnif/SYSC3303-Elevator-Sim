@@ -23,7 +23,7 @@ The Project is made up of one file:
 
 Installation:
 -------------
-To be able to to run the program, you should have Java 15.0.0 or later installed on your 
+To be able to run the program, you should have Java 15.0.0 or later installed on your
 computer.
 
 Usage:
