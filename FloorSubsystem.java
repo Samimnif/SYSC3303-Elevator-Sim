@@ -9,6 +9,7 @@ public class FloorSubsystem implements Runnable {
     BufferedReader reader;
     Job job = new Job(null,0,0,null);
     ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
+    private ArrayList<Elevator> elevatorsList;
     FloorSubsystem(int numOfFloors, Scheduler scheduler) {
         this.scheduler = scheduler;
         try {
@@ -54,6 +55,12 @@ public class FloorSubsystem implements Runnable {
 
     public synchronized void run () {
         while(!scheduler.getProgramStatus()){
+            this.elevatorsList = scheduler.getElevators();
+            System.out.println("\n"+Thread.currentThread().getName()+": ------ Floor Elevator Information -----");
+            for (Elevator e : elevatorsList){
+                System.out.println(Thread.currentThread().getName()+": Elevator "+ e.getId()+" is currently @ floor# "+e.getCurrentFloor());
+            }
+            System.out.println(Thread.currentThread().getName()+": ------ End Information -----\n");
             if (scheduler.isEmpty()) {
                 this.job = getNextJob();
                 if(this.job!= null) {

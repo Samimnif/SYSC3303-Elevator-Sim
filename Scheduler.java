@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Scheduler implements Runnable{
     private boolean empty = true;
+    private boolean emptyElevator = true;
     private ArrayList<Job> jobList= new ArrayList<>();
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
     private int MAX_SIZE;
@@ -25,7 +26,7 @@ public class Scheduler implements Runnable{
         }
 
         if (newJob != null) {
-            System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
+            //System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
         }
 
         empty = jobList.isEmpty(); // Mark the box as empty if ArrayList isn't filled
@@ -46,6 +47,33 @@ public class Scheduler implements Runnable{
         notifyAll();
         return returnedJob;
     }
+
+    public synchronized void putElevators(ArrayList<Elevator> elevatorList) {
+        // Wait for the Box to be empty
+        while (!emptyElevator) {
+            try {
+                wait();
+            } catch (InterruptedException e) {}
+        }
+
+        this.elevatorsList = elevatorList;
+        emptyElevator = false;
+
+        notifyAll();
+    }
+    public synchronized ArrayList<Elevator> getElevators() {
+        // Wait for the Box to full (not empty)
+        while (emptyElevator) {
+            try {
+                wait();
+            } catch (InterruptedException e) {}
+        }
+
+        emptyElevator = true;
+        notifyAll();
+        return this.elevatorsList;
+    }
+
 
     public boolean getProgramStatus(){
         return this.endProgram;
@@ -81,11 +109,14 @@ public class Scheduler implements Runnable{
 
     @Override
     public void run() {
-        try {
+        while(!endProgram){
+
+        }
+        /*try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     public boolean isEmpty() { return empty; }
