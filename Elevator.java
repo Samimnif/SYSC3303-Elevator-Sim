@@ -29,6 +29,13 @@ public class Elevator {
         floorsPassed += 1;
     }
 
+    public void goToFloor(int floorNum){
+        this.currentFloor = floorNum;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public static int getFloorsPassed() {
         return floorsPassed;
