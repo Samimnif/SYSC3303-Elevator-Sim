@@ -15,6 +15,8 @@ public class ElevatorSubsystem implements Runnable {
             this.currentJob =  scheduler.get();
             if (this.currentJob != null){
                 System.out.println(Thread.currentThread().getName()+": Received Job @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
+            } else {
+                break;
             }
             try {
                 Thread.sleep(10);
@@ -23,5 +25,6 @@ public class ElevatorSubsystem implements Runnable {
             }
             this.currentJob = null;
         }
+        System.out.println(Thread.currentThread().getName() + "Elevator Subsystem Job ended");
     }
 }

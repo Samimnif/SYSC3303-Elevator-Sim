@@ -23,8 +23,11 @@ public class Scheduler implements Runnable{
         if (this.jobList.size() < MAX_SIZE){
             this.jobList.add(newJob);
         }
-        System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
-        //printJobList();
+
+        if (newJob != null) {
+            System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
+        }
+
         empty = jobList.isEmpty(); // Mark the box as empty if ArrayList isn't filled
         notifyAll();
     }
@@ -84,6 +87,8 @@ public class Scheduler implements Runnable{
             throw new RuntimeException(e);
         }
     }
+
+    public boolean isEmpty() { return empty; }
 
     /*
     public static void main(String args[]){
