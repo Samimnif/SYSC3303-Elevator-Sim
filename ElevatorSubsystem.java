@@ -39,7 +39,7 @@ public class ElevatorSubsystem implements Runnable {
 
                 serviceElevator.goToFloor(currentJob.getDestinationFloor());
                 scheduler.putElevators(elevatorsList);
-                System.out.println(Thread.currentThread().getName()+": Elevator "+serviceElevator.getId()+" arrived to destination floor #"+currentJob.getPickupFloor());
+                System.out.println(Thread.currentThread().getName()+": Elevator "+serviceElevator.getId()+" arrived to destination floor #"+currentJob.getDestinationFloor());
             } else {
                 break;
             }
