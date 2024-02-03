@@ -42,9 +42,9 @@ public class FloorSubsystem implements Runnable {
             String[] rawSplit = raw.split(" ");
 
             job.setTimeStamp(rawSplit[0]);
-            job.setElevatorID(Integer.valueOf(rawSplit[1]));
-            job.setFloor(Integer.valueOf(rawSplit[2]));
-            job.setButton(rawSplit[3]);
+            job.setPickupFloor(Integer.valueOf(rawSplit[1]));
+            job.setButton(rawSplit[2]);
+            job.setDestinationFloor(Integer.valueOf(rawSplit[3]));
         }
         else{
             job = null;
@@ -56,7 +56,7 @@ public class FloorSubsystem implements Runnable {
         while(!scheduler.getProgramStatus()){
             this.job = getNextJob();
             if(this.job!= null) {
-                System.out.println(Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getFloor()+" Pressed the Button "+job.getButton());
+                System.out.println(Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getPickupFloor()+" Pressed the Button "+job.getButton() + " going to " + job.getDestinationFloor());
                 scheduler.put(job);
             }
             else{

@@ -23,7 +23,7 @@ public class Scheduler implements Runnable{
         if (this.jobList.size() < MAX_SIZE){
             this.jobList.add(newJob);
         }
-        System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getFloor()+" Pressed the Button "+newJob.getButton());
+        System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
         //printJobList();
         empty = jobList.isEmpty(); // Mark the box as empty if ArrayList isn't filled
         notifyAll();

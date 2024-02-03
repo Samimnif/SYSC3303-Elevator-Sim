@@ -13,9 +13,9 @@ public class UnitTests {
 
         job = floor.getNextJob();
 
-        assertEquals(0, job.getElevatorID());
+        assertEquals(4, job.getDestinationFloor());
         assertEquals("14:05:15", job.getTimeStamp());
-        assertEquals(2, job.getFloor());
+        assertEquals(2, job.getPickupFloor());
         assertEquals("Up", job.getButton());
     }
 
@@ -32,8 +32,8 @@ public class UnitTests {
 
         ArrayList<Job> jobs = scheduler.getJobList();
 
-        assertEquals(job.getElevatorID(), jobs.get(0).getElevatorID());
-        assertEquals(job.getFloor(), jobs.get(0).getFloor());
+        assertEquals(job.getDestinationFloor(), jobs.get(0).getDestinationFloor());
+        assertEquals(job.getPickupFloor(), jobs.get(0).getPickupFloor());
         assertEquals(job.getButton(), jobs.get(0).getButton());
         assertEquals(job.getTimeStamp(), jobs.get(0).getTimeStamp());
     }
@@ -51,8 +51,8 @@ public class UnitTests {
 
         Job newJob = scheduler.get();
 
-        assertEquals(job.getElevatorID(), newJob.getElevatorID());
-        assertEquals(job.getFloor(), newJob.getFloor());
+        assertEquals(job.getPickupFloor(), newJob.getPickupFloor());
+        assertEquals(job.getDestinationFloor(), newJob.getDestinationFloor());
         assertEquals(job.getButton(), newJob.getButton());
         assertEquals(job.getTimeStamp(), newJob.getTimeStamp());
     }
