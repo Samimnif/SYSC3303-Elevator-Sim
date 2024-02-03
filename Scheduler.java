@@ -7,6 +7,8 @@ public class Scheduler implements Runnable{
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
     private int MAX_SIZE;
     private boolean endProgram = false;
+    private boolean floorProgram = false;
+    private boolean elevatorProgram = false;
 
     public Scheduler(int maxJobs) {
         this.jobList = new ArrayList<Job>(maxJobs); //sets the max jobs depending on number of elevators
@@ -109,18 +111,29 @@ public class Scheduler implements Runnable{
 
     @Override
     public void run() {
-        while(!endProgram){
-
+        /*while(!endProgram){
+            if (elevatorProgram){
+                this.endProgram = true;
+            }
         }
-        /*try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }*/
+        System.out.println("Scheduler ended");*/
     }
 
     public boolean isEmpty() { return empty; }
 
+    public void setFloorProgram(boolean floorProgram) {
+        System.out.println("Set End Floor");
+        this.floorProgram = floorProgram;
+    }
+
+    public void setElevatorProgram(boolean elevatorProgram) {
+        System.out.println("Set End Elevator");
+        this.elevatorProgram = elevatorProgram;
+    }
+
+    public boolean isElevatorProgram() {
+        return elevatorProgram;
+    }
     /*
     public static void main(String args[]){
         Scheduler scheduler = new Scheduler(1);

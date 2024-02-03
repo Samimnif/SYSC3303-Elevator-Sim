@@ -54,7 +54,7 @@ public class FloorSubsystem implements Runnable {
     }
 
     public synchronized void run () {
-        while(!scheduler.getProgramStatus()){
+        while(!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()){
             this.elevatorsList = scheduler.getElevators();
             System.out.println("\n"+Thread.currentThread().getName()+": ------ Floor Elevator Information -----");
             for (Elevator e : elevatorsList){
@@ -69,7 +69,7 @@ public class FloorSubsystem implements Runnable {
                 }
                 else{
                     scheduler.put(job);
-                    break;
+                    //break;
                 }
                 //this.job = null;
             }
@@ -79,6 +79,7 @@ public class FloorSubsystem implements Runnable {
                 throw new RuntimeException(e);
             }
         }
+        scheduler.setFloorProgram(true);
         System.out.println(Thread.currentThread().getName()+": Floor Subsystem Job ended");
     }
 
