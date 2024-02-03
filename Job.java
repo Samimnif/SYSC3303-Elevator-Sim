@@ -1,13 +1,13 @@
 public class Job {
     private String timeStamp;
-    private int elevatorID;
-    private int floor;
+    private int destinationFloor;
+    private int pickupFloor;
     private String button;
 
-    public Job(String timeStamp, int elevatorID, int floor, String button) {
+    public Job(String timeStamp, int destinationFloor, int pickupFloor, String button) {
         this.timeStamp = timeStamp;
-        this.elevatorID = elevatorID;
-        this.floor = floor;
+        this.destinationFloor = destinationFloor;
+        this.pickupFloor = pickupFloor;
         this.button = button;
     }
 
@@ -15,13 +15,9 @@ public class Job {
         return timeStamp;
     }
 
-    public int getElevatorID() {
-        return elevatorID;
-    }
+    public int getDestinationFloor() { return destinationFloor; }
 
-    public int getFloor() {
-        return floor;
-    }
+    public int getPickupFloor() { return pickupFloor; }
 
     public String getButton() {
         return button;
@@ -29,9 +25,9 @@ public class Job {
 
     public void setTimeStamp(String timeStamp) { this.timeStamp = timeStamp; }
 
-    public void setElevatorID(int elevatorID) { this.elevatorID = elevatorID; }
+    public void setDestinationFloor(int destinationFloor) { this.destinationFloor = destinationFloor; }
 
-    public void setFloor(int floor) { this.floor = floor; }
+    public void setPickupFloor(int pickupFloor) { this.pickupFloor = pickupFloor; }
 
     public void setButton(String button) { this.button = button; }
 }

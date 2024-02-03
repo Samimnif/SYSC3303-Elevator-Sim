@@ -20,13 +20,14 @@ public class Scheduler implements Runnable{
             } catch (InterruptedException e) {}
         }
 
-        // This Box is empty, so store obj.
-        System.out.println("JOB size:"+this.jobList.size()+" MAX SiZE: "+MAX_SIZE);
         if (this.jobList.size() < MAX_SIZE){
             this.jobList.add(newJob);
         }
-        System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getFloor()+" Pressed the Button "+newJob.getButton());
-        //printJobList();
+
+        if (newJob != null) {
+            System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
+        }
+
         empty = jobList.isEmpty(); // Mark the box as empty if ArrayList isn't filled
         notifyAll();
     }
@@ -51,15 +52,15 @@ public class Scheduler implements Runnable{
     }
 
     public void info(){
-        if (endProgram){
+        if (!endProgram){
             System.out.println("program is running");
         }
         else{
             System.out.println("Program is offline");
         }
 
-        System.out.println("\n Max Size: "+ MAX_SIZE + "\n");
-        System.out.println(jobList);
+        System.out.println("Max Job list Size: "+ MAX_SIZE + "\n");
+        //System.out.println(jobList);
     }
 
     private void printJobList(){
@@ -86,6 +87,8 @@ public class Scheduler implements Runnable{
             throw new RuntimeException(e);
         }
     }
+
+    public boolean isEmpty() { return empty; }
 
     /*
     public static void main(String args[]){
