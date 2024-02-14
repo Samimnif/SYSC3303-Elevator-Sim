@@ -23,7 +23,7 @@ The Project is made up of one file:
 
 Installation:
 -------------
-To be able to to run the program, you should have Java 15.0.0 or later installed on your 
+To be able to run the program, you should have Java 15.0.0 or later installed on your
 computer.
 
 Usage:
@@ -44,6 +44,6 @@ Sami Mnif: ElevatorSubsystem.java, Job.java, Elevator.java, Scheduler.java, Floo
 Jalal Mourad:Elevator.java Button.java,Lamp.java,Scheduler.java,Motor.java,README.txt,Door.java
 Omar Hamzat: Job.java, Elevator.java, Main.java, UML diagrams
 Muaadh Ali: Floor.java, FloorSubsystem.java, Job.java
-Jordan Bayne: UnitTests.java
+Jordan Bayne: UnitTests.java, Motor.java, Door.java
 
 Copyright 2024 Jalal Mourad, Sami Mnif, Omar Hamzat, Jordan Bayne, Muaadh Ali

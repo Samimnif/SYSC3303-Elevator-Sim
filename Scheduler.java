@@ -27,7 +27,9 @@ public class Scheduler implements Runnable{
             this.jobList.add(newJob);
         }
 
-        if (newJob != null) {
+        if (newJob == null) {
+            setFloorProgram(true);
+            setElevatorProgram(true);
             //System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
         }
 
@@ -129,6 +131,8 @@ public class Scheduler implements Runnable{
     public void setElevatorProgram(boolean elevatorProgram) {
         System.out.println("Set End Elevator");
         this.elevatorProgram = elevatorProgram;
+
+        notifyAll();
     }
 
     public boolean isElevatorProgram() {

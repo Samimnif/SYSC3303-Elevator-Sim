@@ -79,7 +79,6 @@ public class FloorSubsystem implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-        scheduler.setFloorProgram(true);
         System.out.println(Thread.currentThread().getName()+": Floor Subsystem Job ended");
     }
 
