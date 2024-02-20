@@ -131,20 +131,14 @@ public class Scheduler implements Runnable{
     public void setElevatorProgram(boolean elevatorProgram) {
         System.out.println("Set End Elevator");
         this.elevatorProgram = elevatorProgram;
-
         notifyAll();
     }
 
     public boolean isElevatorProgram() {
         return elevatorProgram;
     }
-    /*
-    public static void main(String args[]){
-        Scheduler scheduler = new Scheduler(1);
-        Elevator elevator = new Elevator(1, 3);
-        Thread Elevator = new Thread(new ElevatorSubsystem(elevator,scheduler));
-        Thread Floor = new Thread(new FloorSubsystem(1, scheduler));
-    }
 
-     */
+    public void notified(Elevator elevator){
+        System.out.println("Scheduler is notified that elevator " + elevator.getId() + " is at floor " + elevator.getCurrentFloor());
+    }
 }

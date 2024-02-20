@@ -5,11 +5,13 @@ import static java.lang.Math.abs;
 public class ElevatorSubsystem /*implements Runnable*/ {
     private Scheduler scheduler;
     //private Elevator elevator;
+    private SchedulerStateMachine schedulerStateMachine;
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
     public Job currentJob;
 
-    public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler){
+    public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine){
         this.scheduler = scheduler;
+        this.schedulerStateMachine = schedulerStateMachine;
         this.elevatorsList= new ArrayList<Elevator>(numElevators);
         for (int i = 0; i < numElevators; i++) {
             Elevator elevator = new Elevator(i+1, numFloors);
@@ -20,7 +22,7 @@ public class ElevatorSubsystem /*implements Runnable*/ {
     }
 
     public void receiveNewTask() {
-        this.currentJob =  scheduler.get();
+        this.currentJob =  schedulerStateMachine.pressFloorButton(null);
     }
 
     protected void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
@@ -43,7 +45,7 @@ public class ElevatorSubsystem /*implements Runnable*/ {
 
     protected void notifyScheduler() {
         //do something here with the scheduler to notify it that the elevator has arrived at its destination
-        System.out.println("Scheduler has been notified.");
+        scheduler.notified(elevatorsList.get(0));
     }
 
     protected boolean getProgramStatus() {
