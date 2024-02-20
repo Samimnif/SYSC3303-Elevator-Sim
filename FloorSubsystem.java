@@ -6,16 +6,17 @@ import java.util.ArrayList;
 
 public class FloorSubsystem implements Runnable {
     Scheduler scheduler;
+    SchedulerStateMachine schedulerStateMachine;
     BufferedReader reader;
     Job job = new Job(null,0,0,null);
     ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
     private ArrayList<Elevator> elevatorsList;
-    FloorSubsystem(int numOfFloors, Scheduler scheduler) {
+    FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine) {
         this.scheduler = scheduler;
+        this.schedulerStateMachine = schedulerStateMachine;
         try {
             reader = new BufferedReader(new FileReader("events.txt"));
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
         if (reader == null) {
             System.out.println("reader is null :(");
         }
@@ -65,10 +66,12 @@ public class FloorSubsystem implements Runnable {
                 this.job = getNextJob();
                 if(this.job!= null) {
                     System.out.println(Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getPickupFloor()+" Pressed the Button "+job.getButton() + " going to " + job.getDestinationFloor());
-                    scheduler.put(job);
+//                    scheduler.put(job);
+                    schedulerStateMachine.pressFloorButton(job);
                 }
                 else{
-                    scheduler.put(job);
+//                    scheduler.put(job);
+                    schedulerStateMachine.pressFloorButton(job);
                     //break;
                 }
                 //this.job = null;

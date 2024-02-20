@@ -9,7 +9,8 @@ public class UnitTests {
         Job job;
 
         Scheduler scheduler = new Scheduler(1);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler);
+        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
 
         job = floor.getNextJob();
 
@@ -24,7 +25,8 @@ public class UnitTests {
         Job job;
 
         Scheduler scheduler = new Scheduler(1);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler);
+        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
 
         job = floor.getNextJob();
 
@@ -43,7 +45,8 @@ public class UnitTests {
         Job job;
 
         Scheduler scheduler = new Scheduler(1);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler);
+        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
 
         job = floor.getNextJob();
 
