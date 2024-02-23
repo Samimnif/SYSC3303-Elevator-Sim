@@ -30,7 +30,7 @@ public class Scheduler implements Runnable{
         if (newJob == null) {
             setFloorProgram(true);
             setElevatorProgram(true);
-            //System.out.println(Thread.currentThread().getName()+": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
+            //System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
         }
 
         empty = jobList.isEmpty(); // Mark the box as empty if ArrayList isn't filled
@@ -124,12 +124,12 @@ public class Scheduler implements Runnable{
     public boolean isEmpty() { return empty; }
 
     public void setFloorProgram(boolean floorProgram) {
-        System.out.println("Set End Floor");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Set End Floor");
         this.floorProgram = floorProgram;
     }
 
     public void setElevatorProgram(boolean elevatorProgram) {
-        System.out.println("Set End Elevator");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Set End Elevator");
         this.elevatorProgram = elevatorProgram;
         notifyAll();
     }
@@ -139,6 +139,6 @@ public class Scheduler implements Runnable{
     }
 
     public void notified(Elevator elevator){
-        System.out.println("Scheduler is notified that elevator " + elevator.getId() + " is at floor " + elevator.getCurrentFloor());
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Scheduler is notified that elevator " + elevator.getId() + " is at floor " + elevator.getCurrentFloor());
     }
 }

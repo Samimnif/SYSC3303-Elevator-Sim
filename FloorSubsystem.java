@@ -57,15 +57,15 @@ public class FloorSubsystem implements Runnable {
     public synchronized void run () {
         while(!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()){
             this.elevatorsList = scheduler.getElevators();
-            System.out.println("\n"+Thread.currentThread().getName()+": ------ Floor Elevator Information -----");
+            System.out.println("\n"+System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": ------ Floor Elevator Information -----");
             for (Elevator e : elevatorsList){
-                System.out.println(Thread.currentThread().getName()+": Elevator "+ e.getId()+" is currently @ floor# "+e.getCurrentFloor());
+                System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+ e.getId()+" is currently @ floor# "+e.getCurrentFloor());
             }
-            System.out.println(Thread.currentThread().getName()+": ------ End Information -----\n");
+            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": ------ End Information -----\n");
             if (scheduler.isEmpty()) {
                 this.job = getNextJob();
                 if(this.job!= null) {
-                    System.out.println(Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getPickupFloor()+" Pressed the Button "+job.getButton() + " going to " + job.getDestinationFloor());
+                    System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getPickupFloor()+" Pressed the Button "+job.getButton() + " going to " + job.getDestinationFloor());
 //                    scheduler.put(job);
                     schedulerStateMachine.pressFloorButton(job);
                 }
@@ -82,7 +82,7 @@ public class FloorSubsystem implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println(Thread.currentThread().getName()+": Floor Subsystem Job ended");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Floor Subsystem Job ended");
     }
 
 /*

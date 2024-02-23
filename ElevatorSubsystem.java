@@ -26,20 +26,20 @@ public class ElevatorSubsystem /*implements Runnable*/ {
     }
 
     protected void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
-        System.out.println(Thread.currentThread().getName()+": Received Job @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Received Job @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
         //for now we assume one elevator is available
         if ((currentJob.getPickupFloor() > elevatorsList.get(0).getCurrentFloor())){
-            System.out.println(Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" is going UP to floor #"+currentJob.getPickupFloor());
+            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" is going UP to floor #"+currentJob.getPickupFloor());
         }else {
-            System.out.println(Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
+            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
         }
         elevatorsList.get(0).goToFloor(currentJob.getPickupFloor());
         scheduler.putElevators(elevatorsList);
-        System.out.println(Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" arrived to floor #"+currentJob.getPickupFloor() + " and now is going "+ currentJob.getButton() +" to "+currentJob.getDestinationFloor());
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" arrived to floor #"+currentJob.getPickupFloor() + " and now is going "+ currentJob.getButton() +" to "+currentJob.getDestinationFloor());
 
         elevatorsList.get(0).goToFloor(currentJob.getDestinationFloor());
         scheduler.putElevators(elevatorsList);
-        System.out.println(Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" arrived to destination floor #"+currentJob.getDestinationFloor());
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" arrived to destination floor #"+currentJob.getDestinationFloor());
 
     }
 

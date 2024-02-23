@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c282d03d-80a0-4d66-832f-49334bc06f4c" name="Changes" comment="Fixed the end program" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Samimnif&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="672c2fd8-49b3-4814-8e6f-27e01fe494f6" />
+        <option name="url" value="https://github.com/Samimnif/SYSC3303-Elevator-Sim.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2bjZhVjBQYbbYnUxYA8oRY3RT0h" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.FloorSubsystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Scheduler.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/samim/IdeaProjects/SYSC3303/SYSC3303-Elevator-Sim&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\samim\IdeaProjects\3303\SYSC3303-Elevator-Sim" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\samim\IdeaProjects\3303\SYSC3303-Elevator-Sim" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-48ba4555" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c282d03d-80a0-4d66-832f-49334bc06f4c" name="Changes" comment="" />
+      <created>1706730567516</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706730567516</updated>
+    </task>
+    <task id="LOCAL-00001" summary="initial">
+      <option name="closed" value="true" />
+      <created>1706730811395</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706730811395</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Renamed filed, added README for project">
+      <option name="closed" value="true" />
+      <created>1706732441548</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706732441548</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Classes for Elevator, Job.&#10;Added get and piut funtions to Scheduler">
+      <option name="closed" value="true" />
+      <created>1706753685979</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706753685979</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added Classes for Elevator, Job.&#10;Added get and put functions to Scheduler">
+      <option name="closed" value="true" />
+      <created>1706836187965</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706836187965</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added Classes for Elevator, Job.&#10;Added get and put functions to Scheduler">
+      <option name="closed" value="true" />
+      <created>1706842122912</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706842122912</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fiels update">
+      <option name="closed" value="true" />
+      <created>1706843119824</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706843119824</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added variaty">
+      <option name="closed" value="true" />
+      <created>1706843199365</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706843199365</updated>
+    </task>
+    <task id="LOCAL-00008" summary="readme update">
+      <option name="closed" value="true" />
+      <created>1706843379859</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706843379859</updated>
+    </task>
+    <task id="LOCAL-00009" summary="floor sub system update">
+      <option name="closed" value="true" />
+      <created>1706843951765</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706843951765</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed the null">
+      <option name="closed" value="true" />
+      <created>1706844339217</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706844339217</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed the null error">
+      <option name="closed" value="true" />
+      <created>1706844599257</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706844599257</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added Motor and Door&#10;Added user input to the ElevatorSubsystem">
+      <option name="closed" value="true" />
+      <created>1706887573409</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706887573409</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Changed one line">
+      <option name="closed" value="true" />
+      <created>1706920399153</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706920399153</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added put&amp;get for elevator info">
+      <option name="closed" value="true" />
+      <created>1706927197756</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706927197756</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixed a small issue with sout line">
+      <option name="closed" value="true" />
+      <created>1706928237971</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1706928237971</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixed the end program">
+      <option name="closed" value="true" />
+      <created>1706929350455</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1706929350455</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial" />
+    <MESSAGE value="Renamed filed, added README for project" />
+    <MESSAGE value="Added Classes for Elevator, Job.&#10;Added get and piut funtions to Scheduler" />
+    <MESSAGE value="Added Classes for Elevator, Job.&#10;Added get and put functions to Scheduler" />
+    <MESSAGE value="fiels update" />
+    <MESSAGE value="added variaty" />
+    <MESSAGE value="readme update" />
+    <MESSAGE value="floor sub system update" />
+    <MESSAGE value="fixed the null" />
+    <MESSAGE value="fixed the null error" />
+    <MESSAGE value="Added Motor and Door&#10;Added user input to the ElevatorSubsystem" />
+    <MESSAGE value="Changed one line" />
+    <MESSAGE value="Added put&amp;get for elevator info" />
+    <MESSAGE value="Fixed a small issue with sout line" />
+    <MESSAGE value="Fixed the end program" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the end program" />
+  </component>
+</project>

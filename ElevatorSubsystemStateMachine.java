@@ -16,7 +16,7 @@ class ReceiveNewTask implements JobState {
     public boolean receiveCurrentTask(ElevatorSubsystemStateMachine context) {
         context.elevatorSubsystem.receiveNewTask();
         if (context.elevatorSubsystem.currentJob != null) {
-            System.out.println("Receiving new task...");
+            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Receiving new task...");
             context.setState("DelegateTask");
 
             return true;
@@ -25,43 +25,43 @@ class ReceiveNewTask implements JobState {
     }
 
     public void delegateTask(ElevatorSubsystemStateMachine context) {
-        System.out.println("Current Job is empty, no task to delegate.");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Current Job is empty, no task to delegate.");
     }
 
     public void notifyScheduler(ElevatorSubsystemStateMachine context) {
-        System.out.println("The elevator subsystem is attempting to receive a task.");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": The elevator subsystem is attempting to receive a task.");
     }
 }
 
 class DelegateCurrentTask implements JobState {
     public boolean receiveCurrentTask(ElevatorSubsystemStateMachine context) {
-        System.out.println("Current task not yet complete, cannot receive a new task.");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Current task not yet complete, cannot receive a new task.");
         return true;
     }
 
     public void delegateTask(ElevatorSubsystemStateMachine context) {
         context.elevatorSubsystem.delegateTask();
-        System.out.println("Delegating Task...");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Delegating Task...");
         context.setState("NotifyScheduler");
     }
 
     public void notifyScheduler(ElevatorSubsystemStateMachine context) {
-        System.out.println("The elevator subsystem is delegating a task.");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": The elevator subsystem is delegating a task.");
     }
 }
 
 class NotifyScheduler implements JobState {
     public boolean receiveCurrentTask(ElevatorSubsystemStateMachine context) {
-        System.out.println("Notifying scheduler not yet complete, cannot receive a new task.");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Notifying scheduler not yet complete, cannot receive a new task.");
         return true;
     }
 
     public void delegateTask(ElevatorSubsystemStateMachine context) {
-        System.out.println("Notifying scheduler not yet complete, no new task to delegate.");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Notifying scheduler not yet complete, no new task to delegate.");
     }
 
     public void notifyScheduler(ElevatorSubsystemStateMachine context) {
-        System.out.println("Notifying scheduler...");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Notifying scheduler...");
         context.elevatorSubsystem.notifyScheduler();
         context.elevatorSubsystem.currentJob = null;
         context.setState("ReceiveNewTask");
@@ -128,6 +128,6 @@ public class ElevatorSubsystemStateMachine implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println(Thread.currentThread().getName() + " Elevator Subsystem Job ended");
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() + " Elevator Subsystem Job ended");
     }
 }
