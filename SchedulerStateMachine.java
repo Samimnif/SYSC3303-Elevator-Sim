@@ -4,9 +4,6 @@ public class SchedulerStateMachine{
         WAIT_FOR_FLOORSUBSYTEM,
         RECEIVE_EVENT,
         SEND_EVENT,
-        SIGNAL_ELEVATOR_LAMP,
-        SIGNAL_ELEVATOR_MOTOR,
-        SIGNAL_ELEVATOR_DOOR
     }
 
     private SchedulerState currentState;
