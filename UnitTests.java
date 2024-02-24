@@ -59,4 +59,43 @@ public class UnitTests {
         assertEquals(job.getButton(), newJob.getButton());
         assertEquals(job.getTimeStamp(), newJob.getTimeStamp());
     }
+    @Test
+    public void schedulerStateTest(){
+        Job job;
+
+        Scheduler scheduler = new Scheduler(1);
+        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
+
+        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("WAIT_FOR_FLOORSUBSYTEM"));
+
+        job = floor.getNextJob();
+
+        schedulerStateMachine.pressFloorButton(null);
+
+        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("RECEIVE_EVENT"));
+
+        schedulerStateMachine.pressFloorButton(job); //floor
+
+        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("SEND_EVENT"));
+
+        job = schedulerStateMachine.pressFloorButton(null); //elevator
+
+        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("WAIT_FOR_FLOORSUBSYTEM"));
+    }
+
+    @Test
+    public void elevatorStateTest(){
+        Job job;
+
+        Scheduler scheduler = new Scheduler(1);
+        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
+
+        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1, 1, scheduler, schedulerStateMachine);
+        ElevatorSubsystemStateMachine elevatorStateMachine = new ElevatorSubsystemStateMachine(elevatorSubsystem);
+
+        assertEquals(elevatorStateMachine.getState(), elevatorStateMachine.getHashState("ReceiveNewTask"));
+
+
+    }
 }

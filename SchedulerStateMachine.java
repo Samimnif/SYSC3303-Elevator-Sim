@@ -38,4 +38,12 @@ public class SchedulerStateMachine{
 
         return null;
     }
+
+    public SchedulerState getSchedulerState(){
+        return SchedulerState.valueOf(String.valueOf(currentState));
+    }
+
+    public SchedulerState getEnumState(String index){
+        return SchedulerState.valueOf(index);
+    }
 }

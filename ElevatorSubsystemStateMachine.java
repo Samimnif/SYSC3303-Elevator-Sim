@@ -93,7 +93,13 @@ public class ElevatorSubsystemStateMachine implements Runnable {
         states.put(stateName, state);
     }
 
+    public JobState getState(){
+        return currentState;
+    }
 
+    public JobState getHashState(String st){
+        return states.get(st);
+    }
 
     @Override
     public void run() {

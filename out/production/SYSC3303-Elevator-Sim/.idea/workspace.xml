@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sequence-I2.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added diagrams" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -37,6 +35,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
     "DefaultPlantUmlFileTemplate": "UML Sequence",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -72,12 +72,26 @@
       <option name="presentableId" value="Default" />
       <updated>1708703695661</updated>
       <workItem from="1708703697337" duration="614000" />
-      <workItem from="1708704349937" duration="307000" />
+      <workItem from="1708704349937" duration="582000" />
+      <workItem from="1708794678760" duration="758000" />
     </task>
+    <task id="LOCAL-00001" summary="Added diagrams">
+      <option name="closed" value="true" />
+      <created>1708795431853</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708795431853</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added diagrams" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added diagrams" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
