@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added Test Cases">
-      <change beforePath="$PROJECT_DIR$/events.txt" beforeDir="false" afterPath="$PROJECT_DIR$/events.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Fixed Events txt file input">
+      <change afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
     </list>
     <list id="03f80a47-c937-4035-a34a-1e123005a0ca" name="Changes by Jalal" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,6 +110,9 @@
       <workItem from="1709174477199" duration="71000" />
       <workItem from="1709183187898" duration="4563000" />
       <workItem from="1709662752948" duration="906000" />
+      <workItem from="1709772925543" duration="1718000" />
+      <workItem from="1709836791920" duration="884000" />
+      <workItem from="1709959215559" duration="735000" />
     </task>
     <task id="LOCAL-00001" summary="Added diagrams">
       <option name="closed" value="true" />
@@ -127,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708798143319</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed Events txt file input">
+      <option name="closed" value="true" />
+      <created>1709778819334</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709778819334</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +147,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added diagrams" />
     <MESSAGE value="Added Test Cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Test Cases" />
+    <MESSAGE value="Fixed Events txt file input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Events txt file input" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
