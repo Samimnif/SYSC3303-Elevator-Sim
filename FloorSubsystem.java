@@ -108,17 +108,11 @@ public class FloorSubsystem implements Runnable {
                 if(this.job!= null) {
                     System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getPickupFloor()+" Pressed the Button "+job.getButton() + " going to " + job.getDestinationFloor());
 //                    scheduler.put(job);
-                    schedulerStateMachine.pressFloorButton(job);
                 }
-                else{
-//                    scheduler.put(job);
-                    schedulerStateMachine.pressFloorButton(job);
-                    //break;
-                }
-                //this.job = null;
+                schedulerStateMachine.pressFloorButton(job);
             }
             try {
-                Thread.sleep(10);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

@@ -141,4 +141,22 @@ public class Scheduler implements Runnable{
     public void notified(Elevator elevator){
         System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Scheduler is notified that elevator " + elevator.getId() + " is at floor " + elevator.getCurrentFloor());
     }
+
+    public int delegateTask(Job currentJob) {
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Received Job @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
+        //for now we assume one elevator is available
+        boolean goingUp = currentJob.getPickupFloor() < currentJob.getDestinationFloor();
+
+
+
+        for (int i = 0; i < elevatorsList.size(); i++) {
+            if (elevatorsList.get(i).getCurrentFloor() < currentJob.getPickupFloor() && goingUp && elevatorsList.get(i).isGoingUp()){
+                return i;
+            } else if (elevatorsList.get(i).getCurrentFloor() > currentJob.getPickupFloor() && !goingUp && !elevatorsList.get(i).isGoingUp()) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
 }
