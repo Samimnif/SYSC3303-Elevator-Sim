@@ -1,3 +1,4 @@
+import javax.xml.stream.XMLInputFactory;
 import java.util.ArrayList;
 
 public class Scheduler implements Runnable{
@@ -126,16 +127,34 @@ public class Scheduler implements Runnable{
 
         boolean goingUp = currentJob.getPickupFloor() < currentJob.getDestinationFloor();
 
+        int min = 1000;
+        int index = 0;
+
+
 
 
         for (int i = 0; i < elevatorsList.size(); i++) {
-            if (elevatorsList.get(i).getCurrentFloor() < currentJob.getPickupFloor() && goingUp && elevatorsList.get(i).isGoingUp()){
-                return i;
-            } else if (elevatorsList.get(i).getCurrentFloor() > currentJob.getPickupFloor() && !goingUp && !elevatorsList.get(i).isGoingUp()) {
-                return i;
+            if (!elevatorsList.get(i).isIdle()) {
+                if (elevatorsList.get(i).getCurrentFloor() <= currentJob.getPickupFloor() && goingUp && elevatorsList.get(i).isGoingUp()) {
+                    if (Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor()) < min) {
+                        min = Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor());
+                        index = i;
+                    }
+                } else if (elevatorsList.get(i).getCurrentFloor() >= currentJob.getPickupFloor() && !goingUp && !elevatorsList.get(i).isGoingUp()) {
+                    if (Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor()) < min) {
+                        min = Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor());
+                        index = i;
+                    }
+                }
+            }
+            else {
+                if (Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor()) < min) {
+                    min = Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor());
+                    index = i;
+                }
             }
         }
 
-        return 0;
+        return index;
     }
 }

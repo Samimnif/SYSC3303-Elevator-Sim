@@ -9,6 +9,7 @@ public class Elevator {
     private Door mainDoor;
 
     private boolean goingUp = true;
+    private boolean idle = true;
 
     public Elevator(int id, int numButtons){
         this.id = id;
@@ -25,13 +26,15 @@ public class Elevator {
 
     }
 
-    public void gotToNextFloor(){
+    public void goToNextFloor(){
         floorsPassed += 1;
     }
 
-    public void goToFloor(int floorNum){
-        this.currentFloor = floorNum;
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+id+" arrived to floor #"+currentFloor);
+    public void goToFloor(int floorNum) {
+        if (currentFloor != floorNum) {
+            this.currentFloor = floorNum;
+            System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + id + " arrived at floor #" + currentFloor);
+        }
     }
 
     public int getId() {
@@ -49,4 +52,8 @@ public class Elevator {
     public boolean isGoingUp() { return goingUp; }
 
     public void setGoingUp(boolean goingUp) { this.goingUp = goingUp; }
+
+    public boolean isIdle() { return idle; }
+
+    public void setIdle(boolean idle) { this.idle = idle; }
 }

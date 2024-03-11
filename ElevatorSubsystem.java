@@ -31,6 +31,7 @@ public class ElevatorSubsystem /*implements Runnable*/ {
 
         currentElevator = elevatorsList.get(i);
 
+        currentElevator.setIdle(false);
         currentElevator.setGoingUp(currentJob.getPickupFloor() > currentElevator.getCurrentFloor());
         logElevatorGoingUp(currentElevator, currentJob.getPickupFloor());
         currentElevator.goToFloor(currentJob.getPickupFloor());
@@ -38,11 +39,16 @@ public class ElevatorSubsystem /*implements Runnable*/ {
         currentElevator.setGoingUp(currentJob.getDestinationFloor() > currentElevator.getCurrentFloor());
         logElevatorGoingUp(currentElevator, currentJob.getDestinationFloor());
         currentElevator.goToFloor(currentJob.getDestinationFloor());
+        currentElevator.setIdle(true);
 
         scheduler.putElevators(elevatorsList);
     }
 
     private void logElevatorGoingUp(Elevator e, int f) {
+        if (e.getCurrentFloor() == f) {
+            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ " is ALREADY at floor #"+f);
+            return;
+        }
         System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ (e.isGoingUp()? " is going UP to floor #" : " is going DOWN to floor #")+f);
     }
 
