@@ -31,6 +31,7 @@ public class Elevator {
 
     public void goToFloor(int floorNum){
         this.currentFloor = floorNum;
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+id+" arrived to floor #"+currentFloor);
     }
 
     public int getId() {

@@ -31,24 +31,23 @@ public class ElevatorSubsystem /*implements Runnable*/ {
 
         currentElevator = elevatorsList.get(i);
 
-        if ((currentJob.getPickupFloor() > currentElevator.getCurrentFloor())){
-            currentElevator.setGoingUp(true);
-            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+" is going UP to floor #"+currentJob.getPickupFloor());
-        }else {
-            currentElevator.setGoingUp(false);
-            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
-        }
+        currentElevator.setGoingUp(currentJob.getPickupFloor() > currentElevator.getCurrentFloor());
+        logElevatorGoingUp(currentElevator);
         currentElevator.goToFloor(currentJob.getPickupFloor());
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+" arrived to floor #"+currentJob.getPickupFloor() + " and now is going "+ currentJob.getButton() +" to "+currentJob.getDestinationFloor());
 
+        currentElevator.setGoingUp(currentJob.getDestinationFloor() > currentElevator.getCurrentFloor());
+        logElevatorGoingUp(currentElevator);
         currentElevator.goToFloor(currentJob.getDestinationFloor());
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+" arrived to destination floor #"+currentJob.getDestinationFloor());
+    }
+
+    private void logElevatorGoingUp(Elevator e) {
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ (e.isGoingUp()? " is going UP to floor #" : "is going DOWN to floor #")+currentJob.getPickupFloor());
 
     }
 
     protected void notifyScheduler() {
         //do something here with the scheduler to notify it that the elevator has arrived at its destination
-        scheduler.notified(elevatorsList.get(0));
+        scheduler.notified(currentElevator);
     }
 
     protected boolean getProgramStatus() {

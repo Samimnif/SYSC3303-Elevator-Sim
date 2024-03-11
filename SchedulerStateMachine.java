@@ -23,7 +23,7 @@ public class SchedulerStateMachine{
             case RECEIVE_EVENT:
                 currentState = SchedulerState.SEND_EVENT;
                 scheduler.put(job);
-                System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Scheduler is ready to send job to elevator subsystem");
+                //System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Scheduler is ready to send job to elevator subsystem");
                 break;
         }
 
@@ -41,7 +41,7 @@ public class SchedulerStateMachine{
         if (currentState == SchedulerState.SEND_EVENT) {
             currentState = SchedulerState.RECEIVE_EVENT;
             getJob = scheduler.get();
-            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Scheduler is waiting for job request from floor subsystem");
+            //System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Scheduler is waiting for job request from floor subsystem");
         }
 
         return getJob;

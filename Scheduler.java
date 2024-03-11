@@ -144,7 +144,7 @@ public class Scheduler implements Runnable{
 
     public int delegateTask(Job currentJob) {
         System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Received Job @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
-        //for now we assume one elevator is available
+
         boolean goingUp = currentJob.getPickupFloor() < currentJob.getDestinationFloor();
 
 
