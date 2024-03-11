@@ -25,24 +25,25 @@ public class ElevatorSubsystem /*implements Runnable*/ {
 
     public void receiveNewTask() { this.currentJob = schedulerStateMachine.sendTask(); }
 
-    protected void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
+    protected synchronized void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
         scheduler.putElevators(elevatorsList);
         int i = scheduler.delegateTask(currentJob);
 
         currentElevator = elevatorsList.get(i);
 
         currentElevator.setGoingUp(currentJob.getPickupFloor() > currentElevator.getCurrentFloor());
-        logElevatorGoingUp(currentElevator);
+        logElevatorGoingUp(currentElevator, currentJob.getPickupFloor());
         currentElevator.goToFloor(currentJob.getPickupFloor());
 
         currentElevator.setGoingUp(currentJob.getDestinationFloor() > currentElevator.getCurrentFloor());
-        logElevatorGoingUp(currentElevator);
+        logElevatorGoingUp(currentElevator, currentJob.getDestinationFloor());
         currentElevator.goToFloor(currentJob.getDestinationFloor());
+
+        scheduler.putElevators(elevatorsList);
     }
 
-    private void logElevatorGoingUp(Elevator e) {
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ (e.isGoingUp()? " is going UP to floor #" : "is going DOWN to floor #")+currentJob.getPickupFloor());
-
+    private void logElevatorGoingUp(Elevator e, int f) {
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ (e.isGoingUp()? " is going UP to floor #" : " is going DOWN to floor #")+f);
     }
 
     protected void notifyScheduler() {

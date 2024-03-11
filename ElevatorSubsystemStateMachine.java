@@ -29,13 +29,13 @@ public class ElevatorSubsystemStateMachine implements Runnable {
                 case RECEIVE_NEW_TASK:
                     elevatorSubsystem.receiveNewTask();
                     if (elevatorSubsystem.currentJob != null) {
-                        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Receiving new task...");
+                        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Received new task...");
                         currentState = ElevatorStates.DELEGATE_TASK;
                     }
                     break;
                 case DELEGATE_TASK:
+                    System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Performing Task...");
                     elevatorSubsystem.delegateTask();
-                    System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Delegating Task...");
                     currentState = ElevatorStates.NOTIFY_SCHEDULER;
                     break;
                 case NOTIFY_SCHEDULER:
@@ -46,7 +46,7 @@ public class ElevatorSubsystemStateMachine implements Runnable {
                     break;
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

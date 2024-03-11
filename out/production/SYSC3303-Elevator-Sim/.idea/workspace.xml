@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c82168-fc44-4b1f-85db-04d09874b7c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ElevatorSubsystemStateMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorSubsystemStateMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElevatorSubsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorSubsystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SchedulerStateMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/SchedulerStateMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
