@@ -1,8 +1,8 @@
+import javax.xml.stream.XMLInputFactory;
 import java.util.ArrayList;
 
 public class Scheduler implements Runnable{
     private boolean empty = true;
-    private boolean emptyElevator = true;
     private ArrayList<Job> jobList= new ArrayList<>();
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
     private int MAX_SIZE;
@@ -52,29 +52,10 @@ public class Scheduler implements Runnable{
         return returnedJob;
     }
 
-    public synchronized void putElevators(ArrayList<Elevator> elevatorList) {
-        // Wait for the Box to be empty
-        while (!emptyElevator) {
-            try {
-                wait();
-            } catch (InterruptedException e) {}
-        }
-
+    public void putElevators(ArrayList<Elevator> elevatorList) {
         this.elevatorsList = elevatorList;
-        emptyElevator = false;
-
-        notifyAll();
     }
     public synchronized ArrayList<Elevator> getElevators() {
-        // Wait for the Box to full (not empty)
-        while (emptyElevator) {
-            try {
-                wait();
-            } catch (InterruptedException e) {}
-        }
-
-        emptyElevator = true;
-        notifyAll();
         return this.elevatorsList;
     }
 
@@ -131,7 +112,6 @@ public class Scheduler implements Runnable{
     public void setElevatorProgram(boolean elevatorProgram) {
         System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Set End Elevator");
         this.elevatorProgram = elevatorProgram;
-        notifyAll();
     }
 
     public boolean isElevatorProgram() {
@@ -140,5 +120,41 @@ public class Scheduler implements Runnable{
 
     public void notified(Elevator elevator){
         System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Scheduler is notified that elevator " + elevator.getId() + " is at floor " + elevator.getCurrentFloor());
+    }
+
+    public synchronized int delegateTask(Job currentJob) {
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Delegating Job: Received @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
+
+        boolean goingUp = currentJob.getPickupFloor() < currentJob.getDestinationFloor();
+
+        int min = 1000;
+        int index = 0;
+
+
+
+
+        for (int i = 0; i < elevatorsList.size(); i++) {
+            if (!elevatorsList.get(i).isIdle()) {
+                if (elevatorsList.get(i).getCurrentFloor() <= currentJob.getPickupFloor() && goingUp && elevatorsList.get(i).isGoingUp()) {
+                    if (Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor()) < min) {
+                        min = Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor());
+                        index = i;
+                    }
+                } else if (elevatorsList.get(i).getCurrentFloor() >= currentJob.getPickupFloor() && !goingUp && !elevatorsList.get(i).isGoingUp()) {
+                    if (Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor()) < min) {
+                        min = Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor());
+                        index = i;
+                    }
+                }
+            }
+            else {
+                if (Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor()) < min) {
+                    min = Math.abs(elevatorsList.get(i).getCurrentFloor() - currentJob.getPickupFloor());
+                    index = i;
+                }
+            }
+        }
+
+        return index;
     }
 }

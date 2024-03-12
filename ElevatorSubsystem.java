@@ -7,6 +7,8 @@ public class ElevatorSubsystem /*implements Runnable*/ {
     //private Elevator elevator;
     private SchedulerStateMachine schedulerStateMachine;
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
+
+    private Elevator currentElevator;
     public Job currentJob;
 
     public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine){
@@ -21,31 +23,38 @@ public class ElevatorSubsystem /*implements Runnable*/ {
         System.out.println(elevatorsList);
     }
 
-    public void receiveNewTask() {
-        this.currentJob =  schedulerStateMachine.pressFloorButton(null);
+    public void receiveNewTask() { this.currentJob = schedulerStateMachine.sendTask(); }
+
+    protected synchronized void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
+        scheduler.putElevators(elevatorsList);
+        int i = scheduler.delegateTask(currentJob);
+
+        currentElevator = elevatorsList.get(i);
+
+        currentElevator.setIdle(false);
+        currentElevator.setGoingUp(currentJob.getPickupFloor() > currentElevator.getCurrentFloor());
+        logElevatorGoingUp(currentElevator, currentJob.getPickupFloor());
+        currentElevator.goToFloor(currentJob.getPickupFloor());
+
+        currentElevator.setGoingUp(currentJob.getDestinationFloor() > currentElevator.getCurrentFloor());
+        logElevatorGoingUp(currentElevator, currentJob.getDestinationFloor());
+        currentElevator.goToFloor(currentJob.getDestinationFloor());
+        currentElevator.setIdle(true);
+
+        scheduler.putElevators(elevatorsList);
     }
 
-    protected void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Received Job @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
-        //for now we assume one elevator is available
-        if ((currentJob.getPickupFloor() > elevatorsList.get(0).getCurrentFloor())){
-            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" is going UP to floor #"+currentJob.getPickupFloor());
-        }else {
-            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
+    private void logElevatorGoingUp(Elevator e, int f) {
+        if (e.getCurrentFloor() == f) {
+            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ " is ALREADY at floor #"+f);
+            return;
         }
-        elevatorsList.get(0).goToFloor(currentJob.getPickupFloor());
-        scheduler.putElevators(elevatorsList);
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" arrived to floor #"+currentJob.getPickupFloor() + " and now is going "+ currentJob.getButton() +" to "+currentJob.getDestinationFloor());
-
-        elevatorsList.get(0).goToFloor(currentJob.getDestinationFloor());
-        scheduler.putElevators(elevatorsList);
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+elevatorsList.get(0).getId()+" arrived to destination floor #"+currentJob.getDestinationFloor());
-
+        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ (e.isGoingUp()? " is going UP to floor #" : " is going DOWN to floor #")+f);
     }
 
     protected void notifyScheduler() {
         //do something here with the scheduler to notify it that the elevator has arrived at its destination
-        scheduler.notified(elevatorsList.get(0));
+        scheduler.notified(currentElevator);
     }
 
     protected boolean getProgramStatus() {
