@@ -65,7 +65,7 @@ public class Scheduler implements Runnable{
         return returnedJob;
     }
 
-    public void receiveAndSend(){
+    public void receiveAndSendElevator(){
         byte data[] = new byte[100];
         receivePacket = new DatagramPacket(data, data.length);
         try {
@@ -84,19 +84,29 @@ public class Scheduler implements Runnable{
             throw new RuntimeException(e);
         }
 
-        checkJob();
+        if (!empty) {
+            assignJob();
+        }
+        else {
+            //byte[] message = {0, 1, 0, 1};
+            System.out.println("empty job");
+        }
 
     }
 
-    public void checkJob() {
-        if (!empty){
-            for (Elevator i : elevatorsList){
-                if (i.isIdle()){
-                    i.setJob(jobList.remove(0));
-                    empty = jobList.isEmpty();
-                }
+    public void receiveAndSendFloor(){}
+
+    public boolean assignJob() {
+        boolean assignjob = false;
+        for (Elevator i : elevatorsList) {
+            if (i.isIdle()) {
+                i.setJob(jobList.remove(0));
+                empty = jobList.isEmpty();
+                assignjob = true;
+                if (empty){return assignjob}
             }
         }
+        return assignjob;
     }
 
 
