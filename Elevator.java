@@ -1,7 +1,16 @@
 import java.util.ArrayList;
 
 public class Elevator {
+    private enum elevatorStates{
+        IDLE,
+        STOP,
+        MOVING,
+        LOAD,
+        UNLOAD
+    }
     private int currentFloor;
+    private Job currentJob;
+    private elevatorStates currentState;
     private static int floorsPassed;
     private int id;
     private ArrayList<Button> ElevatorButton;
@@ -13,6 +22,8 @@ public class Elevator {
 
     public Elevator(int id, int numButtons){
         this.id = id;
+        this.currentState = elevatorStates.IDLE;
+        this.currentJob = null;
         this.currentFloor = 1;
         this.mainDoor = new Door();
         this.mainMotor = new Motor();
@@ -47,6 +58,10 @@ public class Elevator {
 
     public int getCurrentFloor() {
         return currentFloor;
+    }
+
+    public elevatorStates getCurrentState() {
+        return currentState;
     }
 
     public boolean isGoingUp() { return goingUp; }

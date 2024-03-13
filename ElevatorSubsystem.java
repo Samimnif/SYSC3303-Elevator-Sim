@@ -1,3 +1,8 @@
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.net.*;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
@@ -10,9 +15,13 @@ public class ElevatorSubsystem /*implements Runnable*/ {
 
     private Elevator currentElevator;
     public Job currentJob;
+    DatagramPacket sendPacket, receivePacket;
+    DatagramSocket sendReceiveSocket;
+    private int SCHEDULER_PORT;
 
-    public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine){
+    public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler, int schedulerPort){
         this.scheduler = scheduler;
+        this.SCHEDULER_PORT = schedulerPort;
         this.schedulerStateMachine = schedulerStateMachine;
         this.elevatorsList= new ArrayList<Elevator>(numElevators);
         for (int i = 0; i < numElevators; i++) {
@@ -20,7 +29,49 @@ public class ElevatorSubsystem /*implements Runnable*/ {
             this.elevatorsList.add(elevator);
         }
         scheduler.putElevators(elevatorsList);
-        System.out.println(elevatorsList);
+        System.out.println("List of Elevators: "+elevatorsList);
+
+        try {
+            sendReceiveSocket = new DatagramSocket();
+        } catch (SocketException se) {   // Can't create the socket.
+            se.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    public void sendReceiveElevators(){
+        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+        ObjectOutput oo = null;
+        try {
+            oo = new ObjectOutputStream(bStream);
+            oo.writeObject(elevatorsList);
+            oo.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        byte msg[] = bStream.toByteArray();
+
+        //Sending packet
+        try {
+            sendPacket = new DatagramPacket(msg, msg.length,
+                    InetAddress.getLocalHost(), SCHEDULER_PORT);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        //Receive packet
+        byte data[] = new byte[4];
+        receivePacket = new DatagramPacket(data, data.length);
+
+        try {
+            // Block until a datagram is received via sendReceiveSocket.
+            sendReceiveSocket.receive(receivePacket);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     public void receiveNewTask() { this.currentJob = schedulerStateMachine.sendTask(); }
