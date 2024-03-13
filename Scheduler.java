@@ -84,6 +84,8 @@ public class Scheduler implements Runnable{
             throw new RuntimeException(e);
         }
 
+        checkJob();
+
     }
 
     public void checkJob() {

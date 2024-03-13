@@ -35,10 +35,10 @@ public class Main {
         System.out.println();
 
 
-        Scheduler scheduler = new Scheduler(MAX_JOB);
+        Scheduler scheduler = new Scheduler(MAX_JOB, SCHEDULER_PORT);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        scheduler.info();
-        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, schedulerStateMachine);
+        //scheduler.info();
+        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, SCHEDULER_PORT);
         //Elevator elevator = new Elevator(1, 3);
         Thread Scheduler = new Thread(scheduler, "Scheduler Thread");
 //        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler), "Elevator Thread");

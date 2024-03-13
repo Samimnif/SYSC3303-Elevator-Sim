@@ -71,4 +71,8 @@ public class Elevator {
     public boolean isIdle() { return idle; }
 
     public void setIdle(boolean idle) { this.idle = idle; }
+
+    public void setJob(Job assignedJob){
+        this.currentJob = assignedJob;
+    }
 }

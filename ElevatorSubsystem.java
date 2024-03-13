@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
-public class ElevatorSubsystem /*implements Runnable*/ {
+public class ElevatorSubsystem implements Runnable {
     private Scheduler scheduler;
     //private Elevator elevator;
     private SchedulerStateMachine schedulerStateMachine;
@@ -116,6 +116,10 @@ public class ElevatorSubsystem /*implements Runnable*/ {
         scheduler.setElevatorProgram(status);
     }
 
+    @Override
+    public void run() {
+
+    }
 //    @Override
 //    public void run() {
 //        scheduler.putElevators(elevatorsList);
