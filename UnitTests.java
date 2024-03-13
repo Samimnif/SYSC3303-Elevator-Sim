@@ -8,7 +8,7 @@ public class UnitTests {
     public void checkReadInputFileTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1);
+        Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
         FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
 
@@ -24,7 +24,7 @@ public class UnitTests {
     public void passDataToSchedulerTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1);
+        Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
         FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
 
@@ -44,7 +44,7 @@ public class UnitTests {
     public void getDataFromSchedulerTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1);
+        Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
         FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
 
@@ -63,7 +63,7 @@ public class UnitTests {
     public void schedulerStateTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1);
+        Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
         FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
 
@@ -88,7 +88,7 @@ public class UnitTests {
     public void elevatorStateTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1);
+        Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
 
         //ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1, 1, scheduler, schedulerStateMachine);

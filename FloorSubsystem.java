@@ -9,11 +9,12 @@ public class FloorSubsystem implements Runnable {
     Scheduler scheduler;
     SchedulerStateMachine schedulerStateMachine;
     BufferedReader reader;
-    Job job = new Job(null,0,0,null);
+    Job job = new Job(null, 0, 0, null);
     ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
     private ArrayList<Elevator> elevatorsList;
     DatagramSocket sendSocket;
     DatagramPacket sendPacket;
+
     FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine) {
         this.scheduler = scheduler;
         this.schedulerStateMachine = schedulerStateMachine;
@@ -25,7 +26,8 @@ public class FloorSubsystem implements Runnable {
         }
         try {
             reader = new BufferedReader(new FileReader("events.txt"));
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
         if (reader == null) {
             System.out.println("reader is null :(");
         }
@@ -36,7 +38,7 @@ public class FloorSubsystem implements Runnable {
         }
     }
 
-    private String readFile () {
+    private String readFile() {
         String line = null;
         try {
             line = reader.readLine();
@@ -56,13 +58,13 @@ public class FloorSubsystem implements Runnable {
             job.setPickupFloor(Integer.valueOf(rawSplit[1]));
             job.setButton(rawSplit[2]);
             job.setDestinationFloor(Integer.valueOf(rawSplit[3]));
-        }
-        else{
+        } else {
             job = null;
         }
         return job;
     }
-    public void sendPacket(){
+
+    public void sendPacket() {
 
         byte[] dataArray = jobRequest().getBytes();
 
@@ -90,23 +92,24 @@ public class FloorSubsystem implements Runnable {
 
     }
 
-    public String jobRequest(){
+    public String jobRequest() {
         String info;
         info = this.readFile();
         return info;
     }
-    public synchronized void run () {
-        while(!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()){
+
+    public synchronized void run() {
+        while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
             this.elevatorsList = scheduler.getElevators();
-            System.out.println("\n"+System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": ------ Floor Elevator Information -----");
-            for (Elevator e : elevatorsList){
-                System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+ e.getId()+" is currently @ floor# "+e.getCurrentFloor());
+            System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
+            for (Elevator e : elevatorsList) {
+                System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + e.getId() + " is currently @ floor# " + e.getCurrentFloor());
             }
-            System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": ------ End Information -----\n");
+            System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ End Information -----\n");
             if (scheduler.isEmpty()) {
                 this.job = getNextJob();
-                if(this.job!= null) {
-                    System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Sending Job @"+job.getTimeStamp()+" for floor #"+job.getPickupFloor()+" Pressed the Button "+job.getButton() + " going to " + job.getDestinationFloor());
+                if (this.job != null) {
+                    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Sending Job @" + job.getTimeStamp() + " for floor #" + job.getPickupFloor() + " Pressed the Button " + job.getButton() + " going to " + job.getDestinationFloor());
 //                    scheduler.put(job);
                 }
                 schedulerStateMachine.pressFloorButton(job);
@@ -117,16 +120,19 @@ public class FloorSubsystem implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Floor Subsystem Job ended");
+        System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Floor Subsystem Job ended");
     }
 
 
+    /*
     public static void main(String[] args) {
       //  String info;
-       Scheduler scheduler = new Scheduler(4);
+       Scheduler scheduler = new Scheduler(4, );
 //
 //        FloorSubsystem floor = new FloorSubsystem(1,scheduler);
 //
+
+
 
 SchedulerStateMachine stateMachine= new SchedulerStateMachine(scheduler);
         FloorSubsystem floor = new FloorSubsystem(3,scheduler,stateMachine);
@@ -137,4 +143,7 @@ SchedulerStateMachine stateMachine= new SchedulerStateMachine(scheduler);
     }
 
 
+}
+
+     */
 }

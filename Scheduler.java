@@ -103,7 +103,7 @@ public class Scheduler implements Runnable{
                 i.setJob(jobList.remove(0));
                 empty = jobList.isEmpty();
                 assignjob = true;
-                if (empty){return assignjob}
+                if (empty){return assignjob;}
             }
         }
         return assignjob;
