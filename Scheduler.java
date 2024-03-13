@@ -1,4 +1,10 @@
 import javax.xml.stream.XMLInputFactory;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 public class Scheduler implements Runnable{
@@ -9,14 +15,23 @@ public class Scheduler implements Runnable{
     private boolean endProgram = false;
     private boolean floorProgram = false;
     private boolean elevatorProgram = false;
+    private DatagramPacket sendPacket, receivePacket;
+    private DatagramSocket sendSocket, receiveSocket;
 
-    public Scheduler(int maxJobs) {
-        this.jobList = new ArrayList<Job>(maxJobs); //sets the max jobs depending on number of elevators
+
+
+    public Scheduler(int maxJobs, int schedulerPort) {
+        this.jobList = new ArrayList<Job>(maxJobs);
         this.MAX_SIZE = maxJobs;
+        try {
+            this.receiveSocket = new DatagramSocket(schedulerPort);
+            this.sendSocket = new DatagramSocket();
+        } catch (SocketException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public synchronized void put(Job newJob) {
-        // Wait for the Box to be empty
         while (!empty) {
             try {
                 wait();
@@ -30,14 +45,12 @@ public class Scheduler implements Runnable{
         if (newJob == null) {
             setFloorProgram(true);
             setElevatorProgram(true);
-            //System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Putting in Box Job @"+newJob.getTimeStamp()+" for floor #"+newJob.getPickupFloor()+" Pressed the Button "+newJob.getButton() + " going to " + newJob.getDestinationFloor());
         }
 
-        empty = jobList.isEmpty(); // Mark the box as empty if ArrayList isn't filled
+        empty = jobList.isEmpty();
         notifyAll();
     }
     public synchronized Job get() {
-        // Wait for the Box to full (not empty)
         while (empty) {
             try {
                 wait();
@@ -51,6 +64,39 @@ public class Scheduler implements Runnable{
         notifyAll();
         return returnedJob;
     }
+
+    public void receiveAndSend(){
+        byte data[] = new byte[100];
+        receivePacket = new DatagramPacket(data, data.length);
+        try {
+            receiveSocket.receive(receivePacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ObjectInputStream iStream = null;
+        try {
+            iStream = new ObjectInputStream(new ByteArrayInputStream(data));
+            elevatorsList = (ArrayList<Elevator>) iStream.readObject();
+            iStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void checkJob() {
+        if (!empty){
+            for (Elevator i : elevatorsList){
+                if (i.isIdle()){
+                    i.setJob(jobList.remove(0));
+                    empty = jobList.isEmpty();
+                }
+            }
+        }
+    }
+
 
     public void putElevators(ArrayList<Elevator> elevatorList) {
         this.elevatorsList = elevatorList;
