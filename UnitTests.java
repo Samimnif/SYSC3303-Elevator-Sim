@@ -10,7 +10,7 @@ public class UnitTests {
 
         Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100);
 
         job = floor.getNextJob();
 
@@ -26,7 +26,7 @@ public class UnitTests {
 
         Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100);
 
         job = floor.getNextJob();
 
@@ -46,7 +46,7 @@ public class UnitTests {
 
         Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100 );
 
         job = floor.getNextJob();
 
@@ -65,7 +65,7 @@ public class UnitTests {
 
         Scheduler scheduler = new Scheduler(1, 200);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100);
 
         assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("WAIT_FOR_FLOORSUBSYTEM"));
 

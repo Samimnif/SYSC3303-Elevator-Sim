@@ -12,11 +12,12 @@ public class FloorSubsystem implements Runnable {
     private ArrayList<Elevator> elevatorsList;
     DatagramSocket sendSocket, receiveSocket;
     DatagramPacket sendPacket, receivePacket;
+    private int FLOOR_PORT;
 
-    FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine) {
+    FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine, int port) {
         this.scheduler = scheduler;
         this.schedulerStateMachine = schedulerStateMachine;
-
+        this.FLOOR_PORT = port;
         try {
             sendSocket = new DatagramSocket();
             receiveSocket = new DatagramSocket(69);
@@ -83,7 +84,7 @@ public class FloorSubsystem implements Runnable {
         System.out.println("\nFloor: Sending packet...\n");
 
         try {
-            sendPacket = new DatagramPacket(msg, msg.length, InetAddress.getLocalHost(), 200);
+            sendPacket = new DatagramPacket(msg, msg.length, InetAddress.getLocalHost(), FLOOR_PORT);
         } catch (UnknownHostException e) {
             e.printStackTrace();
             System.exit(1);
