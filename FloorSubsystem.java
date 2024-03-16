@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
@@ -12,8 +10,8 @@ public class FloorSubsystem implements Runnable {
     Job job = new Job(null, 0, 0, null);
     ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
     private ArrayList<Elevator> elevatorsList;
-    DatagramSocket sendSocket;
-    DatagramPacket sendPacket;
+    DatagramSocket sendSocket, receiveSocket;
+    DatagramPacket sendPacket, receivePacket;
 
     FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine) {
         this.scheduler = scheduler;
@@ -21,6 +19,7 @@ public class FloorSubsystem implements Runnable {
 
         try {
             sendSocket = new DatagramSocket();
+            receiveSocket = new DatagramSocket(69);
         } catch (SocketException e) {
             throw new RuntimeException(e);
         }
@@ -66,12 +65,25 @@ public class FloorSubsystem implements Runnable {
 
     public void sendPacket() {
 
-        byte[] dataArray = jobRequest().getBytes();
+       // byte[] dataArray = jobRequest().getBytes();
+
+        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+        ObjectOutput oo = null;
+        try {
+            oo = new ObjectOutputStream(bStream);
+            oo.writeObject(getNextJob());
+            oo.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        byte msg[] = bStream.toByteArray();
+
 
         System.out.println("\nFloor: Sending packet...\n");
 
         try {
-            sendPacket = new DatagramPacket(dataArray, dataArray.length, InetAddress.getLocalHost(), 200);
+            sendPacket = new DatagramPacket(msg, msg.length, InetAddress.getLocalHost(), 200);
         } catch (UnknownHostException e) {
             e.printStackTrace();
             System.exit(1);
@@ -81,7 +93,7 @@ public class FloorSubsystem implements Runnable {
         System.out.println("Destination host port: " + sendPacket.getPort());
         System.out.println("Sending with length " + sendPacket.getLength());
         System.out.println("With message: " + new String(sendPacket.getData()));
-        System.out.println("Message in bytes: " + dataArray);
+        System.out.println("Message in bytes: " + msg);
 
         try {
             sendSocket.send(sendPacket);
@@ -90,6 +102,16 @@ public class FloorSubsystem implements Runnable {
         }
         System.out.println("\nFloor: Packet sent.\n");
 
+        byte data[] = new byte[4];
+        receivePacket = new DatagramPacket(data, data.length);
+
+        try {
+            // Block until a datagram is received via receiveSocket.
+            receiveSocket.receive(receivePacket);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     public String jobRequest() {
