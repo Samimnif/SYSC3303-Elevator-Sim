@@ -8,6 +8,7 @@ public class UnitTests {
 
     @Test
     public void checkReadInputFileTest(){
+        System.out.println("Test 1");
         Job job;
 
         Scheduler scheduler = new Scheduler(4, 24, 23);
