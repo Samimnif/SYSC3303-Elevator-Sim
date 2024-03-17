@@ -1,4 +1,6 @@
-public class Door {
+import java.io.Serializable;
+
+public class Door implements Serializable {
     private Boolean door;
     public Door() {
         this.door = false;

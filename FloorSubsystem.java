@@ -128,12 +128,12 @@ public class FloorSubsystem implements Runnable {
     }
     public synchronized void run() {
         while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
-            this.elevatorsList = scheduler.getElevators();
-            System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
-            for (Elevator e : elevatorsList) {
-                System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + e.getId() + " is currently @ floor# " + e.getCurrentFloor());
-            }
-            System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ End Information -----\n");
+           // this.elevatorsList = scheduler.getElevators();
+           // System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
+            //for (Elevator e : elevatorsList) {
+            //    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + e.getId() + " is currently @ floor# " + e.getCurrentFloor());
+            //}
+            //System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ End Information -----\n");
             if (scheduler.isEmpty()) {
                 this.job = getNextJob();
                 if (this.job != null) {

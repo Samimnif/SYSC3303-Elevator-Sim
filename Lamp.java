@@ -1,4 +1,6 @@
-public class Lamp {
+import java.io.Serializable;
+
+public class Lamp implements Serializable {
     private boolean lamp;
     private int ID;
 

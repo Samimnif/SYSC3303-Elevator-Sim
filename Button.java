@@ -1,4 +1,6 @@
-public class Button {
+import java.io.Serializable;
+
+public class Button implements Serializable {
 
     private boolean button ; //no need for this line
     private int ID;

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Elevator {
+public class Elevator implements Serializable {
 
     private enum elevatorStates{
         IDLE,

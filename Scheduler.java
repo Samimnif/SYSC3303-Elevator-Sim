@@ -68,13 +68,15 @@ public class Scheduler implements Runnable{
         byte data[] = new byte[100];
         receivePacket = new DatagramPacket(data, data.length);
         try {
+            System.out.println("Listening");
             elevatorComSocket.receive(receivePacket);
+            System.out.println("Received");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         ObjectInputStream iStream = null;
         try {
-            iStream = new ObjectInputStream(new ByteArrayInputStream(data));
+            iStream = new ObjectInputStream(new ByteArrayInputStream(receivePacket.getData()));
             elevatorsList = (ArrayList<Elevator>) iStream.readObject();
             iStream.close();
         } catch (IOException e) {

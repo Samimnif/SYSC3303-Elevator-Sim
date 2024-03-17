@@ -60,9 +60,14 @@ public class ElevatorSubsystem implements Runnable {
         try {
             sendPacket = new DatagramPacket(msg, msg.length,
                     InetAddress.getLocalHost(), SCHEDULER_PORT);
+
+            System.out.println(Thread.currentThread().getName()+ ": Sending Packet");
+            sendReceiveSocket.send(sendPacket);
         } catch (UnknownHostException e) {
             e.printStackTrace();
             System.exit(1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
 
@@ -71,6 +76,7 @@ public class ElevatorSubsystem implements Runnable {
         receivePacket = new DatagramPacket(data, data.length);
 
         try {
+            System.out.println(Thread.currentThread().getName()+ ": Listening to Packet");
             // Block until a datagram is received via sendReceiveSocket.
             sendReceiveSocket.receive(receivePacket);
         } catch (IOException e) {
