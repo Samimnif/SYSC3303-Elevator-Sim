@@ -102,7 +102,7 @@ public class Elevator implements Serializable, Runnable {
     public void run(){
         while (true) {
             if (currentJob != null) {
-                //System.out.println(Thread.currentThread().getName() + ": Current Job : " + currentJob.getTimeStamp() + " IS Idle: "+idle);
+                System.out.println(Thread.currentThread().getName() + ": Current Job : " + currentJob.getTimeStamp() + " IS Idle: "+idle);
             }
 
             switch (currentState){
