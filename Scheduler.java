@@ -7,6 +7,7 @@ public class Scheduler implements Runnable{
     private boolean empty = true;
     private ArrayList<Job> jobList= new ArrayList<>();
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
+    private ArrayList<Floor>  floorList = new ArrayList<>();
     private int MAX_SIZE;
     private boolean endProgram = false;
     private boolean floorProgram = false;
@@ -124,7 +125,62 @@ public class Scheduler implements Runnable{
     }
 
     public void receiveAndSendFloor(){
-        
+        byte data[] = new byte[1024];
+        receivePacket = new DatagramPacket(data, data.length);
+        try {
+            System.out.println("Listening");
+            floorComSocket.receive(receivePacket);
+            System.out.println("Received");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ObjectInputStream iStream = null;
+        try {
+            iStream = new ObjectInputStream(new ByteArrayInputStream(receivePacket.getData()));
+            floorList = (ArrayList<Floor>) iStream.readObject();
+            iStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (!empty) {
+            assignJob();
+        }
+        else {
+            //byte[] message = {0, 1, 0, 1};
+            System.out.println("empty job");
+        }
+
+        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+        ObjectOutput oo = null;
+        try {
+            oo = new ObjectOutputStream(bStream);
+            oo.writeObject(floorList);
+            oo.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        byte msg[] = bStream.toByteArray();
+
+        //Sending packet
+        try {
+            sendPacket = new DatagramPacket(msg, msg.length,
+                    InetAddress.getLocalHost(), receivePacket.getPort());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        try {
+            System.out.println("Sending packet back to floor");
+            floorComSocket.send(sendPacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     //This method assigns the jobs for the list of elevators
