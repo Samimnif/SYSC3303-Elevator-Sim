@@ -12,7 +12,7 @@ public class FloorSubsystem implements Runnable {
     private ArrayList<Elevator> elevatorsList;
     DatagramSocket sendSocket, receiveSocket;
     DatagramPacket sendPacket, receivePacket;
-    private int SCHEDULERF_PORT, SCHEDULER_PORT;
+    private int SCHEDULERF_PORT;
 
 
     //Constructor for FloorSubsystem
@@ -20,7 +20,7 @@ public class FloorSubsystem implements Runnable {
         this.scheduler = scheduler;
         this.schedulerStateMachine = schedulerStateMachine;
         this.SCHEDULERF_PORT = schedulerFPort;
-        this.SCHEDULER_PORT = schedulerFPort;
+
         try {
             sendSocket = new DatagramSocket();
             receiveSocket = new DatagramSocket(port);
@@ -65,12 +65,13 @@ public class FloorSubsystem implements Runnable {
             job.setDestinationFloor(Integer.valueOf(rawSplit[3]));
         } else {
             job = null;
+            System.out.println("End of file");
         }
         return job;
     }
 
     //This method is used to send DatagramPackets to the Scheduler
-    public void sendPacket() {
+    public void sendPacket(Job newJob) {
 
        // byte[] dataArray = jobRequest().getBytes();
 
@@ -78,7 +79,7 @@ public class FloorSubsystem implements Runnable {
         ObjectOutput oo = null;
         try {
             oo = new ObjectOutputStream(bStream);
-            oo.writeObject(getNextJob());
+            oo.writeObject(newJob);
             oo.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -114,7 +115,8 @@ public class FloorSubsystem implements Runnable {
 
         try {
             // Block until a datagram is received via receiveSocket.
-            receiveSocket.receive(receivePacket);
+            sendSocket.receive(receivePacket);
+            System.out.println("received Ack");
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -138,21 +140,22 @@ public class FloorSubsystem implements Runnable {
             //    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + e.getId() + " is currently @ floor# " + e.getCurrentFloor());
             //}
             //System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ End Information -----\n");
-            if (scheduler.isEmpty()) {
-                this.job = getNextJob();
-                if (this.job != null) {
-                    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Sending Job @" + job.getTimeStamp() + " for floor #" + job.getPickupFloor() + " Pressed the Button " + job.getButton() + " going to " + job.getDestinationFloor());
-//                    scheduler.put(job);
-                }
-                schedulerStateMachine.pressFloorButton(job);
-            }
+//            if (scheduler.isEmpty()) {
+//                this.job = getNextJob();
+//                if (this.job != null) {
+//                    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Sending Job @" + job.getTimeStamp() + " for floor #" + job.getPickupFloor() + " Pressed the Button " + job.getButton() + " going to " + job.getDestinationFloor());
+////                    scheduler.put(job);
+//                }
+//                schedulerStateMachine.pressFloorButton(job);
+//            }
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            newJob = getNextJob();
         }
-        System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Floor Subsystem Job ended");
+        //System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Floor Subsystem Job ended");
     }
 
 

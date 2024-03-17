@@ -68,9 +68,9 @@ public class Scheduler implements Runnable{
         byte data[] = new byte[1024];
         receivePacket = new DatagramPacket(data, data.length);
         try {
-            System.out.println("Listening");
+            //System.out.println("Listening");
             elevatorComSocket.receive(receivePacket);
-            System.out.println("Received");
+            //System.out.println("Received");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -90,7 +90,7 @@ public class Scheduler implements Runnable{
         }
         else {
             //byte[] message = {0, 1, 0, 1};
-            System.out.println("empty job");
+            //System.out.println("empty job");
         }
 
         ByteArrayOutputStream bStream = new ByteArrayOutputStream();
@@ -115,7 +115,7 @@ public class Scheduler implements Runnable{
         }
 
         try {
-            System.out.println("Sending packet back to elevator");
+            //System.out.println("Sending packet back to elevator");
             elevatorComSocket.send(sendPacket);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -125,24 +125,27 @@ public class Scheduler implements Runnable{
 
     public void receiveAndSendFloor(){
         byte data[] = new byte[1024];
-        receivePacket = new DatagramPacket(data, data.length);
+        DatagramPacket receivePacketF = new DatagramPacket(data, data.length);
         try {
-            System.out.println("Listening");
-            floorComSocket.receive(receivePacket);
-            System.out.println("Received");
+            //System.out.println("Scheduler Floor Listening");
+            floorComSocket.receive(receivePacketF);
+            //System.out.println("Scheduler Floor Received");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         ObjectInputStream iStream = null;
+        Job newJob = null;
         try {
-            iStream = new ObjectInputStream(new ByteArrayInputStream(receivePacket.getData()));
-            floorList = (ArrayList<Floor>) iStream.readObject();
+            iStream = new ObjectInputStream(new ByteArrayInputStream(receivePacketF.getData()));
+            newJob = (Job) iStream.readObject();
             iStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+        put(newJob);
 
         /*
         else {
@@ -152,22 +155,13 @@ public class Scheduler implements Runnable{
 
          */
 
-        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-        ObjectOutput oo = null;
-        try {
-            oo = new ObjectOutputStream(bStream);
-            oo.writeObject(floorList);
-            oo.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        byte msg[] = bStream.toByteArray();
+        byte msg[] =  {0, 1};
 
         //Sending packet
+        DatagramPacket sendPacketF = null;
         try {
-            sendPacket = new DatagramPacket(msg, msg.length,
-                    InetAddress.getLocalHost(), receivePacket.getPort());
+            sendPacketF = new DatagramPacket(msg, msg.length,
+                    InetAddress.getLocalHost(), receivePacketF.getPort());
         } catch (UnknownHostException e) {
             e.printStackTrace();
             System.exit(1);
@@ -175,7 +169,8 @@ public class Scheduler implements Runnable{
 
         try {
             System.out.println("Sending packet back to floor");
-            floorComSocket.send(sendPacket);
+            floorComSocket.send(sendPacketF);
+            System.out.println("sent ack to floor");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -187,7 +182,8 @@ public class Scheduler implements Runnable{
         boolean assignjob = false;
         for (Elevator i : elevatorsList) {
             if (i.isIdle()) {
-                i.setJob(jobList.remove(0));
+                System.out.println("FLOOR: assigned a job: "+jobList.size());
+                i.setJob(get()); //jobList.remove(0)
                 empty = jobList.isEmpty();
                 assignjob = true;
                 if (empty){return assignjob;}
@@ -240,7 +236,27 @@ public class Scheduler implements Runnable{
 
     @Override
     public void run() {
-        receiveAndSendElevator();
+        Thread floorSideThread = new Thread("floorSideThread"){
+            @Override
+            public void run(){
+                while(true){
+                    receiveAndSendFloor();
+                }
+
+            }
+        };
+        Thread elevatorSideThread = new Thread("elevatorSideThread"){
+            @Override
+            public void run() {
+                while (true){
+                    receiveAndSendElevator();
+                }
+            }
+        };
+        floorSideThread.start();
+        elevatorSideThread.start();
+
+
         /*while(!endProgram){
             if (elevatorProgram){
                 this.endProgram = true;

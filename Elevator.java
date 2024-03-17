@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Elevator implements Serializable {
+public class Elevator implements Serializable, Runnable {
 
     private enum elevatorStates{
         IDLE,
@@ -19,7 +19,7 @@ public class Elevator implements Serializable {
     private Motor mainMotor;
     private Door mainDoor;
 
-    private boolean goingUp = true;
+    private boolean goingUp = true, isLoaded = false;
     private boolean idle = true;
 
     public Elevator(int id, int numButtons){
@@ -74,7 +74,7 @@ public class Elevator implements Serializable {
 
     public void setIdle(boolean idle) { this.idle = idle; }
 
-    public void setJob(Job assignedJob){
+    public synchronized void setJob(Job assignedJob){
         this.currentJob = assignedJob;
     }
 
@@ -84,6 +84,92 @@ public class Elevator implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+
+    public void moveElevator(){
+        if ((currentJob.getPickupFloor() > currentFloor)){
+            System.out.println(Thread.currentThread().getName()+": Elevator "+this.getId()+" is going UP to floor #"+currentJob.getPickupFloor());
+            currentFloor++;
+        }else if (currentJob.getPickupFloor() < currentFloor){
+            System.out.println(Thread.currentThread().getName()+": Elevator "+this.getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
+            currentFloor--;
+        }
+    }
+
+    @Override
+    public void run(){
+        while (true) {
+            if (currentJob != null) {
+                //System.out.println(Thread.currentThread().getName() + ": Current Job : " + currentJob.getTimeStamp() + " IS Idle: "+idle);
+            }
+
+            switch (currentState){
+                case IDLE:
+                    idle = true;
+                    if(currentJob != null && currentFloor != currentJob.getDestinationFloor()){
+                        currentState = elevatorStates.MOVING;
+                        System.out.println(Thread.currentThread().getName() + " Moving");
+                        idle = false;
+                    }else if(currentJob != null && currentFloor == currentJob.getPickupFloor()){
+                        currentState = elevatorStates.LOAD;
+                        System.out.println(Thread.currentThread().getName() + " Loading");
+                        idle = false;
+                    }
+
+                    break;
+                case MOVING:
+                    if((currentFloor == currentJob.getDestinationFloor() && isLoaded) || (currentFloor == currentJob.getPickupFloor() && !isLoaded)){
+                        currentState = elevatorStates.STOP;
+                        System.out.println(Thread.currentThread().getName() + " Stopping at floor "+ currentFloor);
+                    }else if(!isLoaded && currentFloor > currentJob.getPickupFloor()){
+                        currentFloor -= 1;
+                        System.out.println(Thread.currentThread().getName() + " Moving DOWN to floor: "+ currentFloor);
+
+                    }else if(!isLoaded && currentFloor < currentJob.getPickupFloor()){
+                        currentFloor += 1;
+                        System.out.println(Thread.currentThread().getName() + " Moving UP to floor: "+ currentFloor);
+
+                    }else if(isLoaded && currentFloor > currentJob.getDestinationFloor()){
+                        currentFloor -= 1;
+                        System.out.println(Thread.currentThread().getName() + " Moving DOWN to floor: "+ currentFloor);
+
+                    }else if(isLoaded && currentFloor < currentJob.getDestinationFloor()){
+                        currentFloor += 1;
+                        System.out.println(Thread.currentThread().getName() + " Moving UP to floor: "+ currentFloor);
+                    }
+                    break;
+                case STOP:
+                    if(currentFloor == currentJob.getDestinationFloor()){
+                        currentState = elevatorStates.UNLOAD;
+                        System.out.println(Thread.currentThread().getName() + " Unloading");
+                    }else if(currentFloor == currentJob.getPickupFloor()){
+                        currentState = elevatorStates.LOAD;
+                        System.out.println(Thread.currentThread().getName() + " Loading");
+                    }
+                    break;
+                case UNLOAD:
+                    isLoaded = false;
+                    currentJob = null;
+                    if(currentJob == null){
+
+                        currentState = elevatorStates.IDLE;
+                        System.out.println(Thread.currentThread().getName() + " Idle");
+                    }
+                    break;
+                case LOAD:
+                    isLoaded = true;
+                    currentState = elevatorStates.MOVING;
+                    System.out.println(Thread.currentThread().getName() + " Moving");
+                    break;
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }
