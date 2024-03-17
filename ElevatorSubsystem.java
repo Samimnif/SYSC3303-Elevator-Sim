@@ -72,7 +72,7 @@ public class ElevatorSubsystem implements Runnable {
 
 
         //Receive packet
-        byte data[] = new byte[100];
+        byte data[] = new byte[1024];
         receivePacket = new DatagramPacket(data, data.length);
 
         try {

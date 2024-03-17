@@ -65,7 +65,7 @@ public class Scheduler implements Runnable{
      * receiveAndSendElevator for elevator list exchange with the elevator subsystem program
      */
     public void receiveAndSendElevator(){
-        byte data[] = new byte[100];
+        byte data[] = new byte[1024];
         receivePacket = new DatagramPacket(data, data.length);
         try {
             System.out.println("Listening");
