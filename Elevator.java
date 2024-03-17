@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Elevator implements Serializable, Runnable {
 
-    private enum elevatorStates{
+    public enum elevatorStates{
         IDLE,
         STOP,
         MOVING,
@@ -62,6 +62,9 @@ public class Elevator implements Serializable, Runnable {
         return currentFloor;
     }
 
+    public elevatorStates currentState(){
+        return currentState;
+    }
     public elevatorStates getCurrentState() {
         return currentState;
     }

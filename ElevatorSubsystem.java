@@ -8,7 +8,7 @@ public class ElevatorSubsystem implements Runnable {
     private Scheduler scheduler;
     //private Elevator elevator;
     private SchedulerStateMachine schedulerStateMachine;
-    private ArrayList<Elevator> elevatorsList= new ArrayList<>();
+    public ArrayList<Elevator> elevatorsList= new ArrayList<>();
 
     private Elevator currentElevator;
     public Job currentJob;

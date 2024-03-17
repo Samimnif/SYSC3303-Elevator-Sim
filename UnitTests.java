@@ -2,16 +2,17 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class UnitTests {
-    /*
+
     @Test
     public void checkReadInputFileTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1, 200);
+        Scheduler scheduler = new Scheduler(4, 24, 23);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine, 100, 23);
 
         job = floor.getNextJob();
 
@@ -25,80 +26,76 @@ public class UnitTests {
     public void passDataToSchedulerTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1, 200);
-        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100);
+        Scheduler scheduler = new Scheduler(4, 64, 63);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, null, 150, 63);
 
         job = floor.getNextJob();
+
+        assertNotEquals(job, null);
 
         scheduler.put(job);
 
         ArrayList<Job> jobs = scheduler.getJobList();
 
-        assertEquals(job.getDestinationFloor(), jobs.get(0).getDestinationFloor());
-        assertEquals(job.getPickupFloor(), jobs.get(0).getPickupFloor());
-        assertEquals(job.getButton(), jobs.get(0).getButton());
-        assertEquals(job.getTimeStamp(), jobs.get(0).getTimeStamp());
+        assertEquals(job.getDestinationFloor(), jobs.getFirst().getDestinationFloor());
+        assertEquals(job.getPickupFloor(), jobs.getFirst().getPickupFloor());
+        assertEquals(job.getButton(), jobs.getFirst().getButton());
+        assertEquals(job.getTimeStamp(), jobs.getFirst().getTimeStamp());
     }
 
     @Test
-    public void getDataFromSchedulerTest(){
+    public void UpdateElevators(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1, 200);
-        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100 );
+        Scheduler scheduler = new Scheduler(4, 34, 33);
+        ElevatorSubsystem elevator = new ElevatorSubsystem(1, 1, scheduler, 70, 34);
+
+        scheduler.putElevators(elevator.elevatorsList);
+
+        for (int i = 0; i < scheduler.getElevators().size(); i++){
+            assertEquals(scheduler.getElevators().get(i), elevator.elevatorsList.get(i));
+        }
+    }
+
+    @Test
+    public void AssignJobTest(){
+        Job job;
+
+        Scheduler scheduler = new Scheduler(4, 44, 43);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, null, 102, 43);
+        Elevator elevator = new Elevator(1, 1);
 
         job = floor.getNextJob();
-
         scheduler.put(job);
 
-        Job newJob = scheduler.get();
+        scheduler.elevatorsList.add(elevator);
 
-        assertEquals(job.getPickupFloor(), newJob.getPickupFloor());
-        assertEquals(job.getDestinationFloor(), newJob.getDestinationFloor());
-        assertEquals(job.getButton(), newJob.getButton());
-        assertEquals(job.getTimeStamp(), newJob.getTimeStamp());
-    }
-    @Test
-    public void schedulerStateTest(){
-        Job job;
+        scheduler.assignJob();
 
-        Scheduler scheduler = new Scheduler(1, 200);
-        SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine,100);
-
-        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("WAIT_FOR_FLOORSUBSYTEM"));
-
-        job = floor.getNextJob();
-
-        schedulerStateMachine.pressFloorButton(null);
-
-        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("RECEIVE_EVENT"));
-
-        schedulerStateMachine.pressFloorButton(job); //floor
-
-        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("SEND_EVENT"));
-
-        job = schedulerStateMachine.pressFloorButton(null); //elevator
-
-        assertEquals(schedulerStateMachine.getSchedulerState(), schedulerStateMachine.getEnumState("WAIT_FOR_FLOORSUBSYTEM"));
+        assertEquals(job.getPickupFloor(), elevator.getCurrentJob().getPickupFloor());
+        assertEquals(job.getDestinationFloor(), elevator.getCurrentJob().getDestinationFloor());
+        assertEquals(job.getButton(), elevator.getCurrentJob().getButton());
+        assertEquals(job.getTimeStamp(), elevator.getCurrentJob().getTimeStamp());
     }
 
     @Test
     public void elevatorStateTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(1, 200);
+
+        Scheduler scheduler = new Scheduler(4, 54, 53);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
+        Elevator elevator = new Elevator(1,2);
+        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1,5,scheduler, 71, 54);
+        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine, 103, 53);
 
-        //ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1, 1, scheduler, schedulerStateMachine);
-        //ElevatorSubsystemStateMachine elevatorStateMachine = new ElevatorSubsystemStateMachine(elevatorSubsystem);
 
-        //assertEquals(elevatorStateMachine.getState(), elevatorStateMachine.getHashState("ReceiveNewTask"));
+        job = floor.getNextJob();
 
+       assertEquals( elevator.currentState().name(), "IDLE");
+       assertEquals(elevator.isIdle(), true);
 
     }
 
-     */
+
 }

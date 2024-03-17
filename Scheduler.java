@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Scheduler implements Runnable{
     private boolean empty = true;
     private ArrayList<Job> jobList= new ArrayList<>();
-    private ArrayList<Elevator> elevatorsList= new ArrayList<>();
+    public   ArrayList<Elevator> elevatorsList= new ArrayList<>();
     private int MAX_SIZE;
     private boolean endProgram = false;
     private boolean floorProgram = false;

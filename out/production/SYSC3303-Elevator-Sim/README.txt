@@ -60,10 +60,10 @@ Muaadh Ali:SchedulerStateMachine, ElevatorSubsystemStateMachine
 Jordan Bayne:SchedulerStateMachine, ElevatorSubsystemStateMachine
 
 Iteration 3:
-Sami Mnif:UML diagram
-Jalal Mourad: README.txt
-Omar Hamzat:Sequence diagram
-Muaadh Ali:
-Jordan Bayne:
+Sami Mnif:UML diagram, Elevator.java, ElevatorSubsystem.java, Scheduler.java
+Jalal Mourad: README.txt, StateMachine diagram, FloorSubsystem.java
+Omar Hamzat:Sequence diagram, StateMachine.java
+Muaadh Ali: ElevatorSubsystemStateMachine.java
+Jordan Bayne: Elevator.java
 
 Copyright 2024 Jalal Mourad, Sami Mnif, Omar Hamzat, Jordan Bayne, Muaadh Ali
