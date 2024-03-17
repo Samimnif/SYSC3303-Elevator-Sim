@@ -8,11 +8,13 @@ public class SchedulerStateMachine{
 
     private SchedulerState currentState;
 
+    //Constructor for class SchedulerStateMachine
     public SchedulerStateMachine(Scheduler scheduler){
         this.scheduler = scheduler;
         currentState = SchedulerState.RECEIVE_EVENT;
     }
 
+    //This method is responsible for transitioning between the states of Sending and Receiving a Job
     public Job pressFloorButton(Job job){
         Job getJob = null;
         switch(currentState){
@@ -35,6 +37,7 @@ public class SchedulerStateMachine{
 
     }
 
+    //This methos sends a Job to the current elevator
     public Job sendTask() {
         Job getJob = null;
 

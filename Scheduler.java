@@ -15,7 +15,7 @@ public class Scheduler implements Runnable{
     private DatagramSocket floorComSocket, elevatorComSocket;
 
 
-
+    //Constructor for class Scheduler
     public Scheduler(int maxJobs, int elevatorComPort, int floorComPort) {
         this.jobList = new ArrayList<Job>(maxJobs);
         this.MAX_SIZE = maxJobs;
@@ -125,6 +125,7 @@ public class Scheduler implements Runnable{
         
     }
 
+    //This method assigns the jobs for the list of elevators
     public boolean assignJob() {
         boolean assignjob = false;
         for (Elevator i : elevatorsList) {
@@ -163,6 +164,7 @@ public class Scheduler implements Runnable{
         //System.out.println(jobList);
     }
 
+    //This method prints a list of Jobs
     private void printJobList(){
         for (int i = 0; i < MAX_SIZE; i++) {
             try {
@@ -210,6 +212,7 @@ public class Scheduler implements Runnable{
         System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName() +": Scheduler is notified that elevator " + elevator.getId() + " is at floor " + elevator.getCurrentFloor());
     }
 
+    //This method delegates the current Job
     public synchronized int delegateTask(Job currentJob) {
         System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Delegating Job: Received @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
 

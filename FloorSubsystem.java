@@ -14,6 +14,8 @@ public class FloorSubsystem implements Runnable {
     DatagramPacket sendPacket, receivePacket;
     private int SCHEDULERF_PORT, SCHEDULER_PORT;
 
+
+    //Constructor for FloorSubsystem
     FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine, int port, int schedulerFPort) {
         this.scheduler = scheduler;
         this.schedulerStateMachine = schedulerStateMachine;
@@ -39,6 +41,7 @@ public class FloorSubsystem implements Runnable {
         }
     }
 
+    //This method parses the whole file containing all the jobs
     private String readFile() {
         String line = null;
         try {
@@ -49,6 +52,7 @@ public class FloorSubsystem implements Runnable {
         return line;
     }
 
+    //This method is used to get the next Job in the Job list
     public Job getNextJob() {
         String raw = readFile();
 
@@ -65,6 +69,7 @@ public class FloorSubsystem implements Runnable {
         return job;
     }
 
+    //This method is used to send DatagramPackets to the Scheduler
     public void sendPacket() {
 
        // byte[] dataArray = jobRequest().getBytes();
@@ -121,7 +126,6 @@ public class FloorSubsystem implements Runnable {
         info = this.readFile();
         return info;
     }
-
     public synchronized void run() {
         while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
             this.elevatorsList = scheduler.getElevators();

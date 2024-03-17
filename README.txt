@@ -1,8 +1,8 @@
 Description:
 -----------
 
-This project contains 14 java classes, 1 UML diagram, 1 sequence diagram, 1 State machine diagram and 1 ReadMe.txt file.
-In this deliverable, we added state machines for the scheduler and the elevator subsystems.
+This project contains 14 java classes, 1 UML diagram, 1 sequence diagram 1 ReadMe.txt file.
+In this deliverable, we added RPC communication between the FloorSubsystem, ElevatorSubsystem, and Scheduler.
 
 The Project is made up of one file:
     Scheduler.java                      A single Java script
@@ -44,10 +44,26 @@ Usage:
 
 Credits:
 --------
+
+Iteration1:
+Sami Mnif: ElevatorSubsystem.java, Job.java, Elevator.java, Scheduler.java, FloorSubsystem.java
+Jalal Mourad:Elevator.java Button.java,Lamp.java,Scheduler.java,Motor.java,README.txt,Door.java
+Omar Hamzat: Job.java, Elevator.java, Main.java, UML diagrams
+Muaadh Ali: Floor.java, FloorSubsystem.java, Job.java
+Jordan Bayne: UnitTests.java, Motor.java, Door.java
+
+Iteration 2:
 Sami Mnif:SchedulerStateMachine, ElevatorSubsystemStateMachine, UML diagram
 Jalal Mourad:SchedulerStateMachine, ElevatorSubsystemStateMachine, README.txt, State machine diagram
 Omar Hamzat:SchedulerStateMachine, ElevatorSubsystemStateMachine, Sequence diagram
 Muaadh Ali:SchedulerStateMachine, ElevatorSubsystemStateMachine
 Jordan Bayne:SchedulerStateMachine, ElevatorSubsystemStateMachine
+
+Iteration 3:
+Sami Mnif:UML diagram
+Jalal Mourad: README.txt
+Omar Hamzat:Sequence diagram
+Muaadh Ali:
+Jordan Bayne:
 
 Copyright 2024 Jalal Mourad, Sami Mnif, Omar Hamzat, Jordan Bayne, Muaadh Ali

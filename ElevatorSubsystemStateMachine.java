@@ -8,6 +8,7 @@ public class ElevatorSubsystemStateMachine implements Runnable {
     }
     private ElevatorStates currentState;
 
+//Constructor for class ElevatorSubsystemStateMachine
     public ElevatorSubsystemStateMachine(ElevatorSubsystem elevatorSubsystem) {
         this.elevatorSubsystem = elevatorSubsystem;
 
