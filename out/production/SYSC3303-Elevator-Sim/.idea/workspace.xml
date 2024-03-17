@@ -4,84 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5179da-5735-4729-8bdc-16cbe30109d2" name="Changes" comment="updated assignJob (formerly checkJob) and added receiveAndSendFloor" />
+    <list default="true" id="1f14a030-2207-4f74-9659-c49138e191fc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/XMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/Job.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="98709494-c34e-428a-8ad1-f7799f769d5e" />
-        <option name="url" value="https://github.com/Samimnif/SYSC3303-Elevator-Sim.git" />
-      </UrlAndAccount>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2blio9ImdMpta8u73ebdk6Ev8TX" />
+  <component name="ProjectId" id="2bryIA2vk6qlVOIeAi2Xe5x6jst" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Omar/Desktop/SYSC3303-Elevator-Sim&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6e5179da-5735-4729-8bdc-16cbe30109d2" name="Changes" comment="" />
-      <created>1706796238697</created>
+      <changelist id="1f14a030-2207-4f74-9659-c49138e191fc" name="Changes" comment="" />
+      <created>1706987414636</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1706796238697</updated>
+      <updated>1706987414636</updated>
     </task>
-    <task id="LOCAL-00001" summary="Some modifications to Scheduler class">
-      <option name="closed" value="true" />
-      <created>1710268205443</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1710268205443</updated>
-    </task>
-    <task id="LOCAL-00002" summary="More modifications to Scheduler class, added checkJob and receiveandSend function,">
-      <option name="closed" value="true" />
-      <created>1710363873464</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1710363873464</updated>
-    </task>
-    <task id="LOCAL-00003" summary="updated assignJob (formerly checkJob) and added receiveAndSendFloor">
-      <option name="closed" value="true" />
-      <created>1710364915839</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1710364915839</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some modifications to Scheduler class" />
-    <MESSAGE value="More modifications to Scheduler class, added checkJob and receiveandSend function," />
-    <MESSAGE value="updated assignJob (formerly checkJob) and added receiveAndSendFloor" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated assignJob (formerly checkJob) and added receiveAndSendFloor" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
