@@ -181,6 +181,7 @@ public class Scheduler implements Runnable{
 
     @Override
     public void run() {
+        receiveAndSendElevator();
         /*while(!endProgram){
             if (elevatorProgram){
                 this.endProgram = true;

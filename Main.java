@@ -40,17 +40,18 @@ public class Main {
 
         Scheduler scheduler = new Scheduler(MAX_JOB, SCHEDULER_PORTE, SCHEDULER_PORTF);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        //scheduler.info();
-        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, ELEVATOR_PORT, SCHEDULER_PORTE);
-        //Elevator elevator = new Elevator(1, 3);
+
+        //ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, ELEVATOR_PORT, SCHEDULER_PORTE);
+        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
+
         Thread Scheduler = new Thread(scheduler, "Scheduler Thread");
 //        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler), "Elevator Thread");
         Thread Floor = new Thread(new FloorSubsystem(NUM_FLOORS, scheduler, schedulerStateMachine, FLOOR_PORT, SCHEDULER_PORTF), "Floor Thread");
-        Thread ElevatorSubsystemStateMachine = new Thread(new ElevatorSubsystemStateMachine(elevatorSubsystem), "ElevatorSubsystem StateMachine Thread");
+        //Thread ElevatorSubsystemStateMachine = new Thread(new ElevatorSubsystemStateMachine(elevatorSubsystem), "ElevatorSubsystem StateMachine Thread");
 
         Scheduler.start();
-        ElevatorSubsystemStateMachine.start();
-//        Elevator.start();
+        //ElevatorSubsystemStateMachine.start();
+        Elevator.start();
         Floor.start();
     }
 }

@@ -1,7 +1,4 @@
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
@@ -23,6 +20,7 @@ public class ElevatorSubsystem implements Runnable {
         this.scheduler = scheduler;
         this.SCHEDULER_PORT = schedulerPort;
         this.schedulerStateMachine = schedulerStateMachine;
+
         this.elevatorsList= new ArrayList<Elevator>(numElevators);
         for (int i = 0; i < numElevators; i++) {
             Elevator elevator = new Elevator(i+1, numFloors);
@@ -39,7 +37,11 @@ public class ElevatorSubsystem implements Runnable {
         }
     }
 
+    /**
+     * sendReceiveElevators send ArrayList of elevators to Scheduler
+     */
     public void sendReceiveElevators(){
+        //preparing packet
         ByteArrayOutputStream bStream = new ByteArrayOutputStream();
         ObjectOutput oo = null;
         try {
@@ -61,6 +63,7 @@ public class ElevatorSubsystem implements Runnable {
             System.exit(1);
         }
 
+
         //Receive packet
         byte data[] = new byte[100];
         receivePacket = new DatagramPacket(data, data.length);
@@ -73,7 +76,32 @@ public class ElevatorSubsystem implements Runnable {
             System.exit(1);
         }
 
+        // convert data to arrayList
 
+        ObjectInputStream iStream = null;
+        try {
+            iStream = new ObjectInputStream(new ByteArrayInputStream(data));
+            elevatorsList = (ArrayList<Elevator>) iStream.readObject();
+            iStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        updateElevators(elevatorsList);
+
+    }
+
+    public void updateElevators(ArrayList<Elevator> eList){
+        for (int i = 0; i < elevatorsList.size(); i++) {
+            Elevator e1 = elevatorsList.get(i);
+            Elevator e2 = eList.get(i);
+            if (e1.getId() == e2.getId()){
+               e1.setJob(e2.getCurrentJob());
+            }
+            
+        }
     }
 
     public void receiveNewTask() { this.currentJob = schedulerStateMachine.sendTask(); }
@@ -120,6 +148,7 @@ public class ElevatorSubsystem implements Runnable {
 
     @Override
     public void run() {
+        sendReceiveElevators();
 
     }
 //    @Override

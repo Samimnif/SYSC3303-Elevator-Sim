@@ -75,4 +75,8 @@ public class Elevator {
     public void setJob(Job assignedJob){
         this.currentJob = assignedJob;
     }
+
+    public Job getCurrentJob() {
+        return currentJob;
+    }
 }
