@@ -30,4 +30,5 @@ public class Job {
     public void setPickupFloor(int pickupFloor) { this.pickupFloor = pickupFloor; }
 
     public void setButton(String button) { this.button = button; }
+
 }

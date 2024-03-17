@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Elevator {
+
     private enum elevatorStates{
         IDLE,
         STOP,
@@ -79,4 +80,9 @@ public class Elevator {
     public Job getCurrentJob() {
         return currentJob;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
