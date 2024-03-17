@@ -1,10 +1,6 @@
 import javax.xml.stream.XMLInputFactory;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
 
 public class Scheduler implements Runnable{
@@ -16,16 +12,16 @@ public class Scheduler implements Runnable{
     private boolean floorProgram = false;
     private boolean elevatorProgram = false;
     private DatagramPacket sendPacket, receivePacket;
-    private DatagramSocket sendSocket, receiveSocket;
+    private DatagramSocket floorComSocket, elevatorComSocket;
 
 
 
-    public Scheduler(int maxJobs, int schedulerPort) {
+    public Scheduler(int maxJobs, int elevatorComPort, int floorComPort) {
         this.jobList = new ArrayList<Job>(maxJobs);
         this.MAX_SIZE = maxJobs;
         try {
-            this.receiveSocket = new DatagramSocket(schedulerPort);
-            this.sendSocket = new DatagramSocket();
+            this.elevatorComSocket = new DatagramSocket(elevatorComPort);
+            this.floorComSocket = new DatagramSocket(floorComPort);
         } catch (SocketException e) {
             throw new RuntimeException(e);
         }
@@ -65,11 +61,14 @@ public class Scheduler implements Runnable{
         return returnedJob;
     }
 
+    /**
+     * receiveAndSendElevator for elevator list exchange with the elevator subsystem program
+     */
     public void receiveAndSendElevator(){
         byte data[] = new byte[100];
         receivePacket = new DatagramPacket(data, data.length);
         try {
-            receiveSocket.receive(receivePacket);
+            elevatorComSocket.receive(receivePacket);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -92,9 +91,39 @@ public class Scheduler implements Runnable{
             System.out.println("empty job");
         }
 
+        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+        ObjectOutput oo = null;
+        try {
+            oo = new ObjectOutputStream(bStream);
+            oo.writeObject(elevatorsList);
+            oo.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        byte msg[] = bStream.toByteArray();
+
+        //Sending packet
+        try {
+            sendPacket = new DatagramPacket(msg, msg.length,
+                    InetAddress.getLocalHost(), receivePacket.getPort());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        try {
+            System.out.println("Sending packet back to elevator");
+            elevatorComSocket.send(sendPacket);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    public void receiveAndSendFloor(){}
+    public void receiveAndSendFloor(){
+        
+    }
 
     public boolean assignJob() {
         boolean assignjob = false;

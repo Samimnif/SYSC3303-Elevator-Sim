@@ -19,7 +19,7 @@ public class ElevatorSubsystem implements Runnable {
     DatagramSocket sendReceiveSocket;
     private int SCHEDULER_PORT;
 
-    public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler, int schedulerPort){
+    public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler, int elevatorPort, int schedulerPort){
         this.scheduler = scheduler;
         this.SCHEDULER_PORT = schedulerPort;
         this.schedulerStateMachine = schedulerStateMachine;
@@ -32,7 +32,7 @@ public class ElevatorSubsystem implements Runnable {
         System.out.println("List of Elevators: "+elevatorsList);
 
         try {
-            sendReceiveSocket = new DatagramSocket();
+            sendReceiveSocket = new DatagramSocket(elevatorPort);
         } catch (SocketException se) {   // Can't create the socket.
             se.printStackTrace();
             System.exit(1);
@@ -62,7 +62,7 @@ public class ElevatorSubsystem implements Runnable {
         }
 
         //Receive packet
-        byte data[] = new byte[4];
+        byte data[] = new byte[100];
         receivePacket = new DatagramPacket(data, data.length);
 
         try {
@@ -72,6 +72,8 @@ public class ElevatorSubsystem implements Runnable {
             e.printStackTrace();
             System.exit(1);
         }
+
+
     }
 
     public void receiveNewTask() { this.currentJob = schedulerStateMachine.sendTask(); }

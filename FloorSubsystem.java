@@ -12,12 +12,13 @@ public class FloorSubsystem implements Runnable {
     private ArrayList<Elevator> elevatorsList;
     DatagramSocket sendSocket, receiveSocket;
     DatagramPacket sendPacket, receivePacket;
-    private int FLOOR_PORT;
+    private int FLOOR_PORT, SCHEDULER_PORT;
 
-    FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine, int port) {
+    FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine, int port, int schedulerFPort) {
         this.scheduler = scheduler;
         this.schedulerStateMachine = schedulerStateMachine;
         this.FLOOR_PORT = port;
+        this.SCHEDULER_PORT = schedulerFPort;
         try {
             sendSocket = new DatagramSocket();
             receiveSocket = new DatagramSocket(69);
