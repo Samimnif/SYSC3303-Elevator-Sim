@@ -4,6 +4,7 @@ public class Lamp implements Serializable {
     private boolean lamp;
     private int ID;
 
+    //Constructor for class Lamp
     public Lamp(int ID){
         this.ID = ID;
         this.lamp = false;
@@ -17,6 +18,8 @@ public class Lamp implements Serializable {
     public void setLamp(boolean lamp){
         this.lamp = lamp;
     }
+
+    //Turns the lamp on and off
     public void toggleLamp(){
         if (lamp){
             lamp = false;
