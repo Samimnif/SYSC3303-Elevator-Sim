@@ -102,16 +102,21 @@ public class Elevator implements Serializable, Runnable {
     public void run(){
         while (true) {
             if (currentJob != null) {
-                //System.out.println(Thread.currentThread().getName() + ": Current Job : " + currentJob.getTimeStamp() + " IS Idle: "+idle);
+//                System.out.println(Thread.currentThread().getName() + ": Current Job : " + currentJob.getTimeStamp() + " IS Idle: "+idle);
             }
 
             switch (currentState){
+                // Idle State
                 case IDLE:
                     idle = true;
+                    // If there is a current job and the elevator is not at the destination floor then state transition
+                    // into the moving state
                     if(currentJob != null && currentFloor != currentJob.getDestinationFloor()){
                         currentState = elevatorStates.MOVING;
                         System.out.println(Thread.currentThread().getName() + " Moving");
                         idle = false;
+                    // If there is a current job and the elevator is at the pickup floor then state transition into the
+                    // loading state
                     }else if(currentJob != null && currentFloor == currentJob.getPickupFloor()){
                         currentState = elevatorStates.LOAD;
                         System.out.println(Thread.currentThread().getName() + " Loading");
@@ -119,51 +124,64 @@ public class Elevator implements Serializable, Runnable {
                     }
 
                     break;
+                // Moving State
                 case MOVING:
+                    // If the elevator is current;y at the destination floor and has passengers then transition to the stop state
+                    // If the elevator is currently at the pickup floor and has no passengers then transition to the stop state
                     if((currentFloor == currentJob.getDestinationFloor() && isLoaded) || (currentFloor == currentJob.getPickupFloor() && !isLoaded)){
                         currentState = elevatorStates.STOP;
                         System.out.println(Thread.currentThread().getName() + " Stopping at floor "+ currentFloor);
+                    // If the elevator doesn't have passengers and is above the pickup floor then move the elevator down and
+                    // stay in the moving state
                     }else if(!isLoaded && currentFloor > currentJob.getPickupFloor()){
                         currentFloor -= 1;
                         System.out.println(Thread.currentThread().getName() + " Moving DOWN to floor: "+ currentFloor);
-
+                    // If the elevator doesn't have passengers and is below the pickup floor then move the elevator up and
+                    // stay in the moving state
                     }else if(!isLoaded && currentFloor < currentJob.getPickupFloor()){
                         currentFloor += 1;
                         System.out.println(Thread.currentThread().getName() + " Moving UP to floor: "+ currentFloor);
-
+                    // If the elevator has passengers and is above the destination floor then move the elevator down and
+                    // stay in the moving state
                     }else if(isLoaded && currentFloor > currentJob.getDestinationFloor()){
                         currentFloor -= 1;
                         System.out.println(Thread.currentThread().getName() + " Moving DOWN to floor: "+ currentFloor);
-
+                    // If the elevator has passengers and is below the destination floor then move the elevator up and
+                    // stay in the moving state
                     }else if(isLoaded && currentFloor < currentJob.getDestinationFloor()){
                         currentFloor += 1;
                         System.out.println(Thread.currentThread().getName() + " Moving UP to floor: "+ currentFloor);
                     }
                     break;
+                // Stop State
                 case STOP:
+                    // If the elevator is at the destination floor then transition into the unload state
                     if(currentFloor == currentJob.getDestinationFloor()){
                         currentState = elevatorStates.UNLOAD;
                         System.out.println(Thread.currentThread().getName() + " Unloading");
+                    // If the elevator is at the pickup floor then transition in the load state
                     }else if(currentFloor == currentJob.getPickupFloor()){
                         currentState = elevatorStates.LOAD;
                         System.out.println(Thread.currentThread().getName() + " Loading");
                     }
                     break;
+                // Unload State
+                // Make currentJob null, and transition into the idle state
                 case UNLOAD:
                     isLoaded = false;
                     currentJob = null;
-                    if(currentJob == null){
-
-                        currentState = elevatorStates.IDLE;
-                        System.out.println(Thread.currentThread().getName() + " Idle");
-                    }
+                    currentState = elevatorStates.IDLE;
+//                    System.out.println(Thread.currentThread().getName() + " Idle" + (currentJob == null));
                     break;
+                // Load State
+                // Transition into the moving state
                 case LOAD:
                     isLoaded = true;
                     currentState = elevatorStates.MOVING;
                     System.out.println(Thread.currentThread().getName() + " Moving");
                     break;
             }
+//            System.out.println(currentJob==null);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
