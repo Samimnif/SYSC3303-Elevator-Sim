@@ -109,7 +109,7 @@ public class FloorSubsystem implements Runnable {
         }
         System.out.println("\nFloor: Packet sent.\n");
 
-        byte data[] = new byte[4];
+        byte data[] = new byte[1024];
         receivePacket = new DatagramPacket(data, data.length);
 
         try {
@@ -126,8 +126,12 @@ public class FloorSubsystem implements Runnable {
         info = this.readFile();
         return info;
     }
+
     public synchronized void run() {
-        while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
+        //while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
+        Job newJob = getNextJob();
+        while(newJob != null){
+            sendPacket(newJob);
            // this.elevatorsList = scheduler.getElevators();
            // System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
             //for (Elevator e : elevatorsList) {

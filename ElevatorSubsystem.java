@@ -15,6 +15,7 @@ public class ElevatorSubsystem implements Runnable {
     DatagramPacket sendPacket, receivePacket;
     DatagramSocket sendReceiveSocket;
     private int SCHEDULER_PORT;
+    private Thread[] listEleThreads;
 
 
     //Constructor for class ElevatorSubsystem
@@ -22,11 +23,14 @@ public class ElevatorSubsystem implements Runnable {
         this.scheduler = scheduler;
         this.SCHEDULER_PORT = schedulerPort;
         this.schedulerStateMachine = schedulerStateMachine;
+        listEleThreads = new Thread[numElevators];
+
 
         this.elevatorsList= new ArrayList<Elevator>(numElevators);
         for (int i = 0; i < numElevators; i++) {
             Elevator elevator = new Elevator(i+1, numFloors);
             this.elevatorsList.add(elevator);
+            listEleThreads[i] = new Thread(elevator, "Elevator"+ i+1);
         }
         scheduler.putElevators(elevatorsList);
         System.out.println("List of Elevators: "+elevatorsList);
@@ -61,7 +65,7 @@ public class ElevatorSubsystem implements Runnable {
             sendPacket = new DatagramPacket(msg, msg.length,
                     InetAddress.getLocalHost(), SCHEDULER_PORT);
 
-            System.out.println(Thread.currentThread().getName()+ ": Sending Packet");
+            //System.out.println(Thread.currentThread().getName()+ ": Sending Packet");
             sendReceiveSocket.send(sendPacket);
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -76,7 +80,7 @@ public class ElevatorSubsystem implements Runnable {
         receivePacket = new DatagramPacket(data, data.length);
 
         try {
-            System.out.println(Thread.currentThread().getName()+ ": Listening to Packet");
+            //System.out.println(Thread.currentThread().getName()+ ": Listening to Packet");
             // Block until a datagram is received via sendReceiveSocket.
             sendReceiveSocket.receive(receivePacket);
         } catch (IOException e) {
@@ -87,9 +91,10 @@ public class ElevatorSubsystem implements Runnable {
         // convert data to arrayList
 
         ObjectInputStream iStream = null;
+        ArrayList<Elevator> listReceived  = null;
         try {
             iStream = new ObjectInputStream(new ByteArrayInputStream(data));
-            elevatorsList = (ArrayList<Elevator>) iStream.readObject();
+            listReceived = (ArrayList<Elevator>) iStream.readObject();
             iStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -97,7 +102,7 @@ public class ElevatorSubsystem implements Runnable {
             throw new RuntimeException(e);
         }
 
-        updateElevators(elevatorsList);
+        updateElevators(listReceived);
 
     }
 
@@ -109,7 +114,6 @@ public class ElevatorSubsystem implements Runnable {
             if (e1.getId() == e2.getId()){
                e1.setJob(e2.getCurrentJob());
             }
-            
         }
     }
 
@@ -163,7 +167,13 @@ public class ElevatorSubsystem implements Runnable {
 
     @Override
     public void run() {
-        sendReceiveElevators();
+        for (int i = 0; i < listEleThreads.length; i++) {
+            listEleThreads[i].start();
+        }
+        while (true){
+            sendReceiveElevators();
+        }
+
 
     }
 //    @Override

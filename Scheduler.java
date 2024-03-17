@@ -7,7 +7,6 @@ public class Scheduler implements Runnable{
     private boolean empty = true;
     private ArrayList<Job> jobList= new ArrayList<>();
     private ArrayList<Elevator> elevatorsList= new ArrayList<>();
-    private ArrayList<Floor>  floorList = new ArrayList<>();
     private int MAX_SIZE;
     private boolean endProgram = false;
     private boolean floorProgram = false;
@@ -145,13 +144,13 @@ public class Scheduler implements Runnable{
             throw new RuntimeException(e);
         }
 
-        if (!empty) {
-            assignJob();
-        }
+        /*
         else {
             //byte[] message = {0, 1, 0, 1};
             System.out.println("empty job");
         }
+
+         */
 
         ByteArrayOutputStream bStream = new ByteArrayOutputStream();
         ObjectOutput oo = null;
