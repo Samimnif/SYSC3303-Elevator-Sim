@@ -13,7 +13,7 @@ public class UnitTests {
 
         Scheduler scheduler = new Scheduler(4, 24, 23);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine, 100, 23);
+        FloorSubsystem floor = new FloorSubsystem(1, 100, 23);
 
         job = floor.getNextJob();
 
@@ -28,7 +28,7 @@ public class UnitTests {
         Job job;
 
         Scheduler scheduler = new Scheduler(4, 64, 63);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, null, 150, 63);
+        FloorSubsystem floor = new FloorSubsystem(1, 150, 63);
 
         job = floor.getNextJob();
 
@@ -49,7 +49,7 @@ public class UnitTests {
         Job job;
 
         Scheduler scheduler = new Scheduler(4, 34, 33);
-        ElevatorSubsystem elevator = new ElevatorSubsystem(1, 1, scheduler, 70, 34);
+        ElevatorSubsystem elevator = new ElevatorSubsystem(1, 1, 70, 34);
 
         scheduler.putElevators(elevator.elevatorsList);
 
@@ -63,7 +63,7 @@ public class UnitTests {
         Job job;
 
         Scheduler scheduler = new Scheduler(4, 44, 43);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, null, 102, 43);
+        FloorSubsystem floor = new FloorSubsystem(1, 102, 43);
         Elevator elevator = new Elevator(1, 1);
 
         job = floor.getNextJob();
@@ -87,8 +87,8 @@ public class UnitTests {
         Scheduler scheduler = new Scheduler(4, 54, 53);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
         Elevator elevator = new Elevator(1,2);
-        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1,5,scheduler, 71, 54);
-        FloorSubsystem floor = new FloorSubsystem(1, scheduler, schedulerStateMachine, 103, 53);
+        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1,5, 71, 54);
+        FloorSubsystem floor = new FloorSubsystem(1, 103, 53);
 
 
         job = floor.getNextJob();

@@ -1,11 +1,12 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import static java.lang.Math.abs;
 
 public class ElevatorSubsystem implements Runnable {
-    private Scheduler scheduler;
+    //private Scheduler scheduler;
     //private Elevator elevator;
     private SchedulerStateMachine schedulerStateMachine;
     public ArrayList<Elevator> elevatorsList= new ArrayList<>();
@@ -19,8 +20,8 @@ public class ElevatorSubsystem implements Runnable {
 
 
     //Constructor for class ElevatorSubsystem
-    public ElevatorSubsystem(int numElevators, int numFloors, Scheduler scheduler, int elevatorPort, int schedulerPort){
-        this.scheduler = scheduler;
+    public ElevatorSubsystem(int numElevators, int numFloors, int elevatorPort, int schedulerPort){
+        //this.scheduler = scheduler;
         this.SCHEDULER_PORT = schedulerPort;
         this.schedulerStateMachine = schedulerStateMachine;
         listEleThreads = new Thread[numElevators];
@@ -30,9 +31,9 @@ public class ElevatorSubsystem implements Runnable {
         for (int i = 0; i < numElevators; i++) {
             Elevator elevator = new Elevator(i+1, numFloors);
             this.elevatorsList.add(elevator);
-            listEleThreads[i] = new Thread(elevator, "Elevator"+ i+1);
+            listEleThreads[i] = new Thread(elevator, "Elevator "+ (i+1));
         }
-        scheduler.putElevators(elevatorsList);
+        //scheduler.putElevators(elevatorsList); //This got removed
         System.out.println("List of Elevators: "+elevatorsList);
 
         try {
@@ -121,24 +122,24 @@ public class ElevatorSubsystem implements Runnable {
     public void receiveNewTask() { this.currentJob = schedulerStateMachine.sendTask(); }
 
 
-    protected synchronized void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
-        scheduler.putElevators(elevatorsList);
-        int i = scheduler.delegateTask(currentJob);
-
-        currentElevator = elevatorsList.get(i);
-
-        currentElevator.setIdle(false);
-        currentElevator.setGoingUp(currentJob.getPickupFloor() > currentElevator.getCurrentFloor());
-        logElevatorGoingUp(currentElevator, currentJob.getPickupFloor());
-        currentElevator.goToFloor(currentJob.getPickupFloor());
-
-        currentElevator.setGoingUp(currentJob.getDestinationFloor() > currentElevator.getCurrentFloor());
-        logElevatorGoingUp(currentElevator, currentJob.getDestinationFloor());
-        currentElevator.goToFloor(currentJob.getDestinationFloor());
-        currentElevator.setIdle(true);
-
-        scheduler.putElevators(elevatorsList);
-    }
+//    protected synchronized void delegateTask() { //choose the best elevator to give task to, currently just giving to first elevator
+//        scheduler.putElevators(elevatorsList);
+//        int i = scheduler.delegateTask(currentJob);
+//
+//        currentElevator = elevatorsList.get(i);
+//
+//        currentElevator.setIdle(false);
+//        currentElevator.setGoingUp(currentJob.getPickupFloor() > currentElevator.getCurrentFloor());
+//        logElevatorGoingUp(currentElevator, currentJob.getPickupFloor());
+//        currentElevator.goToFloor(currentJob.getPickupFloor());
+//
+//        currentElevator.setGoingUp(currentJob.getDestinationFloor() > currentElevator.getCurrentFloor());
+//        logElevatorGoingUp(currentElevator, currentJob.getDestinationFloor());
+//        currentElevator.goToFloor(currentJob.getDestinationFloor());
+//        currentElevator.setIdle(true);
+//
+//        scheduler.putElevators(elevatorsList);
+//    }
 
     //This method specifies at which floor the elevator is
     private void logElevatorGoingUp(Elevator e, int f) {
@@ -151,19 +152,19 @@ public class ElevatorSubsystem implements Runnable {
 
     //This method notifies the scheduler that the elevator has arrived at its destination
 
-    protected void notifyScheduler() {
-        //do something here with the scheduler to notify it that the elevator has arrived at its destination
-        scheduler.notified(currentElevator);
-    }
+//    protected void notifyScheduler() {
+//        //do something here with the scheduler to notify it that the elevator has arrived at its destination
+//        scheduler.notified(currentElevator);
+//    }
 
 
-    protected boolean getProgramStatus() {
-        return scheduler.isElevatorProgram();
-    }
+//    protected boolean getProgramStatus() {
+//        return scheduler.isElevatorProgram();
+//    }
 
-    protected void setProgramStatus(boolean status) {
-        scheduler.setElevatorProgram(status);
-    }
+//    protected void setProgramStatus(boolean status) {
+//        scheduler.setElevatorProgram(status);
+//    }
 
     @Override
     public void run() {
@@ -176,39 +177,31 @@ public class ElevatorSubsystem implements Runnable {
 
 
     }
-//    @Override
-//    public void run() {
-//        scheduler.putElevators(elevatorsList);
-//        Elevator serviceElevator;
-//        while(!scheduler.getProgramStatus()){
-//            this.currentJob =  scheduler.get();
-//            if (this.currentJob != null){
-//                System.out.println(Thread.currentThread().getName()+": Received Job @"+currentJob.getTimeStamp()+" for floor #"+currentJob.getPickupFloor()+" Pressed the Button "+currentJob.getButton() + " going to " + currentJob.getDestinationFloor());
-//                //for now we assume one elevator is available
-//                serviceElevator = elevatorsList.get(0); //Here we have to rewrite to account for multiple elevators and check which one is available to use
-//                if ((currentJob.getPickupFloor() > serviceElevator.getCurrentFloor())){
-//                    System.out.println(Thread.currentThread().getName()+": Elevator "+serviceElevator.getId()+" is going UP to floor #"+currentJob.getPickupFloor());
-//                }else {
-//                    System.out.println(Thread.currentThread().getName()+": Elevator "+serviceElevator.getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
-//                }
-//                serviceElevator.goToFloor(currentJob.getPickupFloor());
-//                scheduler.putElevators(elevatorsList);
-//                System.out.println(Thread.currentThread().getName()+": Elevator "+serviceElevator.getId()+" arrived to floor #"+currentJob.getPickupFloor() + " and now is going "+ currentJob.getButton() +" to "+currentJob.getDestinationFloor());
-//
-//                serviceElevator.goToFloor(currentJob.getDestinationFloor());
-//                scheduler.putElevators(elevatorsList);
-//                System.out.println(Thread.currentThread().getName()+": Elevator "+serviceElevator.getId()+" arrived to destination floor #"+currentJob.getDestinationFloor());
-//            } else {
-//                break;
-//            }
-//            try {
-//                Thread.sleep(10);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//            this.currentJob = null;
-//        }
-//        setProgramStatus(true);
-//        System.out.println(Thread.currentThread().getName() + "Elevator Subsystem Job ended");
-//    }
+
+    public static void main(String[] args) {
+        int NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE;
+        try {
+            FileInputStream propsInput = new FileInputStream("config.properties");
+            Properties prop = new Properties();
+            prop.load(propsInput);
+
+            NUM_ELEVATOR = Integer.parseInt(prop.getProperty("NUM_ELEVATOR"));
+            NUM_FLOORS = Integer.parseInt(prop.getProperty("NUM_FLOORS"));
+            ELEVATOR_PORT = Integer.parseInt(prop.getProperty("ELEVATOR_PORT"));
+            SCHEDULER_PORTE = Integer.parseInt(prop.getProperty("SCHEDULER_PORTE"));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // Output to check and display info at the start of program
+        System.out.println("\033[1;96mELEVATOR SUBSYSTEM \n\n\033[1;32mCONFIG FILE Input:");
+        System.out.println("\033[1;34mTotal Elevators: \033[0m" + NUM_ELEVATOR);
+        System.out.println("\033[1;34mTotal Floors: \033[0m" + NUM_FLOORS);
+        System.out.println("\033[1;34mElevator Port: \033[0m" + ELEVATOR_PORT);
+        System.out.println("\033[1;34mScheduler Elevator Port: \033[0m" + SCHEDULER_PORTE);
+        System.out.println();
+
+        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
+        Elevator.start();
+    }
 }

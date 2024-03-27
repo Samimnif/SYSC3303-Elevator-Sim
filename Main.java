@@ -42,11 +42,11 @@ public class Main {
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
 
         //ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, ELEVATOR_PORT, SCHEDULER_PORTE);
-        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
+        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
 
         Thread Scheduler = new Thread(scheduler, "Scheduler Thread");
 //        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler), "Elevator Thread");
-        Thread Floor = new Thread(new FloorSubsystem(NUM_FLOORS, scheduler, schedulerStateMachine, FLOOR_PORT, SCHEDULER_PORTF), "Floor Thread");
+        Thread Floor = new Thread(new FloorSubsystem(NUM_FLOORS, FLOOR_PORT, SCHEDULER_PORTF), "Floor Thread");
         //Thread ElevatorSubsystemStateMachine = new Thread(new ElevatorSubsystemStateMachine(elevatorSubsystem), "ElevatorSubsystem StateMachine Thread");
 
         Scheduler.start();

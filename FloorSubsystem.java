@@ -1,11 +1,14 @@
 import java.io.*;
 import java.net.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Properties;
 
 
 public class FloorSubsystem implements Runnable {
-    Scheduler scheduler;
-    SchedulerStateMachine schedulerStateMachine;
+    //Scheduler scheduler;
+    //SchedulerStateMachine schedulerStateMachine;
     BufferedReader reader;
     Job job = new Job(null, 0, 0, null);
     ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
@@ -16,9 +19,9 @@ public class FloorSubsystem implements Runnable {
 
 
     //Constructor for FloorSubsystem
-    FloorSubsystem(int numOfFloors, Scheduler scheduler, SchedulerStateMachine schedulerStateMachine, int port, int schedulerFPort) {
-        this.scheduler = scheduler;
-        this.schedulerStateMachine = schedulerStateMachine;
+    FloorSubsystem(int numOfFloors, int port, int schedulerFPort) {
+        //this.scheduler = scheduler;
+        //this.schedulerStateMachine = schedulerStateMachine;
         this.SCHEDULERF_PORT = schedulerFPort;
 
         try {
@@ -39,6 +42,9 @@ public class FloorSubsystem implements Runnable {
             Floor floor = new Floor(i + 1);
             floorsArrayList.add(floor);
         }
+    }
+    public void printThreadInfo(){
+        System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
     }
 
     //This method parses the whole file containing all the jobs
@@ -65,7 +71,8 @@ public class FloorSubsystem implements Runnable {
             job.setDestinationFloor(Integer.valueOf(rawSplit[3]));
         } else {
             job = null;
-            System.out.println("End of file");
+            printThreadInfo();
+            System.out.println("End of Input File");
         }
         return job;
     }
@@ -87,8 +94,8 @@ public class FloorSubsystem implements Runnable {
 
         byte msg[] = bStream.toByteArray();
 
-
-        System.out.println("\nFloor: Sending packet...\n");
+        printThreadInfo();
+        System.out.println("Sending packet...");
 
         try {
             sendPacket = new DatagramPacket(msg, msg.length, InetAddress.getLocalHost(), SCHEDULERF_PORT);
@@ -96,19 +103,27 @@ public class FloorSubsystem implements Runnable {
             e.printStackTrace();
             System.exit(1);
         }
-
-        System.out.println("Sending from address " + sendPacket.getAddress());
+        printThreadInfo();
+        System.out.println("\033[0;36m\nSending from address " + sendPacket.getAddress());
         System.out.println("Destination host port: " + sendPacket.getPort());
         System.out.println("Sending with length " + sendPacket.getLength());
         System.out.println("With message: " + new String(sendPacket.getData()));
-        System.out.println("Message in bytes: " + msg);
+        System.out.println("Message in bytes: " + Arrays.toString(sendPacket.getData()));
+        System.out.printf("Containing: %s\n", new String(sendPacket.getData(), 0, sendPacket.getLength()));
+        System.out.print("BYTES: ");
+        for (int i = 0; i < msg.length; i++) {
+            System.out.print((byte) msg[i] + " ");
+        }
+        System.out.println("\033[0m");
 
         try {
             sendSocket.send(sendPacket);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("\nFloor: Packet sent.\n");
+
+        printThreadInfo();
+        System.out.println("Packet sent");
 
         byte data[] = new byte[1024];
         receivePacket = new DatagramPacket(data, data.length);
@@ -116,7 +131,8 @@ public class FloorSubsystem implements Runnable {
         try {
             // Block until a datagram is received via receiveSocket.
             sendSocket.receive(receivePacket);
-            System.out.println("received Ack");
+            printThreadInfo();
+            System.out.println("Received Ack from Scheduler");
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -158,17 +174,32 @@ public class FloorSubsystem implements Runnable {
         //System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Floor Subsystem Job ended");
     }
 
+    public static void main(String[] args) {
+        int NUM_FLOORS, SCHEDULER_PORTF, FLOOR_PORT;
+        try {
+            FileInputStream propsInput = new FileInputStream("config.properties");
+            Properties prop = new Properties();
+            prop.load(propsInput);
+
+            NUM_FLOORS = Integer.parseInt(prop.getProperty("NUM_FLOORS"));
+            SCHEDULER_PORTF = Integer.parseInt(prop.getProperty("SCHEDULER_PORTF"));
+            FLOOR_PORT = Integer.parseInt(prop.getProperty("FLOOR_PORT"));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // Output to check and display info at the start of program
+        System.out.println("\033[1;96mFLOOR SUBSYSTEM \n\n\033[1;32mCONFIG FILE Input:");
+        System.out.println("\033[1;34mTotal Floors: \033[0m" + NUM_FLOORS);
+        System.out.println("\033[1;34mScheduler Floor Port: \033[0m" + SCHEDULER_PORTF);
+        System.out.println("\033[1;34mFloor Port: \033[0m" + FLOOR_PORT);
+        System.out.println();
+
+        Thread Floor = new Thread(new FloorSubsystem(NUM_FLOORS, FLOOR_PORT, SCHEDULER_PORTF), "Floor Thread");
+        Floor.start();
+    }
 
     /*
-    public static void main(String[] args) {
-      //  String info;
-       Scheduler scheduler = new Scheduler(4, );
-//
-//        FloorSubsystem floor = new FloorSubsystem(1,scheduler);
-//
-
-
-
 SchedulerStateMachine stateMachine= new SchedulerStateMachine(scheduler);
         FloorSubsystem floor = new FloorSubsystem(3,scheduler,stateMachine);
         floor.sendPacket();

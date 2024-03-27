@@ -2,6 +2,7 @@ import javax.xml.stream.XMLInputFactory;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class Scheduler implements Runnable{
     private boolean empty = true;
@@ -320,5 +321,31 @@ public class Scheduler implements Runnable{
         }
 
         return index;
+    }
+
+    public static void main(String[] args) {
+        int MAX_JOB, SCHEDULER_PORTF, SCHEDULER_PORTE;
+        try {
+            FileInputStream propsInput = new FileInputStream("config.properties");
+            Properties prop = new Properties();
+            prop.load(propsInput);
+
+            MAX_JOB = Integer.parseInt(prop.getProperty("MAX_JOB"));
+            SCHEDULER_PORTF = Integer.parseInt(prop.getProperty("SCHEDULER_PORTF"));
+            SCHEDULER_PORTE = Integer.parseInt(prop.getProperty("SCHEDULER_PORTE"));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // Output to check and display info at the start of program
+        System.out.println("\033[1;96mSCHEDULER \n\n\033[1;32mCONFIG FILE Input:");
+        System.out.println("\033[1;34mMAX Job: \033[0m" + MAX_JOB);
+        System.out.println("\033[1;34mScheduler Elevator Port: \033[0m" + SCHEDULER_PORTE);
+        System.out.println("\033[1;34mScheduler Floor Port: \033[0m" + SCHEDULER_PORTF);
+        System.out.println();
+
+        Scheduler scheduler = new Scheduler(MAX_JOB, SCHEDULER_PORTE, SCHEDULER_PORTF);
+        Thread Scheduler = new Thread(scheduler, "Scheduler Thread");
+        Scheduler.start();
     }
 }
