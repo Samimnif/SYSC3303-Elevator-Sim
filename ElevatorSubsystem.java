@@ -15,7 +15,7 @@ public class ElevatorSubsystem implements Runnable {
     public Job currentJob;
     DatagramPacket sendPacket, receivePacket;
     DatagramSocket sendReceiveSocket;
-    private int SCHEDULER_PORT;
+    private int SCHEDULER_PORT, TOTAL_ELEVATORS;
     private Thread[] listEleThreads;
 
 
@@ -23,6 +23,7 @@ public class ElevatorSubsystem implements Runnable {
     public ElevatorSubsystem(int numElevators, int numFloors, int elevatorPort, int schedulerPort){
         //this.scheduler = scheduler;
         this.SCHEDULER_PORT = schedulerPort;
+        this.TOTAL_ELEVATORS = numElevators;
         this.schedulerStateMachine = schedulerStateMachine;
         listEleThreads = new Thread[numElevators];
 
@@ -77,7 +78,7 @@ public class ElevatorSubsystem implements Runnable {
 
 
         //Receive packet
-        byte data[] = new byte[1024];
+        byte data[] = new byte[1024*TOTAL_ELEVATORS];
         receivePacket = new DatagramPacket(data, data.length);
 
         try {

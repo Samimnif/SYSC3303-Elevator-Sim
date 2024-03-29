@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Elevator implements Serializable, Runnable {
@@ -44,8 +45,10 @@ public class Elevator implements Serializable, Runnable {
         floorsPassed += 1;
     }
 
-    public void printThreadInfo(){
-        System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
+    public String printThreadInfo(){
+        //System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+        return "\033[45m\033[1;30m"+ sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+":\033[0m ";
     }
 
     public void goToFloor(int floorNum) {
@@ -122,15 +125,15 @@ public class Elevator implements Serializable, Runnable {
                     // into the moving state
                     if(currentJob != null && currentFloor != currentJob.getDestinationFloor()){
                         currentState = elevatorStates.MOVING;
-                        printThreadInfo();
-                        System.out.println("Moving");
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Moving");
                         idle = false;
                     // If there is a current job and the elevator is at the pickup floor then state transition into the
                     // loading state
                     }else if(currentJob != null && currentFloor == currentJob.getPickupFloor()){
                         currentState = elevatorStates.LOAD;
-                        printThreadInfo();
-                        System.out.println("Loading");
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Loading");
                         idle = false;
                     }
 
@@ -141,32 +144,32 @@ public class Elevator implements Serializable, Runnable {
                     // If the elevator is currently at the pickup floor and has no passengers then transition to the stop state
                     if((currentFloor == currentJob.getDestinationFloor() && isLoaded) || (currentFloor == currentJob.getPickupFloor() && !isLoaded)){
                         currentState = elevatorStates.STOP;
-                        printThreadInfo();
-                        System.out.println("Stopping at floor "+ currentFloor);
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Stopping at floor "+ currentFloor);
                     // If the elevator doesn't have passengers and is above the pickup floor then move the elevator down and
                     // stay in the moving state
                     }else if(!isLoaded && currentFloor > currentJob.getPickupFloor()){
                         currentFloor -= 1;
-                        printThreadInfo();
-                        System.out.println("Moving DOWN to floor: "+ currentFloor);
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Moving DOWN to floor: "+ currentFloor);
                     // If the elevator doesn't have passengers and is below the pickup floor then move the elevator up and
                     // stay in the moving state
                     }else if(!isLoaded && currentFloor < currentJob.getPickupFloor()){
                         currentFloor += 1;
-                        printThreadInfo();
-                        System.out.println("Moving UP to floor: "+ currentFloor);
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Moving UP to floor: "+ currentFloor);
                     // If the elevator has passengers and is above the destination floor then move the elevator down and
                     // stay in the moving state
                     }else if(isLoaded && currentFloor > currentJob.getDestinationFloor()){
                         currentFloor -= 1;
-                        printThreadInfo();
-                        System.out.println("Moving DOWN to floor: "+ currentFloor);
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Moving DOWN to floor: "+ currentFloor);
                     // If the elevator has passengers and is below the destination floor then move the elevator up and
                     // stay in the moving state
                     }else if(isLoaded && currentFloor < currentJob.getDestinationFloor()){
                         currentFloor += 1;
-                        printThreadInfo();
-                        System.out.println("Moving UP to floor: "+ currentFloor);
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Moving UP to floor: "+ currentFloor);
                     }
                     break;
                 // Stop State
@@ -174,13 +177,13 @@ public class Elevator implements Serializable, Runnable {
                     // If the elevator is at the destination floor then transition into the unload state
                     if(currentFloor == currentJob.getDestinationFloor()){
                         currentState = elevatorStates.UNLOAD;
-                        printThreadInfo();
-                        System.out.println("Unloading");
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Unloading");
                     // If the elevator is at the pickup floor then transition in the load state
                     }else if(currentFloor == currentJob.getPickupFloor()){
                         currentState = elevatorStates.LOAD;
-                        printThreadInfo();
-                        System.out.println("Loading");
+                        //printThreadInfo();
+                        System.out.println(printThreadInfo()+"Loading");
                     }
                     break;
                 // Unload State
@@ -189,16 +192,16 @@ public class Elevator implements Serializable, Runnable {
                     isLoaded = false;
                     currentJob = null;
                     currentState = elevatorStates.IDLE;
-                    printThreadInfo();
-                    System.out.println("Idle");
+                    //printThreadInfo();
+                    System.out.println(printThreadInfo()+"\033[1;33mIdle\033[0m");
                     break;
                 // Load State
                 // Transition into the moving state
                 case LOAD:
                     isLoaded = true;
                     currentState = elevatorStates.MOVING;
-                    printThreadInfo();
-                    System.out.println("Moving");
+                    //printThreadInfo();
+                    System.out.println(printThreadInfo()+"Moving");
                     break;
             }
 //            System.out.println(currentJob==null);

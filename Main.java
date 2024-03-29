@@ -38,7 +38,7 @@ public class Main {
         System.out.println("\033[1;34mFloor Port: \033[0m" + FLOOR_PORT);
 
 
-        Scheduler scheduler = new Scheduler(MAX_JOB, SCHEDULER_PORTE, SCHEDULER_PORTF);
+        Scheduler scheduler = new Scheduler(MAX_JOB, NUM_ELEVATOR, SCHEDULER_PORTE, SCHEDULER_PORTF);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
 
         //ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, ELEVATOR_PORT, SCHEDULER_PORTE);

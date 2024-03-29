@@ -1,6 +1,7 @@
 import javax.xml.stream.XMLInputFactory;
 import java.io.*;
 import java.net.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -8,7 +9,7 @@ public class Scheduler implements Runnable{
     private boolean empty = true;
     private ArrayList<Job> jobList= new ArrayList<>();
     public   ArrayList<Elevator> elevatorsList= new ArrayList<>();
-    private int MAX_SIZE;
+    private int MAX_SIZE, TOTAL_ELEVATORS;
     private boolean endProgram = false;
     private boolean floorProgram = false;
     private boolean elevatorProgram = false;
@@ -17,15 +18,20 @@ public class Scheduler implements Runnable{
 
 
     //Constructor for class Scheduler
-    public Scheduler(int maxJobs, int elevatorComPort, int floorComPort) {
+    public Scheduler(int maxJobs, int numElevators, int elevatorComPort, int floorComPort) {
         this.jobList = new ArrayList<Job>(maxJobs);
         this.MAX_SIZE = maxJobs;
+        this.TOTAL_ELEVATORS = numElevators;
         try {
             this.elevatorComSocket = new DatagramSocket(elevatorComPort);
             this.floorComSocket = new DatagramSocket(floorComPort);
         } catch (SocketException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void printThreadInfo(){
+        System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
     }
 
     public synchronized void put(Job newJob) {
@@ -66,7 +72,7 @@ public class Scheduler implements Runnable{
      * receiveAndSendElevator for elevator list exchange with the elevator subsystem program
      */
     public void receiveAndSendElevator(){
-        byte data[] = new byte[1024];
+        byte data[] = new byte[1024*TOTAL_ELEVATORS];
         receivePacket = new DatagramPacket(data, data.length);
         try {
             //System.out.println("Listening");
@@ -85,6 +91,24 @@ public class Scheduler implements Runnable{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+        // Print received data
+        printThreadInfo();
+        System.out.println("\033[0;36m\nElevator Packet received:");
+        System.out.println("From host: " + receivePacket.getAddress());
+        System.out.println("Host port: " + receivePacket.getPort());
+        int len = receivePacket.getLength();
+        System.out.println("Length: " + len);
+        System.out.print("Containing: ");
+        // Form a String from the byte array.
+        String received = new String(data, 0, len);
+        System.out.println(received);
+
+        System.out.println("BYTES:");
+        for (int i = 0; i < len; i++) {
+            System.out.print((byte) data[i] + " ");
+        }
+        System.out.println("\033[0m");
 
         if (!empty) {
             assignJob();
@@ -115,6 +139,24 @@ public class Scheduler implements Runnable{
             System.exit(1);
         }
 
+        // Print sending data
+        printThreadInfo();
+        System.out.println("\033[0;36m\nSending Elevator Packet:");
+        System.out.println("From host: " + sendPacket.getAddress());
+        System.out.println("Host port: " + sendPacket.getPort());
+        len = sendPacket.getLength();
+        System.out.println("Length: " + len);
+        System.out.print("Containing: ");
+        // Form a String from the byte array.
+        String sending = new String(msg, 0, len);
+        System.out.println(sending);
+
+        System.out.println("BYTES:");
+        for (int i = 0; i < len; i++) {
+            System.out.print((byte) msg[i] + " ");
+        }
+        System.out.println("\033[0m");
+
         try {
             //System.out.println("Sending packet back to elevator");
             elevatorComSocket.send(sendPacket);
@@ -125,7 +167,7 @@ public class Scheduler implements Runnable{
     }
 
     public void receiveAndSendFloor(){
-        byte data[] = new byte[1024];
+        byte data[] = new byte[1024*MAX_SIZE];
         DatagramPacket receivePacketF = new DatagramPacket(data, data.length);
         try {
             //System.out.println("Scheduler Floor Listening");
@@ -145,6 +187,24 @@ public class Scheduler implements Runnable{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+        // Print received data
+        printThreadInfo();
+        System.out.println("\033[0;33m\nFloor Packet received:");
+        System.out.println("From host: " + receivePacketF.getAddress());
+        System.out.println("Host port: " + receivePacketF.getPort());
+        int len = receivePacketF.getLength();
+        System.out.println("Length: " + len);
+        System.out.print("Containing: ");
+        // Form a String from the byte array.
+        String received = new String(data, 0, len);
+        System.out.println(received);
+
+        System.out.println("BYTES:");
+        for (int i = 0; i < len; i++) {
+            System.out.print((byte) data[i] + " ");
+        }
+        System.out.println("\033[0m");
 
         put(newJob);
 
@@ -167,6 +227,24 @@ public class Scheduler implements Runnable{
             e.printStackTrace();
             System.exit(1);
         }
+
+        // Print sending data
+        printThreadInfo();
+        System.out.println("\033[0;33m\nSending Ack to Floor Packet:");
+        System.out.println("From host: " + sendPacketF.getAddress());
+        System.out.println("Host port: " + sendPacketF.getPort());
+        len = sendPacketF.getLength();
+        System.out.println("Length: " + len);
+        System.out.print("Containing: ");
+        // Form a String from the byte array.
+        String sending = new String(msg, 0, len);
+        System.out.println(sending);
+
+        System.out.println("BYTES:");
+        for (int i = 0; i < len; i++) {
+            System.out.print((byte) msg[i] + " ");
+        }
+        System.out.println("\033[0m");
 
         try {
             System.out.println("Sending packet back to floor");
@@ -324,13 +402,14 @@ public class Scheduler implements Runnable{
     }
 
     public static void main(String[] args) {
-        int MAX_JOB, SCHEDULER_PORTF, SCHEDULER_PORTE;
+        int MAX_JOB, NUM_ELEVATOR, SCHEDULER_PORTF, SCHEDULER_PORTE;
         try {
             FileInputStream propsInput = new FileInputStream("config.properties");
             Properties prop = new Properties();
             prop.load(propsInput);
 
             MAX_JOB = Integer.parseInt(prop.getProperty("MAX_JOB"));
+            NUM_ELEVATOR = Integer.parseInt(prop.getProperty("NUM_ELEVATOR"));
             SCHEDULER_PORTF = Integer.parseInt(prop.getProperty("SCHEDULER_PORTF"));
             SCHEDULER_PORTE = Integer.parseInt(prop.getProperty("SCHEDULER_PORTE"));
 
@@ -340,11 +419,12 @@ public class Scheduler implements Runnable{
         // Output to check and display info at the start of program
         System.out.println("\033[1;96mSCHEDULER \n\n\033[1;32mCONFIG FILE Input:");
         System.out.println("\033[1;34mMAX Job: \033[0m" + MAX_JOB);
+        System.out.println("\033[1;34mTotal Elevators: \033[0m" + NUM_ELEVATOR);
         System.out.println("\033[1;34mScheduler Elevator Port: \033[0m" + SCHEDULER_PORTE);
         System.out.println("\033[1;34mScheduler Floor Port: \033[0m" + SCHEDULER_PORTF);
         System.out.println();
 
-        Scheduler scheduler = new Scheduler(MAX_JOB, SCHEDULER_PORTE, SCHEDULER_PORTF);
+        Scheduler scheduler = new Scheduler(MAX_JOB, NUM_ELEVATOR, SCHEDULER_PORTE, SCHEDULER_PORTF);
         Thread Scheduler = new Thread(scheduler, "Scheduler Thread");
         Scheduler.start();
     }
