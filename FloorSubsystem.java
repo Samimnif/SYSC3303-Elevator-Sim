@@ -1,9 +1,8 @@
 import java.io.*;
 import java.net.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Properties;
+import java.util.*;
+
 
 
 public class FloorSubsystem implements Runnable {
@@ -17,11 +16,19 @@ public class FloorSubsystem implements Runnable {
     DatagramPacket sendPacket, receivePacket;
     private int SCHEDULERF_PORT;
 
+    HashMap<Integer, Job> jobsMap;
+    ArrayList<Integer> timestampsInSecsArr;
+
+
+
 
     //Constructor for FloorSubsystem
     FloorSubsystem(int numOfFloors, int port, int schedulerFPort) {
         //this.scheduler = scheduler;
         //this.schedulerStateMachine = schedulerStateMachine;
+        jobsMap = new HashMap<Integer, Job>();
+        timestampsInSecsArr = new ArrayList<>();
+
         this.SCHEDULERF_PORT = schedulerFPort;
 
         try {
@@ -65,10 +72,15 @@ public class FloorSubsystem implements Runnable {
         if (raw != null) {
             String[] rawSplit = raw.split(" ");
 
+            int secs = convertToSecs(rawSplit[0]);
+
             job.setTimeStamp(rawSplit[0]);
             job.setPickupFloor(Integer.valueOf(rawSplit[1]));
             job.setButton(rawSplit[2]);
             job.setDestinationFloor(Integer.valueOf(rawSplit[3]));
+
+            jobsMap.put(secs, job);
+            timestampsInSecsArr.add(secs);
         } else {
             job = null;
             printThreadInfo();
@@ -149,7 +161,7 @@ public class FloorSubsystem implements Runnable {
         //while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
         Job newJob = getNextJob();
         while(newJob != null){
-            sendPacket(newJob);
+            //sendPacket(newJob);
            // this.elevatorsList = scheduler.getElevators();
            // System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
             //for (Elevator e : elevatorsList) {
@@ -171,6 +183,19 @@ public class FloorSubsystem implements Runnable {
             }
             newJob = getNextJob();
         }
+        Collections.sort(timestampsInSecsArr);
+        System.out.println(timestampsInSecsArr);
+
+        long startTime = System.currentTimeMillis();
+
+        while(!jobsMap.isEmpty()) {
+           // System.out.println((System.currentTimeMillis() - startTime)/1);
+            if ((System.currentTimeMillis() - startTime)/1 >= timestampsInSecsArr.getFirst()) {
+                sendPacket(jobsMap.remove(timestampsInSecsArr.removeFirst()));
+            }
+        }
+        System.out.println(timestampsInSecsArr);
+        System.out.println(jobsMap);
         //System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Floor Subsystem Job ended");
     }
 
@@ -197,6 +222,19 @@ public class FloorSubsystem implements Runnable {
 
         Thread Floor = new Thread(new FloorSubsystem(NUM_FLOORS, FLOOR_PORT, SCHEDULER_PORTF), "Floor Thread");
         Floor.start();
+    }
+
+    private int convertToSecs(String timestamp) {
+        String[] nums = timestamp.split(":");
+
+        int secs = 0;
+
+        secs += 360 * Integer.parseInt(nums[0]);
+        secs += 60 * Integer.parseInt(nums[1]);
+        secs += Integer.parseInt(nums[2]);
+
+        return secs;
+
     }
 
     /*
