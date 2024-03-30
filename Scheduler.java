@@ -261,8 +261,9 @@ public class Scheduler implements Runnable{
         boolean assignjob = false;
         for (Elevator i : elevatorsList) {
             if (i.isIdle()) {
+                Job job = get();
                 System.out.println("FLOOR: assigned a job: "+jobList.size());
-                i.setJob(get()); //jobList.remove(0)
+                i.setJob(job); //jobList.remove(0)
                 empty = jobList.isEmpty();
                 assignjob = true;
                 if (empty){return assignjob;}

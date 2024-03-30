@@ -9,7 +9,7 @@ public class FloorSubsystem implements Runnable {
     //Scheduler scheduler;
     //SchedulerStateMachine schedulerStateMachine;
     BufferedReader reader;
-    Job job = new Job(null, 0, 0, null);
+    Job job;
     ArrayList<Floor> floorsArrayList = new ArrayList<Floor>();
     private ArrayList<Elevator> elevatorsList;
     DatagramSocket sendSocket, receiveSocket;
@@ -71,14 +71,8 @@ public class FloorSubsystem implements Runnable {
 
         if (raw != null) {
             String[] rawSplit = raw.split(" ");
-
+            job = new Job(rawSplit[0], Integer.parseInt(rawSplit[3]), Integer.parseInt(rawSplit[1]), rawSplit[2], Integer.parseInt(rawSplit[4]));
             int secs = convertToSecs(rawSplit[0]);
-
-            job.setTimeStamp(rawSplit[0]);
-            job.setPickupFloor(Integer.valueOf(rawSplit[1]));
-            job.setButton(rawSplit[2]);
-            job.setDestinationFloor(Integer.valueOf(rawSplit[3]));
-
             jobsMap.put(secs, job);
             timestampsInSecsArr.add(secs);
         } else {
@@ -92,7 +86,7 @@ public class FloorSubsystem implements Runnable {
     //This method is used to send DatagramPackets to the Scheduler
     public void sendPacket(Job newJob) {
 
-       // byte[] dataArray = jobRequest().getBytes();
+        // byte[] dataArray = jobRequest().getBytes();
 
         ByteArrayOutputStream bStream = new ByteArrayOutputStream();
         ObjectOutput oo = null;
@@ -161,9 +155,9 @@ public class FloorSubsystem implements Runnable {
         //while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
         Job newJob = getNextJob();
         while(newJob != null){
-            //sendPacket(newJob);
-           // this.elevatorsList = scheduler.getElevators();
-           // System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
+//            sendPacket(newJob);
+            // this.elevatorsList = scheduler.getElevators();
+            // System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
             //for (Elevator e : elevatorsList) {
             //    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + e.getId() + " is currently @ floor# " + e.getCurrentFloor());
             //}
@@ -189,9 +183,10 @@ public class FloorSubsystem implements Runnable {
         long startTime = System.currentTimeMillis();
 
         while(!jobsMap.isEmpty()) {
-           // System.out.println((System.currentTimeMillis() - startTime)/1);
+            // System.out.println((System.currentTimeMillis() - startTime)/1);
             if ((System.currentTimeMillis() - startTime)/1 >= timestampsInSecsArr.getFirst()) {
-                sendPacket(jobsMap.remove(timestampsInSecsArr.removeFirst()));
+                Job job = jobsMap.remove((timestampsInSecsArr).removeFirst());
+                sendPacket(job);
             }
         }
         System.out.println(timestampsInSecsArr);

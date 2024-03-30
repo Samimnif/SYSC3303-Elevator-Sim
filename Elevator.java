@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Elevator implements Serializable, Runnable {
 
@@ -20,7 +21,7 @@ public class Elevator implements Serializable, Runnable {
     private ArrayList<Button> ElevatorButton;
     private Motor mainMotor;
     private Door mainDoor;
-
+    private HashMap<Integer, Lamp> lamps;
     private boolean goingUp = true, isLoaded = false;
     private boolean idle = true;
 
@@ -31,14 +32,15 @@ public class Elevator implements Serializable, Runnable {
         this.currentFloor = 1;
         this.mainDoor = new Door();
         this.mainMotor = new Motor();
+        this.lamps = new HashMap<>();
         floorsPassed = 0;
         this.ElevatorButton = new ArrayList<Button>(numButtons);
         for (int i = 0; i < numButtons; i++) {
             Lamp floorLamp = new Lamp(i);
+            lamps.put(i, floorLamp);
             Button floorButton = new Button(i, floorLamp);
             this.ElevatorButton.add(floorButton);
         }
-
     }
 
     public void goToNextFloor(){
@@ -111,28 +113,33 @@ public class Elevator implements Serializable, Runnable {
 
     @Override
     public void run(){
+        System.out.println(printThreadInfo() + "started");
         while (true) {
-            if (currentJob != null) {
-                //printThreadInfo();
-                //System.out.println("Current Job : " + currentJob.getTimeStamp() + " IS Idle: "+idle);
-            }
-
+//            if(currentJob==null){
+//                System.out.println(printThreadInfo() + (currentJob==null));
+//            }
             switch (currentState){
                 // Idle State
                 case IDLE:
+                    //If the door is open and idle then close the door until there is another request
                     idle = true;
                     // If there is a current job and the elevator is not at the destination floor then state transition
                     // into the moving state
                     if(currentJob != null && currentFloor != currentJob.getDestinationFloor()){
                         currentState = elevatorStates.MOVING;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Moving");
                         idle = false;
                     // If there is a current job and the elevator is at the pickup floor then state transition into the
                     // loading state
                     }else if(currentJob != null && currentFloor == currentJob.getPickupFloor()){
+                        // When the elevator transitions to the loading state, it will open the door as an entry action
+                        try{
+                            System.out.print(printThreadInfo());
+                            mainDoor.openDoor(currentJob.getFault());
+                        } catch (Exception e){
+                            System.out.println("Fault: " + e);
+                        }
                         currentState = elevatorStates.LOAD;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Loading");
                         idle = false;
                     }
@@ -140,7 +147,7 @@ public class Elevator implements Serializable, Runnable {
                     break;
                 // Moving State
                 case MOVING:
-                    // If the elevator is current;y at the destination floor and has passengers then transition to the stop state
+                    // If the elevator is currently at the destination floor and has passengers then transition to the stop state
                     // If the elevator is currently at the pickup floor and has no passengers then transition to the stop state
                     if((currentFloor == currentJob.getDestinationFloor() && isLoaded) || (currentFloor == currentJob.getPickupFloor() && !isLoaded)){
                         currentState = elevatorStates.STOP;
@@ -162,13 +169,11 @@ public class Elevator implements Serializable, Runnable {
                     // stay in the moving state
                     }else if(isLoaded && currentFloor > currentJob.getDestinationFloor()){
                         currentFloor -= 1;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Moving DOWN to floor: "+ currentFloor);
                     // If the elevator has passengers and is below the destination floor then move the elevator up and
                     // stay in the moving state
                     }else if(isLoaded && currentFloor < currentJob.getDestinationFloor()){
                         currentFloor += 1;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Moving UP to floor: "+ currentFloor);
                     }
                     break;
@@ -176,31 +181,61 @@ public class Elevator implements Serializable, Runnable {
                 case STOP:
                     // If the elevator is at the destination floor then transition into the unload state
                     if(currentFloor == currentJob.getDestinationFloor()){
+                        // When the elevator transitions to the unloading state, it will open the door as an entry action
+                        try{
+                            System.out.print(printThreadInfo());
+                            mainDoor.openDoor(currentJob.getFault());
+                        } catch (Exception e){
+                            System.out.println("Fault: " + e);
+                        }
                         currentState = elevatorStates.UNLOAD;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Unloading");
                     // If the elevator is at the pickup floor then transition in the load state
                     }else if(currentFloor == currentJob.getPickupFloor()){
+                        // When the elevator transitions to the loading state, it will open the door as an entry action
+                        try{
+                            System.out.print(printThreadInfo());
+                            mainDoor.openDoor(currentJob.getFault());
+                        } catch (Exception e){
+                            System.out.println("Fault: " + e);
+                        }
                         currentState = elevatorStates.LOAD;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Loading");
                     }
                     break;
                 // Unload State
                 // Make currentJob null, and transition into the idle state
                 case UNLOAD:
+                    System.out.print(printThreadInfo());
+                    // Turn the lamp off for the destination floor
+                    lamps.get(currentJob.getDestinationFloor()).toggleLamp();
                     isLoaded = false;
                     currentJob = null;
+                    // When the elevator transitions to the idle state, it will close the door as an entry action
+                    try{
+                        System.out.print(printThreadInfo());
+                        mainDoor.closeDoor(0);
+                    } catch (Exception e){
+                        System.out.println("Fault: " + e);
+                    }
                     currentState = elevatorStates.IDLE;
-                    //printThreadInfo();
                     System.out.println(printThreadInfo()+"\033[1;33mIdle\033[0m");
                     break;
                 // Load State
                 // Transition into the moving state
                 case LOAD:
+                    System.out.print(printThreadInfo());
+                    // Turn the lamp on for the destination floor
+                    lamps.get(currentJob.getDestinationFloor()).toggleLamp();
                     isLoaded = true;
+                    // When the elevator transitions to the moving state, it will close the door as an entry action
+                    try{
+                        System.out.print(printThreadInfo());
+                        mainDoor.closeDoor(currentJob.getFault());
+                    } catch (Exception e){
+                        System.out.println("Fault: " + e);
+                    }
                     currentState = elevatorStates.MOVING;
-                    //printThreadInfo();
                     System.out.println(printThreadInfo()+"Moving");
                     break;
             }

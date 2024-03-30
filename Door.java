@@ -1,17 +1,33 @@
 import java.io.Serializable;
 
 public class Door implements Serializable {
-    private Boolean door;
+    private Boolean isOpen;
     //Constructor for class Door
     public Door() {
-        this.door = false;
+        this.isOpen = false;
     }
 
-    public void setDoor(Boolean door) {
-        this.door = door;
+    public void openDoor(int fault) throws Exception {
+        // Checks for fault
+        if(fault == 1){
+            throw new Exception("Door stuck");
+        }
+        System.out.println("Open Door");
+        isOpen = true;
+        //Can add functionality for the gui
     }
 
-    public Boolean getDoor() {
-        return door;
+    public void closeDoor(int fault) throws Exception {
+        // Checks for fault
+        if(fault == 1){
+            throw new Exception("Door stuck");
+        }
+        System.out.println("Close Door");
+        isOpen = false;
+        //Can add functionality for the gui
+    }
+
+    public Boolean isOpen() {
+        return isOpen;
     }
 }

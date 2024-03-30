@@ -105,7 +105,6 @@ public class ElevatorSubsystem implements Runnable {
         }
 
         updateElevators(listReceived);
-
     }
 
     //This method updates the elevators with the current Job that we have
@@ -174,6 +173,11 @@ public class ElevatorSubsystem implements Runnable {
         }
         while (true){
             sendReceiveElevators();
+            try{
+                Thread.sleep(500);
+            } catch (Exception e){
+                throw new RuntimeException(e);
+            }
         }
 
 

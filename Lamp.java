@@ -21,12 +21,13 @@ public class Lamp implements Serializable {
 
     //Turns the lamp on and off
     public void toggleLamp(){
-        if (lamp){
-            lamp = false;
+        lamp = !lamp;
+        if(lamp){
+            System.out.println("Lamp #" + this.ID + " is on");
+        }else{
+            System.out.println("Lamp #" + this.ID + " is off");
         }
-        else{
-            lamp = true;
-        }
+        //Add gui functionality
     }
 
 }
