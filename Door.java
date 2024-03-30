@@ -10,7 +10,7 @@ public class Door implements Serializable {
     public void openDoor(int fault) throws Exception {
         // Checks for fault
         if(fault == 1){
-            throw new Exception("Door stuck");
+            throw new Exception("\033[1;31mDoor stuck when opening\033[0m");
         }
         System.out.println("Open Door");
         isOpen = true;
@@ -20,7 +20,7 @@ public class Door implements Serializable {
     public void closeDoor(int fault) throws Exception {
         // Checks for fault
         if(fault == 1){
-            throw new Exception("Door stuck");
+            throw new Exception("\033[1;31mDoor stuck when closing\033[0m");
         }
         System.out.println("Close Door");
         isOpen = false;

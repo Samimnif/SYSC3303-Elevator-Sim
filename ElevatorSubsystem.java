@@ -1,3 +1,12 @@
+/** ElevatorSubsystem.java
+ * This subsystem creates threads for each elevator (depending on the total elevators inputted)
+ * The summary of all elevators is saved in an Arraylist.
+ * ElevatorSubsystem communicates with scheduler by sending the elevator list through UDP.
+ * Then it receives the updated list back from scheduler
+ *
+ * @authors Sami Mnif, Muaadh Ali
+ */
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -47,6 +56,9 @@ public class ElevatorSubsystem implements Runnable {
 
     /**
      * sendReceiveElevators send ArrayList of elevators to Scheduler
+     * and then listens for an updated list from the scheduler.
+     *
+     * The updated list is used to update the Elevators threads with any assigned JOB.
      */
     public void sendReceiveElevators(){
         //preparing packet

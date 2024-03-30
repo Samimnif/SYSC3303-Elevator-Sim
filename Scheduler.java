@@ -1,3 +1,14 @@
+/** Scheduler.java
+ * The scheduler recives Jobs from the FloorSubsystem and also recieves Elevator List from the ElevatorSubsystem.
+ * Then, teh scheduler assigns a Job to a free elevator. Once assigned, then it sends the updated elevator list
+ * back to the ElevatorSubsystem through UDP and also sends an Acknowledgement packet to the FloorSubsystem.
+ *
+ * The scheduler has two threads runnign, one that handles the Elevator communication, and the other handles the
+ * Floor communication.
+ *
+ * @authors Sami Mnif, Jalal Mourad, Omar Hamzat
+ */
+
 import javax.xml.stream.XMLInputFactory;
 import java.io.*;
 import java.net.*;
@@ -30,6 +41,10 @@ public class Scheduler implements Runnable{
         }
     }
 
+    /**
+     * printThreadInfo(): prints the thread name and the timestamp if the output to the console
+     *
+     */
     public void printThreadInfo(){
         System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
     }
@@ -53,6 +68,13 @@ public class Scheduler implements Runnable{
         empty = jobList.isEmpty();
         notifyAll();
     }
+
+    /**
+     * get(): the get method is a synchronized method that returns the first Job in the Job list
+     * This will run as long as the Job ArrayList isn't empty.
+     *
+     * @return Job returnedJob;
+     */
     public synchronized Job get() {
         while (empty) {
             try {
@@ -69,7 +91,8 @@ public class Scheduler implements Runnable{
     }
 
     /**
-     * receiveAndSendElevator for elevator list exchange with the elevator subsystem program
+     * receiveAndSendElevator(): it will listen for packet from the ElevatorSubsystem
+     * Once received it wil try to assign Jobs to any available elevator using assignJob()
      */
     public void receiveAndSendElevator(){
         byte data[] = new byte[1024*TOTAL_ELEVATORS];
@@ -166,6 +189,9 @@ public class Scheduler implements Runnable{
 
     }
 
+    /**
+     * receiveAndSendFloor()
+     */
     public void receiveAndSendFloor(){
         byte data[] = new byte[1024*MAX_SIZE];
         DatagramPacket receivePacketF = new DatagramPacket(data, data.length);

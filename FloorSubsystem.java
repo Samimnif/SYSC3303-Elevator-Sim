@@ -1,3 +1,11 @@
+/** FloorSubsystem.java
+ * This subsystem will be reading the events.txt file and saving the jobs into a
+ * Job object.
+ * FloorSubsystem communicates with the scheduler by sending UDP packet with the JOB info
+ *
+ * @authors Muaadh Ali, Jalal Mourad, SAmi Mnif
+ */
+
 import java.io.*;
 import java.net.*;
 import java.sql.Timestamp;
