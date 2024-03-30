@@ -49,22 +49,22 @@ Usage:
 Credits:
 --------
 
-| Classes                              | iteration 1                           | iteration 2                                                    | iteration 3                         |
-|--------------------------------------|---------------------------------------|----------------------------------------------------------------|-------------------------------------|
-| `Scheduler.java`                     | Sami Mnif, Jalal Mourad               |                                                                | Sami Mnif, Omar Hamzat              |
-| `ElevatorSubsystem.java`             | Sami Mnif                             |                                                                | Sami Mnif, Muaadh Ali               |
-| `FloorSubsystem.java`                | Sami Mnif, Muaadh Ali                 |                                                                | Sami Mnif, Jalal Mourad,            |
-| `Elevator.java`                      | Sami Mnif, Jalal Mourad, Omar Hamzat, |                                                                | Sami Mnif, Muaadh Ali, Jordan Bayne |
-| `Button.java`                        | Jalal Mourad                          |                                                                |                                     |
-| `Door.java`                          | Jalal Mourad, Jordan Bayne            |                                                                |                                     |
-| `Lamp.java`                          | Jalal Mourad                          |                                                                |                                     |
-| `Motor.java`                         | Jalal Mourad, Jordan Bayne            |                                                                |                                     |
-| `Floor.java`                         | Muaadh Ali                            |                                                                |                                     |
-| `SchedulerStateMachine.java`         | NA                                    | Sami Mnif, Jalal Mourad, Omar Hamzat, Muaadh Ali, Jordan Bayne |                                     |
-| `ElevatorSubsystemStateMachine.java` | NA                                    | Sami Mnif, Jalal Mourad, Omar Hamzat, Muaadh Ali, Jordan Bayne | Muaadh Ali                          |
-| `UnitTests.java`                     | Jordan Bayne                          |                                                                | Sami Mnif, Jalal Mourad, Muaadh Ali |
-| `Job.java`                           | Sami Mnif, Omar Hamzat, Muaadh Ali    |                                                                |                                     |
-| `Main.java`                          | Omar Hamzat                           |                                                                | Sami Mnif, Omar Hamzat              |
+| Classes                              | Iteration 1                           | Iteration 2                                                    | Iteration 3                         | Iteration 4                          |
+|--------------------------------------|---------------------------------------|----------------------------------------------------------------|-------------------------------------|--------------------------------------|
+| `Scheduler.java`                     | Sami Mnif, Jalal Mourad               |                                                                | Sami Mnif, Omar Hamzat              | Sami Mnif                            |
+| `ElevatorSubsystem.java`             | Sami Mnif                             |                                                                | Sami Mnif, Muaadh Ali               |                                      |
+| `FloorSubsystem.java`                | Sami Mnif, Muaadh Ali                 |                                                                | Sami Mnif, Jalal Mourad,            | Muaadh Ali                           |
+| `Elevator.java`                      | Sami Mnif, Jalal Mourad, Omar Hamzat, |                                                                | Sami Mnif, Muaadh Ali, Jordan Bayne | Jordan Bayne,Sami Mnif, Jalal Mourad |
+| `Button.java`                        | Jalal Mourad                          |                                                                |                                     |                                      |
+| `Door.java`                          | Jalal Mourad, Jordan Bayne            |                                                                |                                     |                                      |
+| `Lamp.java`                          | Jalal Mourad                          |                                                                |                                     |                                      |
+| `Motor.java`                         | Jalal Mourad, Jordan Bayne            |                                                                |                                     |                                      |
+| `Floor.java`                         | Muaadh Ali                            |                                                                |                                     |                                      |
+| `SchedulerStateMachine.java`         | NA                                    | Sami Mnif, Jalal Mourad, Omar Hamzat, Muaadh Ali, Jordan Bayne |                                     |                                      |
+| `ElevatorSubsystemStateMachine.java` | NA                                    | Sami Mnif, Jalal Mourad, Omar Hamzat, Muaadh Ali, Jordan Bayne | Muaadh Ali                          |                                      |
+| `UnitTests.java`                     | Jordan Bayne                          |                                                                | Sami Mnif, Jalal Mourad, Muaadh Ali |                                      |
+| `Job.java`                           | Sami Mnif, Omar Hamzat, Muaadh Ali    |                                                                |                                     | Muaadh Ali                           |
+| `Main.java`                          | Omar Hamzat                           |                                                                | Sami Mnif, Omar Hamzat              |                                      |
 
 ## Iteration1:
 

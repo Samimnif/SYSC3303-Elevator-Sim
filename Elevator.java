@@ -13,17 +13,16 @@ public class Elevator implements Serializable, Runnable {
         LOAD,
         UNLOAD
     }
-    private int currentFloor;
+    private int currentFloor, id;
     private Job currentJob;
     private elevatorStates currentState;
     private static int floorsPassed;
-    private int id;
     private ArrayList<Button> ElevatorButton;
     private Motor mainMotor;
     private Door mainDoor;
     private HashMap<Integer, Lamp> lamps;
-    private boolean goingUp = true, isLoaded = false;
-    private boolean idle = true;
+    private boolean goingUp = true, isLoaded = false, idle = true;
+    private final static double TRIP_TIME=5.22, SPEED=1.37, ACCELERATION=0.26;
 
     public Elevator(int id, int numButtons){
         this.id = id;
@@ -40,6 +39,12 @@ public class Elevator implements Serializable, Runnable {
             lamps.put(i, floorLamp);
             Button floorButton = new Button(i, floorLamp);
             this.ElevatorButton.add(floorButton);
+        }
+    }
+
+    public void sensorFault(int fault){
+        if (fault == 2){
+            throw new RuntimeException("Sensor at floor: "+getCurrentFloor()+" has failed");
         }
     }
 
@@ -113,7 +118,7 @@ public class Elevator implements Serializable, Runnable {
 
     @Override
     public void run(){
-        System.out.println(printThreadInfo() + "started");
+        System.out.println(printThreadInfo() + "initiated");
         while (true) {
 //            if(currentJob==null){
 //                System.out.println(printThreadInfo() + (currentJob==null));
@@ -151,30 +156,52 @@ public class Elevator implements Serializable, Runnable {
                     // If the elevator is currently at the pickup floor and has no passengers then transition to the stop state
                     if((currentFloor == currentJob.getDestinationFloor() && isLoaded) || (currentFloor == currentJob.getPickupFloor() && !isLoaded)){
                         currentState = elevatorStates.STOP;
-                        //printThreadInfo();
+                        sensorFault(currentJob.getFault());
                         System.out.println(printThreadInfo()+"Stopping at floor "+ currentFloor);
                     // If the elevator doesn't have passengers and is above the pickup floor then move the elevator down and
                     // stay in the moving state
+
                     }else if(!isLoaded && currentFloor > currentJob.getPickupFloor()){
                         currentFloor -= 1;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Moving DOWN to floor: "+ currentFloor);
+                        try {
+                            Thread.sleep((long) (TRIP_TIME*1000));
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
                     // If the elevator doesn't have passengers and is below the pickup floor then move the elevator up and
                     // stay in the moving state
                     }else if(!isLoaded && currentFloor < currentJob.getPickupFloor()){
                         currentFloor += 1;
-                        //printThreadInfo();
                         System.out.println(printThreadInfo()+"Moving UP to floor: "+ currentFloor);
+                        try {
+                            Thread.sleep((long) (TRIP_TIME*1000));
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
                     // If the elevator has passengers and is above the destination floor then move the elevator down and
                     // stay in the moving state
                     }else if(isLoaded && currentFloor > currentJob.getDestinationFloor()){
                         currentFloor -= 1;
                         System.out.println(printThreadInfo()+"Moving DOWN to floor: "+ currentFloor);
+                        try {
+                            Thread.sleep((long) (TRIP_TIME*1000));
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
                     // If the elevator has passengers and is below the destination floor then move the elevator up and
                     // stay in the moving state
                     }else if(isLoaded && currentFloor < currentJob.getDestinationFloor()){
                         currentFloor += 1;
                         System.out.println(printThreadInfo()+"Moving UP to floor: "+ currentFloor);
+                        try {
+                            Thread.sleep((long) (TRIP_TIME*1000));
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     break;
                 // Stop State
