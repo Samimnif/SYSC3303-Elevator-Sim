@@ -4,17 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Fixed an issue when having more than 2 elevators">
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator$elevatorStates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator$elevatorStates.class" afterDir="false" />
+    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added Comments, small changes">
+      <change beforePath="$PROJECT_DIR$/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events.txt" beforeDir="false" afterPath="$PROJECT_DIR$/events.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Door.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorSubsystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorSubsystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/FloorSubsystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/FloorSubsystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/UnitTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/UnitTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/events.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/events.txt" afterDir="false" />
     </list>
     <list id="316388d1-e94a-48b2-a5d1-0dcf71f70a58" name="Changes by amuaa" comment="" />
+    <list id="cb95ea09-97a1-47eb-9761-0f3ac380159a" name="Changes by Jalal" comment="">
+      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +59,25 @@
     <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp_2_Elevator.class" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp__Elevator.class" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Elevator.java">
+      <ranges>
+        <range start1="15" end1="16" start2="15" end2="16" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="19" end1="20" start2="19" end2="19" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="24" end1="26" start2="23" end2="25" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="44" end1="44" start2="43" end2="49" changelist="cb95ea09-97a1-47eb-9761-0f3ac380159a" />
+        <range start1="115" end1="116" start2="120" end2="121" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="153" end1="154" start2="158" end2="159" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="157" end1="157" start2="162" end2="163" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="159" end1="160" start2="165" end2="165" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="161" end1="161" start2="166" end2="172" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="165" end1="166" start2="176" end2="176" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="167" end1="167" start2="177" end2="183" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="172" end1="172" start2="188" end2="194" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="177" end1="177" start2="199" end2="204" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -62,41 +90,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.ElevatorSubsystem.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FloorSubsystem.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Scheduler.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Sequence&quot;,
-    &quot;JUnit.UnitTests.AssignJobTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTests.UpdateElevators.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTests.checkReadInputFileTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTests.elevatorStateTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTests.getDataFromSchedulerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTests.passDataToSchedulerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTests.schedulerStateTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/samim/IdeaProjects/SYSC3303-Elevator-Sim/Diagrams&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.ElevatorSubsystem.executor": "Run",
+    "Application.FloorSubsystem.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Scheduler.executor": "Run",
+    "Compound.A.executor": "Run",
+    "Compound.B.executor": "Run",
+    "Compound.Sim-Demo.executor": "Run",
+    "DefaultPlantUmlFileTemplate": "UML Sequence",
+    "JUnit.UnitTests.AssignJobTest.executor": "Run",
+    "JUnit.UnitTests.UpdateElevators.executor": "Run",
+    "JUnit.UnitTests.checkReadInputFileTest.executor": "Run",
+    "JUnit.UnitTests.elevatorStateTest.executor": "Run",
+    "JUnit.UnitTests.executor": "Run",
+    "JUnit.UnitTests.getDataFromSchedulerTest.executor": "Run",
+    "JUnit.UnitTests.passDataToSchedulerTest.executor": "Run",
+    "JUnit.UnitTests.schedulerStateTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/samim/IdeaProjects/SYSC3303-Elevator-Sim/Diagrams",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\samim\IdeaProjects\SYSC3303-Elevator-Sim\Diagrams" />
@@ -212,6 +243,7 @@
       <workItem from="1711503414185" duration="1887000" />
       <workItem from="1711644210857" duration="1398000" />
       <workItem from="1711721328787" duration="6417000" />
+      <workItem from="1711808284259" duration="6962000" />
     </task>
     <task id="LOCAL-00001" summary="Added diagrams">
       <option name="closed" value="true" />
@@ -429,7 +461,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711737747547</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added Comments, small changes">
+      <option name="closed" value="true" />
+      <created>1711825499908</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1711825499908</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +507,8 @@
     <MESSAGE value="Code Cleanup, Output Console Cleanup and added main for each subsystem" />
     <MESSAGE value="Added a table to the README.md" />
     <MESSAGE value="Fixed an issue when having more than 2 elevators" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue when having more than 2 elevators" />
+    <MESSAGE value="Added Comments, small changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Comments, small changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

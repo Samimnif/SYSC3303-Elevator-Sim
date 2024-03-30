@@ -79,7 +79,7 @@ public class ElevatorSubsystem implements Runnable {
             sendPacket = new DatagramPacket(msg, msg.length,
                     InetAddress.getLocalHost(), SCHEDULER_PORT);
 
-            //System.out.println(Thread.currentThread().getName()+ ": Sending Packet");
+            //System.out.println(Thread.currentThread().getName()+ ": Sending Packet, message length "+ msg.length);
             sendReceiveSocket.send(sendPacket);
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class ElevatorSubsystem implements Runnable {
 
 
         //Receive packet
-        byte data[] = new byte[1024*TOTAL_ELEVATORS];
+        byte data[] = new byte[2024*TOTAL_ELEVATORS];
         receivePacket = new DatagramPacket(data, data.length);
 
         try {

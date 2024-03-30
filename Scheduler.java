@@ -95,7 +95,7 @@ public class Scheduler implements Runnable{
      * Once received it wil try to assign Jobs to any available elevator using assignJob()
      */
     public void receiveAndSendElevator(){
-        byte data[] = new byte[1024*TOTAL_ELEVATORS];
+        byte data[] = new byte[2024*TOTAL_ELEVATORS];
         receivePacket = new DatagramPacket(data, data.length);
         try {
             //System.out.println("Listening");
