@@ -51,13 +51,13 @@ Credits:
 
 | Classes                              | Iteration 1                           | Iteration 2                                                    | Iteration 3                         | Iteration 4                          |
 |--------------------------------------|---------------------------------------|----------------------------------------------------------------|-------------------------------------|--------------------------------------|
-| `Scheduler.java`                     | Sami Mnif, Jalal Mourad               |                                                                | Sami Mnif, Omar Hamzat              | Sami Mnif                            |
+| `Scheduler.java`                     | Sami Mnif, Jalal Mourad               |                                                                | Sami Mnif, Omar Hamzat              | Sami Mnif, Omar Hamzat               |
 | `ElevatorSubsystem.java`             | Sami Mnif                             |                                                                | Sami Mnif, Muaadh Ali               |                                      |
 | `FloorSubsystem.java`                | Sami Mnif, Muaadh Ali                 |                                                                | Sami Mnif, Jalal Mourad,            | Muaadh Ali                           |
 | `Elevator.java`                      | Sami Mnif, Jalal Mourad, Omar Hamzat, |                                                                | Sami Mnif, Muaadh Ali, Jordan Bayne | Jordan Bayne,Sami Mnif, Jalal Mourad |
 | `Button.java`                        | Jalal Mourad                          |                                                                |                                     |                                      |
-| `Door.java`                          | Jalal Mourad, Jordan Bayne            |                                                                |                                     |                                      |
-| `Lamp.java`                          | Jalal Mourad                          |                                                                |                                     |                                      |
+| `Door.java`                          | Jalal Mourad, Jordan Bayne            |                                                                |                                     | Jordan Bayne                         |
+| `Lamp.java`                          | Jalal Mourad                          |                                                                |                                     | Jordan Bayne                         |
 | `Motor.java`                         | Jalal Mourad, Jordan Bayne            |                                                                |                                     |                                      |
 | `Floor.java`                         | Muaadh Ali                            |                                                                |                                     |                                      |
 | `SchedulerStateMachine.java`         | NA                                    | Sami Mnif, Jalal Mourad, Omar Hamzat, Muaadh Ali, Jordan Bayne |                                     |                                      |

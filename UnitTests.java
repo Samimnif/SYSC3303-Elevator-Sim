@@ -17,9 +17,9 @@ public class UnitTests {
 
         job = floor.getNextJob();
 
-        assertEquals(4, job.getDestinationFloor());
-        assertEquals("14:05:15", job.getTimeStamp());
-        assertEquals(2, job.getPickupFloor());
+        assertEquals(5, job.getDestinationFloor());
+        assertEquals("11:10:11", job.getTimeStamp());
+        assertEquals(3, job.getPickupFloor());
         assertEquals("Up", job.getButton());
     }
 
