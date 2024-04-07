@@ -7,6 +7,10 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 public class Elevator implements Serializable, Runnable {
 
@@ -54,22 +58,10 @@ public class Elevator implements Serializable, Runnable {
         }
     }
 
-    public void goToNextFloor(){
-        floorsPassed += 1;
-        movements += 1;
-    }
-
     public String printThreadInfo(){
         //System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
         return "\033[45m\033[1;30m"+ sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+":\033[0m ";
-    }
-
-    public void goToFloor(int floorNum) {
-        if (currentFloor != floorNum) {
-            this.currentFloor = floorNum;
-            System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + id + " arrived at floor #" + currentFloor);
-        }
     }
 
     public int getId() {
@@ -110,28 +102,18 @@ public class Elevator implements Serializable, Runnable {
     public void setId(int id) {
         this.id = id;
     }
-
-
-
-    public void moveElevator(){
-        if ((currentJob.getPickupFloor() > currentFloor)){
-            System.out.println(Thread.currentThread().getName()+": Elevator "+this.getId()+" is going UP to floor #"+currentJob.getPickupFloor());
-            currentFloor++;
-            movements +=1;
-        }else if (currentJob.getPickupFloor() < currentFloor){
-            System.out.println(Thread.currentThread().getName()+": Elevator "+this.getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
-            currentFloor--;
-            movements +=1;
-        }
+    public void triggerTransientFault(){
+        final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        ScheduledFuture<?> future = service.schedule(() -> {
+            mainDoor.toggleFault();
+            service.shutdown();
+        }, 15, TimeUnit.SECONDS);
     }
 
     @Override
     public void run(){
         System.out.println(printThreadInfo() + "initiated");
         while (true) {
-//            if(currentJob==null){
-//                System.out.println(printThreadInfo() + (currentJob==null));
-//            }
             switch (currentState){
                 // Idle State
                 case IDLE:
@@ -149,9 +131,15 @@ public class Elevator implements Serializable, Runnable {
                         // When the elevator transitions to the loading state, it will open the door as an entry action
                         try{
                             System.out.print(printThreadInfo());
-                            mainDoor.openDoor(currentJob.getFault());
+                            mainDoor.openDoor();
                         } catch (Exception e){
                             System.out.println("Fault: " + e);
+                            try{
+                                Thread.sleep(5000);
+                                mainDoor.toggleFault();
+                            } catch (Exception ie){
+                                ie.printStackTrace();
+                            }
                         }
                         currentState = elevatorStates.LOAD;
                         System.out.println(printThreadInfo()+"Loading");
@@ -225,9 +213,15 @@ public class Elevator implements Serializable, Runnable {
                         // When the elevator transitions to the unloading state, it will open the door as an entry action
                         try{
                             System.out.print(printThreadInfo());
-                            mainDoor.openDoor(currentJob.getFault());
+                            mainDoor.openDoor();
                         } catch (Exception e){
                             System.out.println("Fault: " + e);
+                            try{
+                                Thread.sleep(5000);
+                                mainDoor.toggleFault();
+                            } catch(Exception ie){
+                                ie.printStackTrace();
+                            }
                         }
                         currentState = elevatorStates.UNLOAD;
                         System.out.println(printThreadInfo()+"Unloading");
@@ -236,9 +230,15 @@ public class Elevator implements Serializable, Runnable {
                         // When the elevator transitions to the loading state, it will open the door as an entry action
                         try{
                             System.out.print(printThreadInfo());
-                            mainDoor.openDoor(currentJob.getFault());
+                            mainDoor.openDoor();
                         } catch (Exception e){
                             System.out.println("Fault: " + e);
+                            try{
+                                Thread.sleep(5000);
+                                mainDoor.toggleFault();
+                            } catch(Exception ie){
+                                ie.printStackTrace();
+                            }
                         }
                         currentState = elevatorStates.LOAD;
                         System.out.println(printThreadInfo()+"Loading");
@@ -255,9 +255,15 @@ public class Elevator implements Serializable, Runnable {
                     // When the elevator transitions to the idle state, it will close the door as an entry action
                     try{
                         System.out.print(printThreadInfo());
-                        mainDoor.closeDoor(0);
+                        mainDoor.closeDoor();
                     } catch (Exception e){
                         System.out.println("Fault: " + e);
+                        try{
+                            Thread.sleep(5000);
+                            mainDoor.toggleFault();
+                        } catch(Exception ie){
+                            ie.printStackTrace();
+                        }
                     }
                     currentState = elevatorStates.IDLE;
                     System.out.println(printThreadInfo()+"\033[1;33mIdle\033[0m");
@@ -272,9 +278,15 @@ public class Elevator implements Serializable, Runnable {
                     // When the elevator transitions to the moving state, it will close the door as an entry action
                     try{
                         System.out.print(printThreadInfo());
-                        mainDoor.closeDoor(currentJob.getFault());
+                        mainDoor.closeDoor();
                     } catch (Exception e){
                         System.out.println("Fault: " + e);
+                        try{
+                            Thread.sleep(5000);
+                            mainDoor.toggleFault();
+                        } catch(Exception ie){
+                            ie.printStackTrace();
+                        }
                     }
                     currentState = elevatorStates.MOVING;
                     System.out.println(printThreadInfo()+"Moving");

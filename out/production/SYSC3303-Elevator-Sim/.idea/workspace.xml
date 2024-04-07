@@ -4,26 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ElevatorShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" afterDir="false" />
+    <list default="true" id="7be7fd81-6e76-4503-84b9-3ac7beca1799" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElevatorSubsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorSubsystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/XMLParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,40 +21,82 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2eb4IibJNnj0fog83QtemGiE10A" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2dpInb0bs9QOyNf2DqRJ2GTAsbg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jordan/Coding/sysc3303/SYSC3303-Elevator-Sim&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Compound.Sim-Demo">
+    <configuration name="ElevatorSubsystem" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ElevatorSubsystem" />
+      <module name="SYSC3303-Elevator-Sim" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FloorSubsystem" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FloorSubsystem" />
+      <module name="SYSC3303-Elevator-Sim" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scheduler" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scheduler" />
+      <module name="SYSC3303-Elevator-Sim" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="A" type="CompoundRunConfigurationType">
+      <toRun name="Scheduler" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration name="B" type="CompoundRunConfigurationType">
+      <toRun name="ElevatorSubsystem" type="Application" />
+      <toRun name="FloorSubsystem" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Sim-Demo" type="CompoundRunConfigurationType">
+      <toRun name="A" type="CompoundRunConfigurationType" />
+      <toRun name="B" type="CompoundRunConfigurationType" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.FloorSubsystem" />
+      <item itemvalue="Application.ElevatorSubsystem" />
+      <item itemvalue="Application.Scheduler" />
+      <item itemvalue="Compound.A" />
+      <item itemvalue="Compound.B" />
+      <item itemvalue="Compound.Sim-Demo" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Scheduler" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="" />
-      <created>1712159865375</created>
+      <changelist id="7be7fd81-6e76-4503-84b9-3ac7beca1799" name="Changes" comment="" />
+      <created>1710698764527</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1712159865375</updated>
+      <updated>1710698764527</updated>
     </task>
-    <task id="LOCAL-00001" summary="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down">
-      <option name="closed" value="true" />
-      <created>1712432627911</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1712432627911</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
   </component>
 </project>

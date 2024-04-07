@@ -15,6 +15,7 @@ public class Door implements Serializable {
     private Boolean isOpen;
     private static final String file = "config.properties";
     private final double DOOR_TIME;
+    private Boolean hasFault;
 
     /** Door(): Constructor for the Door object
      * Sets the door as closed (False)
@@ -22,6 +23,7 @@ public class Door implements Serializable {
      */
     public Door() {
         this.isOpen = false;
+        hasFault = false;
         try {
             FileInputStream propsInput = new FileInputStream(file);
             Properties prop = new Properties();
@@ -34,17 +36,19 @@ public class Door implements Serializable {
         }
     }
 
+    public void toggleFault(){
+        hasFault = !hasFault;
+    }
     /**
      * openDoor(): will open the door by setting the Boolean to true.
      * It will then thread.sleep for the amount of time that was inputted from config file, to simulate
      * a door opening
      * Raises the exception for door fault if the fault inputted in the events.txt is "1"
-     * @param fault
      * @throws Exception
      */
-    public void openDoor(int fault) throws Exception {
+    public void openDoor() throws Exception {
         // Checks for fault
-        if(fault == 1){
+        if(hasFault){
             throw new Exception("\033[1;31mDoor stuck when opening\033[0m");
         }
         System.out.println("Open Door");
@@ -57,14 +61,13 @@ public class Door implements Serializable {
      * closeDoor(): will close the door by setting the Boolean to false
      * It will then thread.sleep for the amount of time that was inputted from config file, to simulate
      * a door closing.
-     * @param fault
      * @throws Exception
      */
-    public void closeDoor(int fault) throws Exception {
+    public void closeDoor() throws Exception {
         // Checks for fault
-        /*if(fault == 1){
+        if(hasFault){
             throw new Exception("\033[1;31mDoor stuck when closing\033[0m");
-        }*/
+        }
         System.out.println("Close Door");
         Thread.sleep((long) (1000*DOOR_TIME));
         isOpen = false;
