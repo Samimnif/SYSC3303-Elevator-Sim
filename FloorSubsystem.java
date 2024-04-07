@@ -86,7 +86,6 @@ public class FloorSubsystem implements Runnable {
             jobsMap.put(secs, job);
             timestampsInSecsArr.add(secs);
             passengersCapacity++;
-            System.out.println("Passangers in the elevator: "+ passengersCapacity);
         } else {
             job = null;
             printThreadInfo();

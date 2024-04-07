@@ -35,7 +35,8 @@ public class Elevator implements Serializable, Runnable {
     private Motor mainMotor;
     private Door mainDoor;
     private HashMap<Integer, Lamp> lamps;
-    private boolean goingUp = true, isLoaded = false, idle = true;
+    private boolean goingUp = true, isLoaded = false, idle = true, stuck = false;
+    private String error_Output;
     private final static double TRIP_TIME=5.22, SPEED=1.37, ACCELERATION=0.26;
 
     /**
@@ -53,6 +54,7 @@ public class Elevator implements Serializable, Runnable {
         this.mainDoor = new Door();
         this.mainMotor = new Motor();
         this.lamps = new HashMap<>();
+        this.error_Output = null;
         floorsPassed = 0;
         this.ElevatorButton = new ArrayList<Button>(numButtons);
         for (int i = 0; i < numButtons; i++) {
@@ -63,8 +65,23 @@ public class Elevator implements Serializable, Runnable {
         }
     }
 
+    public String getError_Output() {
+        return error_Output;
+    }
+
+    public void resetError_Output() {
+        this.error_Output = null;
+    }
+
+    public Boolean isStuck(){
+        return stuck;
+    }
+
     public void sensorFault(int fault){
         if (fault == 2){
+            stuck = true;
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+            error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+":Sensor at floor: "+getCurrentFloor()+" has failed";
             throw new RuntimeException("Sensor at floor: "+getCurrentFloor()+" has failed");
         }
     }
@@ -226,6 +243,8 @@ public class Elevator implements Serializable, Runnable {
                             System.out.print(printThreadInfo());
                             mainDoor.openDoor();
                         } catch (Exception e){
+                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+                            error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                             System.out.println("Fault: " + e);
                             try{
                                 Thread.sleep(5000);

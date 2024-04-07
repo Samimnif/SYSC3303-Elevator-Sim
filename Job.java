@@ -7,6 +7,7 @@ public class Job implements Serializable {
     private String button;
     private int fault;
 
+
     public Job(String timeStamp, int destinationFloor, int pickupFloor, String button, int fault) {
         this.timeStamp = timeStamp;
         this.destinationFloor = destinationFloor;

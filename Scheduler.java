@@ -13,6 +13,7 @@ import javax.xml.stream.XMLInputFactory;
 import java.io.*;
 import java.net.*;
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -118,11 +119,12 @@ public class Scheduler implements Runnable{
         }
 
         // Print received data
-        printThreadInfo();
+        int len = receivePacket.getLength();
+        /*printThreadInfo();
         System.out.println("\033[0;36m\nElevator Packet received:");
         System.out.println("From host: " + receivePacket.getAddress());
         System.out.println("Host port: " + receivePacket.getPort());
-        int len = receivePacket.getLength();
+
         System.out.println("Length: " + len);
         System.out.print("Containing: ");
         // Form a String from the byte array.
@@ -133,7 +135,7 @@ public class Scheduler implements Runnable{
         for (int i = 0; i < len; i++) {
             System.out.print((byte) data[i] + " ");
         }
-        System.out.println("\033[0m");
+        System.out.println("\033[0m");*/
 
         if (!empty) {
             assignJob();
@@ -165,11 +167,12 @@ public class Scheduler implements Runnable{
         }
 
         // Print sending data
-        printThreadInfo();
+        len = sendPacket.getLength();
+        /*printThreadInfo();
         System.out.println("\033[0;36m\nSending Elevator Packet:");
         System.out.println("From host: " + sendPacket.getAddress());
         System.out.println("Host port: " + sendPacket.getPort());
-        len = sendPacket.getLength();
+
         System.out.println("Length: " + len);
         System.out.print("Containing: ");
         // Form a String from the byte array.
@@ -180,7 +183,7 @@ public class Scheduler implements Runnable{
         for (int i = 0; i < len; i++) {
             System.out.print((byte) msg[i] + " ");
         }
-        System.out.println("\033[0m");
+        System.out.println("\033[0m");*/
 
         try {
             //System.out.println("Sending packet back to elevator");
@@ -336,6 +339,23 @@ public class Scheduler implements Runnable{
             }
         }
         System.out.print("END\n");
+    }
+
+    public int capacity(){
+
+        LocalTime time = (LocalTime.parse((CharSequence) jobList.get(0)));
+        int seconds = time.getSecond();
+        int hours = time.getHour();
+
+        for(int i = 0; i<jobList.size();i++){
+            for (int j = 0;j<jobList.s;j++){
+                if()
+
+                {}
+            }
+
+        }
+       // if(jobList.getFirst())
     }
 
     public ArrayList<Job> getJobList() {

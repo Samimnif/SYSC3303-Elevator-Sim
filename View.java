@@ -1,8 +1,15 @@
+/** View.java
+ *  Represents the graphical user interface (GUI) for an elevator simulation.
+ *  The GUI displays the current state of the elevators and any errors that occur.
+ * Number of floors and elevators is specified in the config file and any changes in the config file will update the GUI accordingly
+ * @authors Sami Mnif, Omar Hamzat
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 
 
@@ -10,7 +17,14 @@ public class View extends JFrame{
     private JPanel[][] simBoard;
     private int[] elevatorPos;
     private final int NUM_FLOORS, NUM_ELEVATOR;
+    private JPanel mainPanel;
+    private JTextArea errorArea;
+    private JPanel errorPanel;
 
+    /**
+     * Constructs a new View.
+     * Initializes the GUI components and sets up the layout.
+     */
     public View() {
         super("Elevator Simulation");
         this.setResizable(false);
@@ -33,7 +47,7 @@ public class View extends JFrame{
             elevatorPos[i] = 1;
         }
 
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         JPanel FloorLablePanel = new JPanel();
         JPanel ElevatorLablePanel = new JPanel();
         FloorLablePanel.setLayout(new GridLayout(NUM_FLOORS, 1, 10, 10));
@@ -42,14 +56,7 @@ public class View extends JFrame{
         //this.add(ElevatorLablePanel,BorderLayout.PAGE_END);
         this.add(FloorLablePanel,BorderLayout.WEST);
 
-        /*
-        JMenuBar menubar = new JMenuBar();
-        this.setJMenuBar(menubar);
-        JMenu menu = new JMenu("Options");
-
-        JMenuItem back = new JMenuItem("Back");
-        JMenuItem submit = new JMenuItem("Submit");
-        */
+        
         for (int i = NUM_FLOORS; i > 0; i-- ){
             JPanel p = new JPanel();
             p.setSize(10,15);
@@ -58,6 +65,7 @@ public class View extends JFrame{
             FloorLablePanel.add(p);
         }
 
+        // Initialize simBoard for th elevator positions
         this.simBoard = new JPanel[NUM_FLOORS][NUM_ELEVATOR];
         for (int i = 0; i < NUM_FLOORS; i++ ) {
             for (int j = 0; j < NUM_ELEVATOR; j++) {
@@ -82,40 +90,92 @@ public class View extends JFrame{
         }
 
 
+        // Initialize errorPanel and errorArea for displaying errors
+        errorPanel = new JPanel();
+        errorPanel.setSize(1000,1000);
+        errorArea = new JTextArea("Elevator Fault Errors:");
+        errorArea.setForeground(Color.RED);
+        errorArea.setEditable(false);
+        errorArea.setFocusable(false);
+        errorPanel.add(errorArea);
+
+
+        this.add(errorPanel, BorderLayout.EAST);
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000,1000);
+        this.setSize(1500,1000);
         //this.setLayout(new GridLayout(3,0));
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-
     }
+
+    /**
+     * Updates the error message displayed in the errorArea text area.
+     *
+     * @param error the new error message to be added to the display
+     */
+    public void updateErrorText(String error){
+        String previousError;
+        previousError = errorArea.getText();
+        errorArea.setText(previousError +"\n" + error);
+    }
+
+    /**
+     * Updates the elevator positions and states on the GUI based on the provided elevatorList.
+     *
+     * @param elevatorList the list of elevators to update on the GUI
+     */
 
     public void updateElevatorsBoard(ArrayList<Elevator> elevatorList){
         for (Elevator e : elevatorList){
             int eFloor = e.getCurrentFloor(), eID = e.getId();
+            String error = e.getError_Output();
+            Boolean isIdle = e.isIdle();
 
             JPanel p = new JPanel();
             p.setBackground(Color.WHITE);
             p.setSize(10,15);
-            simBoard[elevatorPos[eID-1]][eID-1] = p;
+            simBoard[NUM_FLOORS - elevatorPos[eID-1]][eID-1] = p;
 
             JPanel newP = new JPanel();
-            newP.setBackground(Color.BLUE);
             newP.setSize(10,15);
             JLabel label = new JLabel("Elevator "+eID);
-            label.setForeground(Color.WHITE);
+            if (isIdle){
+                newP.setBackground(Color.YELLOW);
+                label.setForeground(Color.BLACK);
+            }else{
+                newP.setBackground(Color.BLUE);
+                label.setForeground(Color.WHITE);
+            }
             newP.add(label); // Add label to the panel
-            simBoard[eFloor][eID-1] = p;
+            simBoard[NUM_FLOORS - eFloor][eID-1] = newP;
+            elevatorPos[eID-1] = eFloor;
+
+            // Update the GUI to reflect the changes
+            mainPanel.removeAll(); // Clear the main panel
+            // Re-add all panels from simBoard to the main panel
+            for (int i = 0; i < NUM_FLOORS; i++) {
+                for (int j = 0; j < NUM_ELEVATOR; j++) {
+                    mainPanel.add(simBoard[i][j]);
+                }
+            }
+            if (error != null){
+                updateErrorText(error);
+                e.resetError_Output();
+            }
+
+            mainPanel.revalidate(); // Revalidate the main panel
+            mainPanel.repaint(); // Repaint the main panel
+
+
+
         }
     }
 
 /*
     public static void main(String[] args) {
-        //JFrame frame = new JFrame();
-        //frame.setLayout(new GridLayout(2, 4, 10, 10));
         View view = new View();
-        //view.setVisible(true);
 
     }
 */
