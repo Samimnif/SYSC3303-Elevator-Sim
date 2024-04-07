@@ -49,7 +49,7 @@ public class UnitTests {
         Job job;
 
         Scheduler scheduler = new Scheduler(4, 1,34, 33);
-        ElevatorSubsystem elevator = new ElevatorSubsystem(1, 1, 70, 34);
+        ElevatorSubsystem elevator = new ElevatorSubsystem(1, 5, 1, 70, 34);
 
         scheduler.putElevators(elevator.elevatorsList);
 
@@ -64,7 +64,7 @@ public class UnitTests {
 
         Scheduler scheduler = new Scheduler(4, 1,44, 43);
         FloorSubsystem floor = new FloorSubsystem(1, 102, 43);
-        Elevator elevator = new Elevator(1, 1);
+        Elevator elevator = new Elevator(1, 1, 5);
 
         job = floor.getNextJob();
         scheduler.put(job);
@@ -86,8 +86,8 @@ public class UnitTests {
 
         Scheduler scheduler = new Scheduler(4, 1,54, 53);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
-        Elevator elevator = new Elevator(1,2);
-        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1,5, 71, 54);
+        Elevator elevator = new Elevator(1,2, 5);
+        ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1, 5,5, 71, 54);
         FloorSubsystem floor = new FloorSubsystem(1, 103, 53);
 
 

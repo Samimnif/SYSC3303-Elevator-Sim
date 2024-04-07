@@ -29,7 +29,7 @@ public class ElevatorSubsystem implements Runnable {
 
 
     //Constructor for class ElevatorSubsystem
-    public ElevatorSubsystem(int numElevators, int numFloors, int elevatorPort, int schedulerPort){
+    public ElevatorSubsystem(int numElevators, int elevatorCapacity, int numFloors, int elevatorPort, int schedulerPort){
         //this.scheduler = scheduler;
         this.SCHEDULER_PORT = schedulerPort;
         this.TOTAL_ELEVATORS = numElevators;
@@ -39,7 +39,7 @@ public class ElevatorSubsystem implements Runnable {
 
         this.elevatorsList= new ArrayList<Elevator>(numElevators);
         for (int i = 0; i < numElevators; i++) {
-            Elevator elevator = new Elevator(i+1, numFloors);
+            Elevator elevator = new Elevator(i+1, numFloors, elevatorCapacity);
             this.elevatorsList.add(elevator);
             listEleThreads[i] = new Thread(elevator, "Elevator "+ (i+1));
         }
@@ -196,7 +196,7 @@ public class ElevatorSubsystem implements Runnable {
     }
 
     public static void main(String[] args) {
-        int NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE;
+        int NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE, ELEVATOR_CAPACITY;
         try {
             FileInputStream propsInput = new FileInputStream("config.properties");
             Properties prop = new Properties();
@@ -206,6 +206,7 @@ public class ElevatorSubsystem implements Runnable {
             NUM_FLOORS = Integer.parseInt(prop.getProperty("NUM_FLOORS"));
             ELEVATOR_PORT = Integer.parseInt(prop.getProperty("ELEVATOR_PORT"));
             SCHEDULER_PORTE = Integer.parseInt(prop.getProperty("SCHEDULER_PORTE"));
+            ELEVATOR_CAPACITY = Integer.parseInt(prop.getProperty("ELEVATOR_CAPACITY"));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -216,9 +217,10 @@ public class ElevatorSubsystem implements Runnable {
         System.out.println("\033[1;34mTotal Floors: \033[0m" + NUM_FLOORS);
         System.out.println("\033[1;34mElevator Port: \033[0m" + ELEVATOR_PORT);
         System.out.println("\033[1;34mScheduler Elevator Port: \033[0m" + SCHEDULER_PORTE);
+        System.out.println("\033[1;34mElevator Capacity: \033[0m" + ELEVATOR_CAPACITY);
         System.out.println();
 
-        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
+        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, ELEVATOR_CAPACITY, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
         Elevator.start();
     }
 }

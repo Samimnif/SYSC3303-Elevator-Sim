@@ -1,3 +1,7 @@
+/**
+ *
+ */
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -13,7 +17,7 @@ public class Elevator implements Serializable, Runnable {
         LOAD,
         UNLOAD
     }
-    private int currentFloor, id;
+    private int currentFloor, id, capacity;
     private Job currentJob;
     private elevatorStates currentState;
     private static int floorsPassed;
@@ -25,8 +29,9 @@ public class Elevator implements Serializable, Runnable {
     private boolean goingUp = true, isLoaded = false, idle = true;
     private final static double TRIP_TIME=5.22, SPEED=1.37, ACCELERATION=0.26;
 
-    public Elevator(int id, int numButtons){
+    public Elevator(int id, int numButtons, int capacity){
         this.id = id;
+        this.capacity = capacity;
         this.currentState = elevatorStates.IDLE;
         this.currentJob = null;
         this.currentFloor = 1;

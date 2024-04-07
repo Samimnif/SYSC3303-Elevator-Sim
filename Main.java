@@ -5,7 +5,7 @@ import java.sql.SQLOutput;
 import java.util.Properties;
 
 public class Main {
-    private static int MAX_JOB, NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTF, SCHEDULER_PORTE, FLOOR_PORT;
+    private static int MAX_JOB, NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTF, SCHEDULER_PORTE, FLOOR_PORT, ELEVATOR_CAPACITY;
     private static final String file = "config.properties";
 
     public static void main(String args[]){
@@ -22,6 +22,7 @@ public class Main {
             SCHEDULER_PORTF = Integer.parseInt(prop.getProperty("SCHEDULER_PORTF"));
             SCHEDULER_PORTE = Integer.parseInt(prop.getProperty("SCHEDULER_PORTE"));
             FLOOR_PORT = Integer.parseInt(prop.getProperty("FLOOR_PORT"));
+            ELEVATOR_CAPACITY = Integer.parseInt(prop.getProperty("ELEVATOR_CAPACITY"));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -42,7 +43,7 @@ public class Main {
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
 
         //ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler, ELEVATOR_PORT, SCHEDULER_PORTE);
-        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
+        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, ELEVATOR_CAPACITY, NUM_FLOORS, ELEVATOR_PORT, SCHEDULER_PORTE), "ElevatorSub");
 
         Thread Scheduler = new Thread(scheduler, "Scheduler Thread");
 //        Thread Elevator = new Thread(new ElevatorSubsystem(NUM_ELEVATOR, NUM_FLOORS, scheduler), "Elevator Thread");
