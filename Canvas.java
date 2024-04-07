@@ -106,6 +106,9 @@ public class Canvas
         else if(colorString.equals("blue")) {
             graphic.setColor(new Color(30, 75, 220));
         }
+        else if(colorString.equals("yellow")) {
+            graphic.setColor(new Color(242, 215, 43));
+        }
         else if(colorString.equals("white")) {
             graphic.setColor(Color.white);
         }
@@ -128,14 +131,13 @@ public class Canvas
         }
         catch (Exception e)
         {
-            // ignoring exception at the moment
         }
     }
 
 
 
     /**
-     * Redraw ell shapes currently on the Canvas.
+     * Redraw all shapes currently on the Canvas.
      */
     private void redraw()
     {
@@ -159,7 +161,7 @@ public class Canvas
     }
 
 
-    /************************************************************************
+    /**
      * Inner class CanvasPane - the actual canvas component contained in the
      * Canvas frame. This is essentially a JPanel with added capability to
      * refresh the image drawn on it.

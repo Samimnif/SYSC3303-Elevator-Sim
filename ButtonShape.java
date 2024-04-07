@@ -1,45 +1,29 @@
-import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-import java.util.*;
+import java.awt.geom.*;
 
-public class ElevatorShape {
-    private int width;
-    private int height;
+public class ButtonShape
+{
+    private int diameter;
     private int xPosition;
     private int yPosition;
     private String color;
-    private String Name;
     private boolean isVisible;
-    private JFrame frame;
-    //private CanvasPane canvas;
-
+    private String Name;
 
     /**
-     * Create a new square at default position with default color.
+     * Create a new circle at default position with default color.
      */
-    public ElevatorShape()
+    public ButtonShape(String name)
     {
-        width = 60;
-        height = 70;
-        xPosition = 310;
-        yPosition = 550;
-        color = "red";
-        isVisible = false;
-
-    }
-    public  ElevatorShape(String name){
-        width = 60;
-        height = 70;
-        xPosition = 310;
-        yPosition = 460;
-        color = "red";
-        isVisible = false;
+        diameter = 68;
+        xPosition = 230;
+        yPosition = 90;
+        color = "black";
         this.Name = name;
     }
 
     /**
-     * Make this square visible. If it was already visible, do nothing.
+     * Make this circle visible. If it was already visible, do nothing.
      */
     public void makeVisible()
     {
@@ -48,16 +32,16 @@ public class ElevatorShape {
     }
 
     /**
-     * Make this square invisible. If it was already invisible, do nothing.
+     * Make this circle invisible. If it was already invisible, do nothing.
      */
     public void makeInvisible()
     {
-        //erase();
+        erase();
         isVisible = false;
     }
 
     /**
-     * Move the square a few pixels to the right.
+     * Move the circle a few pixels to the right.
      */
     public void moveRight()
     {
@@ -65,7 +49,7 @@ public class ElevatorShape {
     }
 
     /**
-     * Move the square a few pixels to the left.
+     * Move the circle a few pixels to the left.
      */
     public void moveLeft()
     {
@@ -73,7 +57,7 @@ public class ElevatorShape {
     }
 
     /**
-     * Move the square a few pixels up.
+     * Move the circle a few pixels up.
      */
     public void moveUp()
     {
@@ -81,7 +65,7 @@ public class ElevatorShape {
     }
 
     /**
-     * Move the square a few pixels down.
+     * Move the circle a few pixels down.
      */
     public void moveDown()
     {
@@ -89,7 +73,7 @@ public class ElevatorShape {
     }
 
     /**
-     * Move the square horizontally by 'distance' pixels.
+     * Move the circle horizontally by 'distance' pixels.
      */
     public void moveHorizontal(int distance)
     {
@@ -99,7 +83,7 @@ public class ElevatorShape {
     }
 
     /**
-     * Move the square vertically by 'distance' pixels.
+     * Move the circle vertically by 'distance' pixels.
      */
     public void moveVertical(int distance)
     {
@@ -109,7 +93,7 @@ public class ElevatorShape {
     }
 
     /**
-     * Slowly move the square horizontally by 'distance' pixels.
+     * Slowly move the circle horizontally by 'distance' pixels.
      */
     public void slowMoveHorizontal(int distance)
     {
@@ -133,7 +117,7 @@ public class ElevatorShape {
     }
 
     /**
-     * Slowly move the square vertically by 'distance' pixels.
+     * Slowly move the circle vertically by 'distance' pixels.
      */
     public void slowMoveVertical(int distance)
     {
@@ -157,50 +141,41 @@ public class ElevatorShape {
     }
 
     /**
-     * Draw the square with current specifications on screen.
-     *
-     * */
-    private void draw()
-    {
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.draw(this, color,
-                    new java.awt.Rectangle(xPosition, yPosition, width, height),this.Name);
-
-            //canvas.wait(10);
-        }
-    }
-
-
-
-    /**
      * Change the size to the new size (in pixels). Size must be >= 0.
-
-    public void changeSize(int newWidth, int newHeight)
+     */
+    public void changeSize(int newDiameter)
     {
         erase();
-        width = newWidth;
-        height = newHeight;
+        diameter = newDiameter;
         draw();
     }
-     */
 
     /**
      * Change the color. Valid colors are "red", "yellow", "blue", "green",
      * "magenta" and "black".
-
+     */
     public void changeColor(String newColor)
     {
         color = newColor;
-        //draw();
+        draw();
     }
-     */
-
-
 
     /**
-     * Erase the square on screen.
-*/
+     * Draw the circle with current specifications on screen.
+     */
+    private void draw()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.draw(this, color, new Ellipse2D.Double(xPosition, yPosition,
+                    diameter, diameter), Name);
+            canvas.wait(10);
+        }
+    }
+
+    /**
+     * Erase the circle on screen.
+     */
     private void erase()
     {
         if(isVisible) {
@@ -208,5 +183,5 @@ public class ElevatorShape {
             canvas.erase(this);
         }
     }
-
 }
+

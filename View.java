@@ -12,6 +12,8 @@ public class View {
     private FloorShape floor3;
     private FloorShape floor4;
     private FloorShape floor5;
+    private ButtonShape upButton;
+    private ButtonShape downButton;
 
     public View() {
         elevator1 = new ElevatorShape("elev1");
@@ -24,13 +26,28 @@ public class View {
         floor4 = new FloorShape("floor2");
         floor5 = new FloorShape("floor1");
 
+        upButton = new ButtonShape("up");
+        downButton = new ButtonShape("down");
+
+        upButton.moveHorizontal(350);
+        downButton.moveHorizontal(350);
+        downButton.moveVertical(80);
+
+        boolean is = true;
+        if (is == true){
+            upButton.changeColor("yellow");
+        }
+
         elevator1.moveHorizontal(-250);
         elevator2.moveHorizontal(-150);
         //elevator3.moveHorizontal(-100);
         elevator4.moveHorizontal(100);
 
+        
 
-        floor2.moveVertical(140);
+
+
+        floor2.moveVertical(120);
         floor3.moveVertical(240);
         floor4.moveVertical(340);
         floor5.moveVertical(440);
@@ -58,6 +75,8 @@ public class View {
         elevator2.makeVisible();
         elevator3.makeVisible();
         elevator4.makeVisible();
+        upButton.makeVisible();
+        downButton.makeVisible();
 
     }
 }

@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added Comments, small changes">
-      <change beforePath="$PROJECT_DIR$/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events.txt" beforeDir="false" afterPath="$PROJECT_DIR$/events.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Door.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorSubsystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorSubsystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/FloorSubsystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/FloorSubsystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/events.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/events.txt" afterDir="false" />
-    </list>
-    <list id="316388d1-e94a-48b2-a5d1-0dcf71f70a58" name="Changes by amuaa" comment="" />
-    <list id="cb95ea09-97a1-47eb-9761-0f3ac380159a" name="Changes by Jalal" comment="">
-      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
+    <list default="true" id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElevatorShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,486 +21,50 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="UML Sequence" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SET_USER_NAME_GLOBALLY" value="false" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Samimnif&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="685ddec2-c927-4730-8b76-f8451c74d8d4" />
-        <option name="url" value="https://github.com/Samimnif/SYSC3303-Elevator-Sim.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp_1_Elevator.class" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp_2_Elevator.class" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/tmp__Elevator.class" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Elevator.java">
-      <ranges>
-        <range start1="15" end1="16" start2="15" end2="16" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="19" end1="20" start2="19" end2="19" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="24" end1="26" start2="23" end2="25" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="44" end1="44" start2="43" end2="49" changelist="cb95ea09-97a1-47eb-9761-0f3ac380159a" />
-        <range start1="115" end1="116" start2="120" end2="121" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="153" end1="154" start2="158" end2="159" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="157" end1="157" start2="162" end2="163" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="159" end1="160" start2="165" end2="165" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="161" end1="161" start2="166" end2="172" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="165" end1="166" start2="176" end2="176" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="167" end1="167" start2="177" end2="183" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="172" end1="172" start2="188" end2="194" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="177" end1="177" start2="199" end2="204" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2cm50xajSvVDgxAuGjagyJkGVXX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2eb4IibJNnj0fog83QtemGiE10A" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.ElevatorSubsystem.executor": "Run",
-    "Application.FloorSubsystem.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Scheduler.executor": "Run",
-    "Compound.A.executor": "Run",
-    "Compound.B.executor": "Run",
-    "Compound.Sim-Demo.executor": "Run",
-    "DefaultPlantUmlFileTemplate": "UML Sequence",
-    "JUnit.UnitTests.AssignJobTest.executor": "Run",
-    "JUnit.UnitTests.UpdateElevators.executor": "Run",
-    "JUnit.UnitTests.checkReadInputFileTest.executor": "Run",
-    "JUnit.UnitTests.elevatorStateTest.executor": "Run",
-    "JUnit.UnitTests.executor": "Run",
-    "JUnit.UnitTests.getDataFromSchedulerTest.executor": "Run",
-    "JUnit.UnitTests.passDataToSchedulerTest.executor": "Run",
-    "JUnit.UnitTests.schedulerStateTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/samim/IdeaProjects/SYSC3303-Elevator-Sim/Diagrams",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
-    "vue.rearranger.settings.migration": "true"
+    "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\samim\IdeaProjects\SYSC3303-Elevator-Sim\Diagrams" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\samim\IdeaProjects\SYSC3303-Elevator-Sim\Diagrams" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Compound.Sim-Demo">
-    <configuration name="ElevatorSubsystem" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ElevatorSubsystem" />
-      <module name="SYSC3303-Elevator-Sim" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FloorSubsystem" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FloorSubsystem" />
-      <module name="SYSC3303-Elevator-Sim" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Scheduler" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Scheduler" />
-      <module name="SYSC3303-Elevator-Sim" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="A" type="CompoundRunConfigurationType">
-      <toRun name="Scheduler" type="Application" />
-      <method v="2" />
-    </configuration>
-    <configuration name="B" type="CompoundRunConfigurationType">
-      <toRun name="ElevatorSubsystem" type="Application" />
-      <toRun name="FloorSubsystem" type="Application" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Sim-Demo" type="CompoundRunConfigurationType">
-      <toRun name="A" type="CompoundRunConfigurationType" />
-      <toRun name="B" type="CompoundRunConfigurationType" />
-      <method v="2" />
-    </configuration>
-    <configuration name="UnitTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SYSC3303-Elevator-Sim" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UnitTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UnitTests.checkReadInputFileTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SYSC3303-Elevator-Sim" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UnitTests" />
-      <option name="METHOD_NAME" value="checkReadInputFileTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.ElevatorSubsystem" />
-      <item itemvalue="Application.FloorSubsystem" />
-      <item itemvalue="Application.Scheduler" />
-      <item itemvalue="Compound.A" />
-      <item itemvalue="Compound.B" />
-      <item itemvalue="Compound.Sim-Demo" />
-      <item itemvalue="JUnit.UnitTests" />
-      <item itemvalue="JUnit.UnitTests.checkReadInputFileTest" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.UnitTests" />
-        <item itemvalue="JUnit.UnitTests.checkReadInputFileTest" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="" />
-      <created>1708703695661</created>
+      <changelist id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="" />
+      <created>1712159865375</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1708703695661</updated>
-      <workItem from="1708703697337" duration="614000" />
-      <workItem from="1708704349937" duration="582000" />
-      <workItem from="1708794678760" duration="4055000" />
-      <workItem from="1709174477199" duration="71000" />
-      <workItem from="1709183187898" duration="4563000" />
-      <workItem from="1709662752948" duration="906000" />
-      <workItem from="1709772925543" duration="1718000" />
-      <workItem from="1709836791920" duration="884000" />
-      <workItem from="1709959215559" duration="1442000" />
-      <workItem from="1710255600532" duration="1519000" />
-      <workItem from="1710263035498" duration="140000" />
-      <workItem from="1710359942073" duration="6276000" />
-      <workItem from="1710609038511" duration="3090000" />
-      <workItem from="1710616519895" duration="2688000" />
-      <workItem from="1710681148420" duration="22252000" />
-      <workItem from="1711025647355" duration="4852000" />
-      <workItem from="1711496576216" duration="3952000" />
-      <workItem from="1711503414185" duration="1887000" />
-      <workItem from="1711644210857" duration="1398000" />
-      <workItem from="1711721328787" duration="6417000" />
-      <workItem from="1711808284259" duration="6962000" />
+      <updated>1712159865375</updated>
     </task>
-    <task id="LOCAL-00001" summary="Added diagrams">
+    <task id="LOCAL-00001" summary="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down">
       <option name="closed" value="true" />
-      <created>1708795431853</created>
+      <created>1712432627911</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1708795431853</updated>
+      <updated>1712432627911</updated>
     </task>
-    <task id="LOCAL-00002" summary="Added Test Cases">
-      <option name="closed" value="true" />
-      <created>1708798143319</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1708798143319</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Fixed Events txt file input">
-      <option name="closed" value="true" />
-      <created>1709778819334</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1709778819334</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Added Config File input&#10;You can now edit values in &quot;config.properties&quot; file">
-      <option name="closed" value="true" />
-      <created>1709960521069</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1709960521069</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added Config File input&#10;You can now edit values in &quot;config.properties&quot; file">
-      <option name="closed" value="true" />
-      <created>1709960574607</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1709960574607</updated>
-    </task>
-    <task id="LOCAL-00006" summary="backend">
-      <option name="closed" value="true" />
-      <created>1710256235276</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1710256235276</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Modified Elevator.java and ElevatorSubsystem.java, added states">
-      <option name="closed" value="true" />
-      <created>1710362057298</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1710362057298</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Added SCHEDULER PORT to classes: Scheduler.java, ElevatorSubsystem.java">
-      <option name="closed" value="true" />
-      <created>1710364090939</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1710364090939</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added some more ports for scheduler, one to communicate to Floor, and onw to communicate with floor">
-      <option name="closed" value="true" />
-      <created>1710682143739</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1710682143739</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Some changes, still not working">
-      <option name="closed" value="true" />
-      <created>1710683849157</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1710683849157</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Some changes, still not working">
-      <option name="closed" value="true" />
-      <created>1710699999250</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1710699999250</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Some changes, some what working">
-      <option name="closed" value="true" />
-      <created>1710700338688</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1710700338688</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Some changes, some what working">
-      <option name="closed" value="true" />
-      <created>1710708247031</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1710708247031</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Some changes, some what working">
-      <option name="closed" value="true" />
-      <created>1710708337528</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1710708337528</updated>
-    </task>
-    <task id="LOCAL-00015" summary="UML Diagrams Package">
-      <option name="closed" value="true" />
-      <created>1710709930784</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1710709930784</updated>
-    </task>
-    <task id="LOCAL-00016" summary="UML Diagrams Package">
-      <option name="closed" value="true" />
-      <created>1710710262278</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1710710262278</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Output Elevator">
-      <option name="closed" value="true" />
-      <created>1710710497568</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1710710497568</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Sate machine update">
-      <option name="closed" value="true" />
-      <created>1710710602361</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1710710602361</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Sate machine update">
-      <option name="closed" value="true" />
-      <created>1710710697822</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1710710697822</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Unit test Changes">
-      <option name="closed" value="true" />
-      <created>1710713568134</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1710713568134</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Unit test Changes">
-      <option name="closed" value="true" />
-      <created>1710714175121</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1710714175121</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Sequence Diagram">
-      <option name="closed" value="true" />
-      <created>1710715459124</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1710715459124</updated>
-    </task>
-    <task id="LOCAL-00023" summary="README update">
-      <option name="closed" value="true" />
-      <created>1710715632843</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1710715632843</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Code Cleanup, Output Console Cleanup and added main for each subsystem">
-      <option name="closed" value="true" />
-      <created>1711500262146</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1711500262146</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Code Cleanup, Output Console Cleanup and added main for each subsystem">
-      <option name="closed" value="true" />
-      <created>1711500302974</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1711500302974</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Added a table to the README.md">
-      <option name="closed" value="true" />
-      <created>1711504702424</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1711504702425</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fixed an issue when having more than 2 elevators">
-      <option name="closed" value="true" />
-      <created>1711737747547</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1711737747547</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Added Comments, small changes">
-      <option name="closed" value="true" />
-      <created>1711825499908</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1711825499908</updated>
-    </task>
-    <option name="localTasksCounter" value="29" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added diagrams" />
-    <MESSAGE value="Added Test Cases" />
-    <MESSAGE value="Fixed Events txt file input" />
-    <MESSAGE value="Added Config File input&#10;You can now edit values in &quot;config.properties&quot; file" />
-    <MESSAGE value="backend" />
-    <MESSAGE value="Modified Elevator.java and ElevatorSubsystem.java, added states" />
-    <MESSAGE value="Added SCHEDULER PORT to classes: Scheduler.java, ElevatorSubsystem.java" />
-    <MESSAGE value="Added some more ports for scheduler, one to communicate to Floor, and onw to communicate with floor" />
-    <MESSAGE value="Some changes, still not working" />
-    <MESSAGE value="Major Update - It's Working!!" />
-    <MESSAGE value="Some changes, some what working" />
-    <MESSAGE value="UML Diagrams Package" />
-    <MESSAGE value="Output Elevator" />
-    <MESSAGE value="Sate machine update" />
-    <MESSAGE value="Unit test Changes" />
-    <MESSAGE value="Sequence Diagram" />
-    <MESSAGE value="README update" />
-    <MESSAGE value="Code Cleanup, Output Console Cleanup and added main for each subsystem" />
-    <MESSAGE value="Added a table to the README.md" />
-    <MESSAGE value="Fixed an issue when having more than 2 elevators" />
-    <MESSAGE value="Added Comments, small changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Comments, small changes" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
   </component>
 </project>
