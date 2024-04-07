@@ -14,7 +14,7 @@ import java.util.Properties;
 public class Door implements Serializable {
     private Boolean isOpen;
     private static final String file = "config.properties";
-    private final double DOOR_TIME;
+    private final double DOOR_TIME, TRANSIENT_FAULT_TIME;
     private Boolean hasFault;
 
     /** Door(): Constructor for the Door object
@@ -30,6 +30,7 @@ public class Door implements Serializable {
             prop.load(propsInput);
 
             this.DOOR_TIME = Double.parseDouble(prop.getProperty("DOOR_MOVEMENT"));
+            this.TRANSIENT_FAULT_TIME = Double.parseDouble(prop.getProperty("TRANSIENT_FAULT_TIME"));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -49,6 +50,7 @@ public class Door implements Serializable {
     public void openDoor() throws Exception {
         // Checks for fault
         if(hasFault){
+            Thread.sleep((long) (TRANSIENT_FAULT_TIME*1000));
             throw new Exception("\033[1;31mDoor stuck when opening\033[0m");
         }
         System.out.println("Open Door");

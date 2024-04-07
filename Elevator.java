@@ -45,7 +45,7 @@ public class Elevator implements Serializable, Runnable {
     private HashMap<Integer, Lamp> lamps;
     private boolean goingUp = true, isLoaded = false, idle = true, stuck = false;
     private String error_Output;
-    private final static double TRIP_TIME=5.22, SPEED=1.37, ACCELERATION=0.26;
+    private final static double TRIP_TIME=10.0;
 
     /**
      * Constructs a new Elevator object with the specified id, number of buttons,
@@ -88,7 +88,6 @@ public class Elevator implements Serializable, Runnable {
      * Resets the error output of the elevator.
      */
     public void resetError_Output() {
-        System.out.println("Reset Output");
         this.error_Output = null;
     }
 
@@ -356,7 +355,7 @@ public class Elevator implements Serializable, Runnable {
                             error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                             System.out.println("Fault: " + e);
                             try{
-                                Thread.sleep(5000);
+                                Thread.sleep(5000*currentJob.capacity);
                                 mainDoor.toggleFault();
                             } catch(Exception ie){
                                 ie.printStackTrace();
@@ -376,7 +375,7 @@ public class Elevator implements Serializable, Runnable {
                             error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                             System.out.println("Fault: " + e);
                             try{
-                                Thread.sleep(5000);
+                                Thread.sleep(5000*currentJob.capacity);
                                 mainDoor.toggleFault();
                             } catch(Exception ie){
                                 ie.printStackTrace();
@@ -404,7 +403,7 @@ public class Elevator implements Serializable, Runnable {
                         error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                         System.out.println("Fault: " + e);
                         try{
-                            Thread.sleep(5000);
+                            Thread.sleep(5000*currentJob.capacity);
                             mainDoor.toggleFault();
                         } catch(Exception ie){
                             ie.printStackTrace();
@@ -430,7 +429,7 @@ public class Elevator implements Serializable, Runnable {
                         error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                         System.out.println("Fault: " + e);
                         try{
-                            Thread.sleep(5000);
+                            Thread.sleep(5000*currentJob.capacity);
                             mainDoor.toggleFault();
                         } catch(Exception ie){
                             ie.printStackTrace();
