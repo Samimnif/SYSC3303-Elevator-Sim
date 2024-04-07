@@ -1,5 +1,8 @@
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.*;
 
@@ -41,6 +44,7 @@ public class Canvas
         frame.pack();
         objects = new ArrayList<Object>();
         shapes = new HashMap<Object, ShapeDescription>();
+
     }
 
     /**
@@ -161,6 +165,7 @@ public class Canvas
     }
 
 
+
     /**
      * Inner class CanvasPane - the actual canvas component contained in the
      * Canvas frame. This is essentially a JPanel with added capability to
@@ -175,7 +180,7 @@ public class Canvas
     }
 
 
-    private class ShapeDescription
+    protected class ShapeDescription
     {
         private Shape shape;
         private String colorString;

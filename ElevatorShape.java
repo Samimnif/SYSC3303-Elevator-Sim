@@ -1,9 +1,10 @@
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.util.List;
 import java.util.*;
-
-public class ElevatorShape {
+import java.awt.event.*;
+public class ElevatorShape{
     private int width;
     private int height;
     private int xPosition;
@@ -13,21 +14,14 @@ public class ElevatorShape {
     private boolean isVisible;
     private JFrame frame;
     //private CanvasPane canvas;
+    private Timer timer;
+
 
 
     /**
      * Create a new square at default position with default color.
      */
-    public ElevatorShape()
-    {
-        width = 60;
-        height = 70;
-        xPosition = 310;
-        yPosition = 550;
-        color = "red";
-        isVisible = false;
 
-    }
     public  ElevatorShape(String name){
         width = 60;
         height = 70;
@@ -111,8 +105,35 @@ public class ElevatorShape {
     /**
      * Slowly move the square horizontally by 'distance' pixels.
      */
-    public void slowMoveHorizontal(int distance)
+    public void slowMoveHorizontal(int distance, int delay)
     {
+        int delta;
+
+        if (distance < 0) {
+            delta = -1;
+            distance = -distance;
+        } else {
+            delta = 1;
+        }
+
+        int finalDistance = distance;
+        Timer timer = new Timer(delay, new ActionListener() {
+            private int count = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (count < finalDistance) {
+                    xPosition += delta;
+                    draw();
+                    count++;
+                } else {
+                    ((Timer) e.getSource()).stop();
+                }
+            }
+        });
+        timer.start();
+    }
+        /*
         int delta;
 
         if(distance < 0)
@@ -130,13 +151,44 @@ public class ElevatorShape {
             xPosition += delta;
             draw();
         }
+
+
     }
+
+         */
 
     /**
      * Slowly move the square vertically by 'distance' pixels.
      */
-    public void slowMoveVertical(int distance)
+    public void slowMoveVertical(int distance, int delay)
     {
+        int delta;
+
+        if (distance < 0) {
+            delta = -1;
+            distance = -distance;
+        } else {
+            delta = 1;
+        }
+
+        int finalDistance = distance;
+        Timer timer = new Timer(delay, new ActionListener() {
+            private int count = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (count < finalDistance) {
+                    yPosition += delta;
+                    draw();
+                    count++;
+                } else {
+                    ((Timer) e.getSource()).stop();
+                }
+            }
+        });
+        timer.start();
+
+        /*
         int delta;
 
         if(distance < 0)
@@ -152,8 +204,13 @@ public class ElevatorShape {
         for(int i = 0; i < distance; i++)
         {
             yPosition += delta;
-            draw();
+            //draw();
+            //redraw();
         }
+
+         */
+
+
     }
 
     /**
@@ -170,6 +227,21 @@ public class ElevatorShape {
             //canvas.wait(10);
         }
     }
+
+    public int getyPosition(){
+        return this.yPosition;
+    }
+
+    /*
+    private void redraw()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.redraw();
+        }
+    }
+
+     */
 
 
 

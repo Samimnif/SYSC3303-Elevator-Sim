@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="added 2 buttons (up and down). they change color when clicked">
+      <change beforePath="$PROJECT_DIR$/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/Canvas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ElevatorShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorShape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,13 +32,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,11 +56,20 @@
       <option name="project" value="LOCAL" />
       <updated>1712432627911</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added 2 buttons (up and down). they change color when clicked">
+      <option name="closed" value="true" />
+      <created>1712453845575</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712453845575</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
+    <MESSAGE value="added 2 buttons (up and down). they change color when clicked" />
+    <option name="LAST_COMMIT_MESSAGE" value="added 2 buttons (up and down). they change color when clicked" />
   </component>
 </project>

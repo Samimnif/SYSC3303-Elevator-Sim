@@ -31,14 +31,6 @@ public class ButtonShape
         draw();
     }
 
-    /**
-     * Make this circle invisible. If it was already invisible, do nothing.
-     */
-    public void makeInvisible()
-    {
-        erase();
-        isVisible = false;
-    }
 
     /**
      * Move the circle a few pixels to the right.

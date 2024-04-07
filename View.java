@@ -34,16 +34,26 @@ public class View {
         downButton.moveVertical(80);
 
         boolean is = true;
-        if (is == true){
-            upButton.changeColor("yellow");
-        }
+
 
         elevator1.moveHorizontal(-250);
         elevator2.moveHorizontal(-150);
         //elevator3.moveHorizontal(-100);
         elevator4.moveHorizontal(100);
 
-        
+        if (is == true){
+            upButton.changeColor("yellow");
+            elevator1.slowMoveVertical(-300, 10);
+            int targetYPosition = 100;
+            int positionThreshold = 5; // Adjust as needed
+
+            if (Math.abs(elevator1.getyPosition() - targetYPosition) <= positionThreshold) {
+                elevator1.slowMoveHorizontal(0, 10);
+                upButton.changeColor("blue");
+            }
+        }
+
+
 
 
 
