@@ -3,7 +3,7 @@
  * Job object.
  * FloorSubsystem communicates with the scheduler by sending UDP packet with the JOB info
  *
- * @authors Muaadh Ali, Jalal Mourad, SAmi Mnif
+ * @authors Muaadh Ali, Jalal Mourad, Sami Mnif
  */
 
 import java.io.*;
@@ -26,18 +26,21 @@ public class FloorSubsystem implements Runnable {
 
     HashMap<Integer, Job> jobsMap;
     ArrayList<Integer> timestampsInSecsArr;
-    int passengersCapacity, hour, minutes, tempID;
+    int passengersCapacity, hour, minutes, tempID, pickupF;
 
-
-
-
-    //Constructor for FloorSubsystem
+    /**
+     * Constructor for FloorSubsystem, it will import the scheduler port and the scheduler port for UDP comms purposes
+     * @param numOfFloors (Total number of floors)
+     * @param port (Floor Subsystem Port for UDP comms)
+     * @param schedulerFPort (Scheduler Port)
+     */
     FloorSubsystem(int numOfFloors, int port, int schedulerFPort) {
         //this.scheduler = scheduler;
         //this.schedulerStateMachine = schedulerStateMachine;
         hour = 0;
         minutes= 0;
         tempID = 0;
+        pickupF = 0;
         jobsMap = new HashMap<Integer, Job>();
         timestampsInSecsArr = new ArrayList<>();
 
@@ -63,11 +66,18 @@ public class FloorSubsystem implements Runnable {
         }
         passengersCapacity = 0;
     }
+
+    /**
+     * printThreadInfo(): prints the Thread name and the timestamp of the message on console
+     */
     public void printThreadInfo(){
         System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
     }
 
-    //This method parses the whole file containing all the jobs
+    /**
+     * readFile(): This method parses the whole file containing all the jobs, and returns 1 line everytime its called
+     * @return String line
+     */
     private String readFile() {
         String line = null;
         try {
@@ -78,7 +88,14 @@ public class FloorSubsystem implements Runnable {
         return line;
     }
 
-    //This method is used to get the next Job in the Job list
+    /**
+     * getNextJob(): This method is used to get the next Job in the Job list. It calls the readFile() method that returns
+     * a line from the events.txt file.
+     * It also sums up the Jobs that are happening in the same hour and minute (Capacity)
+     * and also if it is coming from the same floor the jib was requested
+     *
+     * @return Job object
+     */
     public Job getNextJob() {
         String raw = readFile();
 
@@ -90,13 +107,14 @@ public class FloorSubsystem implements Runnable {
             if (hour == 0 && minutes == 0){
                 hour = Integer.parseInt(timeParts[0]);
                 minutes = Integer.parseInt(timeParts[1]);
+                pickupF = Integer.parseInt(rawSplit[1]);
                 tempID = secs;
 
                 job = new Job(rawSplit[0], Integer.parseInt(rawSplit[3]), Integer.parseInt(rawSplit[1]), rawSplit[2], Integer.parseInt(rawSplit[4]));
                 jobsMap.put(secs, job);
                 timestampsInSecsArr.add(secs);
             }
-            else if (hour == Integer.parseInt(timeParts[0]) && minutes == Integer.parseInt(timeParts[1])){
+            else if (hour == Integer.parseInt(timeParts[0]) && minutes == Integer.parseInt(timeParts[1]) && pickupF == Integer.parseInt(rawSplit[1])){
                 System.out.println(rawSplit[0]);
                 jobsMap.get(tempID).capacity++;
                 System.out.println(jobsMap.get(tempID).capacity);
@@ -113,9 +131,6 @@ public class FloorSubsystem implements Runnable {
                 timestampsInSecsArr.add(secs);
             }
 
-
-            //passengersCapacity++;
-            //int cap = passengersCapacity%5;
         } else {
             job = null;
             printThreadInfo();
@@ -124,7 +139,11 @@ public class FloorSubsystem implements Runnable {
         return job;
     }
 
-    //This method is used to send DatagramPackets to the Scheduler
+    /**
+     * sendPacket(Job newJob): This method is used to send DatagramPackets to the Scheduler
+     * with the jobs, and then listen for acknowledgement from the Scheduler.
+     * @param newJob (a job to send to Scheduler)
+     */
     public void sendPacket(Job newJob) {
 
         // byte[] dataArray = jobRequest().getBytes();
@@ -186,12 +205,20 @@ public class FloorSubsystem implements Runnable {
         }
     }
 
+    /**
+     * NOT USED
+     * jobRequest(): returns a line from input file
+     * @return
+     */
     public String jobRequest() {
         String info;
         info = this.readFile();
         return info;
     }
 
+    /**
+     * RUN thread, this sends all the jobs from the input file, then listens for ack
+     */
     public synchronized void run() {
         //while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
         Job newJob = getNextJob();
@@ -220,6 +247,10 @@ public class FloorSubsystem implements Runnable {
         //System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Floor Subsystem Job ended");
     }
 
+    /**
+     * MAIN function, this will read teh config file, and inputs them into constructor of the floor Subsystem
+     * @param args
+     */
     public static void main(String[] args) {
         int NUM_FLOORS, SCHEDULER_PORTF, FLOOR_PORT;
         try {
@@ -257,18 +288,4 @@ public class FloorSubsystem implements Runnable {
         return secs;
 
     }
-
-    /*
-SchedulerStateMachine stateMachine= new SchedulerStateMachine(scheduler);
-        FloorSubsystem floor = new FloorSubsystem(3,scheduler,stateMachine);
-        floor.sendPacket();
-
-        //info = floor.readFile();
-        //System.out.println(info);
-    }
-
-
-}
-
-     */
 }

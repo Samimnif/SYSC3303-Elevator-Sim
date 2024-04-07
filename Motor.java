@@ -1,3 +1,7 @@
+/**
+ * Motor class represents the Motor in the elevators, it will be either on or off
+ */
+
 import java.io.Serializable;
 
 /**
