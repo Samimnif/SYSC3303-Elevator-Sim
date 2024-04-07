@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down">
+    <list default="true" id="18c82168-fc44-4b1f-85db-04d09874b7c8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ElevatorShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,40 +26,166 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2eb4IibJNnj0fog83QtemGiE10A" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2bnG5V2cisp4TDZztgC0hZrVqAQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ElevatorSubsystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FloorSubsystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Scheduler.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.checkReadInputFileTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.getDataFromSchedulerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.passDataToSchedulerTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Compound.Run All Three">
+    <configuration name="ElevatorSubsystem" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ElevatorSubsystem" />
+      <module name="SYSC3303-Elevator-Sim" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FloorSubsystem" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="FloorSubsystem" />
+      <module name="SYSC3303-Elevator-Sim" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="SYSC3303-Elevator-Sim" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scheduler" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Scheduler" />
+      <module name="SYSC3303-Elevator-Sim" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="A" type="CompoundRunConfigurationType">
+      <toRun name="Scheduler" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration name="B" type="CompoundRunConfigurationType">
+      <toRun name="ElevatorSubsystem" type="Application" />
+      <toRun name="FloorSubsystem" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Run All Three" type="CompoundRunConfigurationType">
+      <toRun name="A" type="CompoundRunConfigurationType" />
+      <toRun name="B" type="CompoundRunConfigurationType" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UnitTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SYSC3303-Elevator-Sim" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnitTests.checkReadInputFileTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SYSC3303-Elevator-Sim" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTests" />
+      <option name="METHOD_NAME" value="checkReadInputFileTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnitTests.getDataFromSchedulerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SYSC3303-Elevator-Sim" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTests" />
+      <option name="METHOD_NAME" value="getDataFromSchedulerTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnitTests.passDataToSchedulerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SYSC3303-Elevator-Sim" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="UnitTests" />
+      <option name="METHOD_NAME" value="passDataToSchedulerTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ElevatorSubsystem" />
+      <item itemvalue="Application.Scheduler" />
+      <item itemvalue="Application.FloorSubsystem" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Compound.B" />
+      <item itemvalue="Compound.Run All Three" />
+      <item itemvalue="Compound.A" />
+      <item itemvalue="JUnit.UnitTests" />
+      <item itemvalue="JUnit.UnitTests.checkReadInputFileTest" />
+      <item itemvalue="JUnit.UnitTests.getDataFromSchedulerTest" />
+      <item itemvalue="JUnit.UnitTests.passDataToSchedulerTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.UnitTests" />
+        <item itemvalue="JUnit.UnitTests.getDataFromSchedulerTest" />
+        <item itemvalue="JUnit.UnitTests.passDataToSchedulerTest" />
+        <item itemvalue="JUnit.UnitTests.checkReadInputFileTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6d73c41a-e7d3-4391-911e-57b221b7cc4e" name="Changes" comment="" />
-      <created>1712159865375</created>
+      <changelist id="18c82168-fc44-4b1f-85db-04d09874b7c8" name="Changes" comment="" />
+      <created>1706843246042</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1712159865375</updated>
+      <updated>1706843246042</updated>
+      <workItem from="1710792989957" duration="618000" />
+      <workItem from="1711740542825" duration="343000" />
+      <workItem from="1711747987631" duration="9688000" />
+      <workItem from="1711809614292" duration="230000" />
+      <workItem from="1712453931048" duration="615000" />
     </task>
-    <task id="LOCAL-00001" summary="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down">
-      <option name="closed" value="true" />
-      <created>1712432627911</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1712432627911</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added View. (both the elevator and floor shapes), there is new functionality to move the shapes up and down" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
