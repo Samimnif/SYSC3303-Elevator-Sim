@@ -30,7 +30,16 @@ public class Scheduler implements Runnable{
     private View simView;
 
 
-    //Constructor for class Scheduler
+    /**
+     * Constructs a new Scheduler with the specified maximum number of jobs, number of elevators,
+     * elevator communication port, floor communication port, and frame view.
+     *
+     * @param maxJobs           the maximum number of jobs the scheduler can handle
+     * @param numElevators      the number of elevators in the system
+     * @param elevatorComPort   the communication port for elevator communication
+     * @param floorComPort      the communication port for floor communication
+     * @param frameView         the frame view for the simulation
+     */
     public Scheduler(int maxJobs, int numElevators, int elevatorComPort, int floorComPort, View frameView) {
         this.jobList = new ArrayList<Job>(maxJobs);
         this.MAX_SIZE = maxJobs;
@@ -52,6 +61,15 @@ public class Scheduler implements Runnable{
         System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
     }
 
+    /**
+     * Puts a new job into the job list.
+     * Waits until the job list is empty before adding the new job.
+     * If the job list is not full, adds the new job to the list.
+     * If the new job is null, sets the floor program and elevator program flags to true.
+     * Notifies all waiting threads after adding the new job.
+     *
+     * @param newJob the new job to be added
+     */
     public synchronized void put(Job newJob) {
         while (!empty) {
             try {

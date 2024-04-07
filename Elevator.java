@@ -19,6 +19,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Elevator implements Serializable, Runnable {
 
+    /**
+     * Enum showing all the possible states of an elevator.
+     * - IDLE: The elevator is idle.
+     * - STOP: The elevator has stopped at a floor.
+     * - MOVING: The elevator is moving between floors.
+     * - LOAD: The elevator is loading passengers.
+     * - UNLOAD: The elevator is unloading passengers.
+     */
     public enum elevatorStates{
         IDLE,
         STOP,
@@ -40,10 +48,12 @@ public class Elevator implements Serializable, Runnable {
     private final static double TRIP_TIME=5.22, SPEED=1.37, ACCELERATION=0.26;
 
     /**
-     * Elevator
-     * @param id
-     * @param numButtons
-     * @param capacity
+     * Constructs a new Elevator object with the specified id, number of buttons,
+     * and capacity.
+     *
+     * @param id         the id of the elevator
+     * @param numButtons the number of buttons in the elevator
+     * @param capacity   the capacity of the elevator
      */
     public Elevator(int id, int numButtons, int capacity){
         this.id = id;
@@ -65,23 +75,46 @@ public class Elevator implements Serializable, Runnable {
         }
     }
 
+    /**
+     * Gets the current error output of the elevator.
+     *
+     * @return the error output
+     */
     public String getError_Output() {
         return error_Output;
     }
 
+    /**
+     * Resets the error output of the elevator.
+     */
     public void resetError_Output() {
         System.out.println("Reset Output");
         this.error_Output = null;
     }
 
+    /**
+     * Gets the maximum capacity of the elevator.
+     *
+     * @return the maximum capacity
+     */
     public int getMaxCapacity() {
         return capacity;
     }
 
+    /**
+     * Checks if the elevator is stuck.
+     *
+     * @return true if the elevator is stuck, false if not
+     */
     public Boolean isStuck(){
         return stuck;
     }
 
+    /**
+     * Simulates a sensor fault in the elevator.
+     *
+     * @param fault the fault code
+     */
     public void sensorFault(int fault){
         if (fault == 2){
             stuck = true;
@@ -91,50 +124,120 @@ public class Elevator implements Serializable, Runnable {
         }
     }
 
+    /**
+     * Generates a formatted thread information string.
+     *
+     * @return the formatted thread information string
+     */
     public String printThreadInfo(){
         //System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
         return "\033[45m\033[1;30m"+ sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+":\033[0m ";
     }
 
+    /**
+     * Gets the id of the elevator.
+     *
+     * @return the id of the elevator
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets the number of floors passed by the elevator.
+     *
+     * @return the number of floors passed
+     */
     public static int getFloorsPassed() {
         return floorsPassed;
     }
 
+    /**
+     * Gets the current floor of the elevator.
+     *
+     * @return the current floor
+     */
     public int getCurrentFloor() {
         return currentFloor;
     }
 
+    /**
+     * Gets the current state of the elevator.
+     *
+     * @return the current state
+     */
     public elevatorStates currentState(){
         return currentState;
     }
+
+    /**
+     * Gets the current job of the elevator.
+     *
+     * @return the current job
+     */
     public elevatorStates getCurrentState() {
         return currentState;
     }
 
+    /**
+     * Checks if the elevator is currently moving up.
+     *
+     * @return true if the elevator is moving up, false otherwise
+     */
     public boolean isGoingUp() { return goingUp; }
 
+    /**
+     * Sets the flag indicating if the elevator is going up or down.
+     *
+     * @param goingUp true if the elevator is going up, false if it is going down
+     */
     public void setGoingUp(boolean goingUp) { this.goingUp = goingUp; }
 
+    /**
+     * Checks if the elevator is idle.
+     *
+     * @return true if the elevator is idle, false if not
+     */
     public boolean isIdle() { return idle; }
 
+    /**
+     * Sets the flag indicating if the elevator is idle.
+     *
+     * @param idle true if the elevator is idle, false otherwise
+     */
     public void setIdle(boolean idle) { this.idle = idle; }
 
+    /**
+     * Sets the job for the elevator.
+     *
+     * @param assignedJob the job to set
+     */
     public synchronized void setJob(Job assignedJob){
         this.currentJob = assignedJob;
     }
 
+    /**
+     * Gets the current job of the elevator.
+     *
+     * @return the current job
+     */
     public Job getCurrentJob() {
         return currentJob;
     }
 
+    /**
+     * Sets the id of the elevator.
+     *
+     * @param id the id to set
+     */
     public void setId(int id) {
         this.id = id;
     }
+
+    /**
+     * Triggers a transient fault in the elevator's door.
+     */
     public void triggerTransientFault(){
         final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         ScheduledFuture<?> future = service.schedule(() -> {
@@ -143,6 +246,7 @@ public class Elevator implements Serializable, Runnable {
         }, 15, TimeUnit.SECONDS);
     }
 
+    // RUN
     @Override
     public void run(){
         System.out.println(printThreadInfo() + "initiated");

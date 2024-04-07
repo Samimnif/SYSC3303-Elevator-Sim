@@ -28,7 +28,15 @@ public class ElevatorSubsystem implements Runnable {
     private Thread[] listEleThreads;
 
 
-    //Constructor for class ElevatorSubsystem
+    /**
+     * Constructs an ElevatorSubsystem with the specified parameters.
+     *
+     * @param numElevators     the number of elevators in the subsystem
+     * @param elevatorCapacity the capacity of each elevator
+     * @param numFloors        the total number of floors in the building
+     * @param elevatorPort     the port number for elevator communication
+     * @param schedulerPort    the port number for scheduler communication
+     */
     public ElevatorSubsystem(int numElevators, int elevatorCapacity, int numFloors, int elevatorPort, int schedulerPort){
         //this.scheduler = scheduler;
         this.SCHEDULER_PORT = schedulerPort;
@@ -119,7 +127,13 @@ public class ElevatorSubsystem implements Runnable {
         updateElevators(listReceived);
     }
 
-    //This method updates the elevators with the current Job that we have
+    /**
+     * Updates the state of elevators in the subsystem based on the provided list of elevators.
+     * If an elevator in the subsystem is idle and has the same ID as an elevator in the provided list,
+     * it updates the elevator's job and triggers a transient fault when necessary.
+     *
+     * @param eList the list of elevators to update from
+     */
     public void updateElevators(ArrayList<Elevator> eList){
         for (int i = 0; i < elevatorsList.size(); i++) {
             Elevator e1 = elevatorsList.get(i);
@@ -134,7 +148,9 @@ public class ElevatorSubsystem implements Runnable {
         }
     }
 
-    //This method recieves a ned task from the FloorSubsystem
+    /**
+     * Receives a new task from the scheduler state machine and assigns it as the current job for the subsystem.
+     */
     public void receiveNewTask() { this.currentJob = schedulerStateMachine.sendTask(); }
 
 
@@ -157,7 +173,13 @@ public class ElevatorSubsystem implements Runnable {
 //        scheduler.putElevators(elevatorsList);
 //    }
 
-    //This method specifies at which floor the elevator is
+    /**
+     * Logs the direction of movement of the elevator.
+     * If the elevator is already at the specified floor, a message indicating this is logged.
+     *
+     * @param e the elevator
+     * @param f the floor
+     */
     private void logElevatorGoingUp(Elevator e, int f) {
         if (e.getCurrentFloor() == f) {
             System.out.println(System.currentTimeMillis()+ " - " +Thread.currentThread().getName()+": Elevator "+currentElevator.getId()+ " is ALREADY at floor #"+f);
@@ -182,6 +204,7 @@ public class ElevatorSubsystem implements Runnable {
 //        scheduler.setElevatorProgram(status);
 //    }
 
+    //RUN
     @Override
     public void run() {
         for (int i = 0; i < listEleThreads.length; i++) {
