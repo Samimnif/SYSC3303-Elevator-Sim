@@ -17,6 +17,7 @@ public class Elevator implements Serializable, Runnable {
     private Job currentJob;
     private elevatorStates currentState;
     private static int floorsPassed;
+    private static int movements = 0;
     private ArrayList<Button> ElevatorButton;
     private Motor mainMotor;
     private Door mainDoor;
@@ -50,6 +51,7 @@ public class Elevator implements Serializable, Runnable {
 
     public void goToNextFloor(){
         floorsPassed += 1;
+        movements += 1;
     }
 
     public String printThreadInfo(){
@@ -110,9 +112,11 @@ public class Elevator implements Serializable, Runnable {
         if ((currentJob.getPickupFloor() > currentFloor)){
             System.out.println(Thread.currentThread().getName()+": Elevator "+this.getId()+" is going UP to floor #"+currentJob.getPickupFloor());
             currentFloor++;
+            movements +=1;
         }else if (currentJob.getPickupFloor() < currentFloor){
             System.out.println(Thread.currentThread().getName()+": Elevator "+this.getId()+" is going DOWN to floor #"+currentJob.getPickupFloor());
             currentFloor--;
+            movements +=1;
         }
     }
 
@@ -158,11 +162,13 @@ public class Elevator implements Serializable, Runnable {
                         currentState = elevatorStates.STOP;
                         sensorFault(currentJob.getFault());
                         System.out.println(printThreadInfo()+"Stopping at floor "+ currentFloor);
+                        System.out.println("Total Movements Of Elevators: " + movements);
                     // If the elevator doesn't have passengers and is above the pickup floor then move the elevator down and
                     // stay in the moving state
 
                     }else if(!isLoaded && currentFloor > currentJob.getPickupFloor()){
                         currentFloor -= 1;
+                        movements += 1;
                         System.out.println(printThreadInfo()+"Moving DOWN to floor: "+ currentFloor);
                         try {
                             Thread.sleep((long) (TRIP_TIME*1000));
@@ -174,6 +180,7 @@ public class Elevator implements Serializable, Runnable {
                     // stay in the moving state
                     }else if(!isLoaded && currentFloor < currentJob.getPickupFloor()){
                         currentFloor += 1;
+                        movements += 1;
                         System.out.println(printThreadInfo()+"Moving UP to floor: "+ currentFloor);
                         try {
                             Thread.sleep((long) (TRIP_TIME*1000));
@@ -185,6 +192,7 @@ public class Elevator implements Serializable, Runnable {
                     // stay in the moving state
                     }else if(isLoaded && currentFloor > currentJob.getDestinationFloor()){
                         currentFloor -= 1;
+                        movements += 1;
                         System.out.println(printThreadInfo()+"Moving DOWN to floor: "+ currentFloor);
                         try {
                             Thread.sleep((long) (TRIP_TIME*1000));
@@ -196,6 +204,7 @@ public class Elevator implements Serializable, Runnable {
                     // stay in the moving state
                     }else if(isLoaded && currentFloor < currentJob.getDestinationFloor()){
                         currentFloor += 1;
+                        movements +=1;
                         System.out.println(printThreadInfo()+"Moving UP to floor: "+ currentFloor);
                         try {
                             Thread.sleep((long) (TRIP_TIME*1000));
