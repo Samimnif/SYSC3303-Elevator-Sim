@@ -22,7 +22,7 @@ public class XMLParser extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
         if (qName.equalsIgnoreCase("Elevator")) {
             int i = 0;
-            Elevator current_Elevator = new Elevator(0, 0);
+            Elevator current_Elevator = new Elevator(0, 0,5);
             elevator.add(current_Elevator);
         }
         elementContent = new StringBuilder();

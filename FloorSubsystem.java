@@ -26,6 +26,7 @@ public class FloorSubsystem implements Runnable {
 
     HashMap<Integer, Job> jobsMap;
     ArrayList<Integer> timestampsInSecsArr;
+    int passengersCapacity;
 
 
 
@@ -57,6 +58,7 @@ public class FloorSubsystem implements Runnable {
             Floor floor = new Floor(i + 1);
             floorsArrayList.add(floor);
         }
+        passengersCapacity = 0;
     }
     public void printThreadInfo(){
         System.out.printf("\033[45m\033[1;30m%s - %s:\033[0m ", new Timestamp(System.currentTimeMillis()), Thread.currentThread().getName());
@@ -83,6 +85,8 @@ public class FloorSubsystem implements Runnable {
             int secs = convertToSecs(rawSplit[0]);
             jobsMap.put(secs, job);
             timestampsInSecsArr.add(secs);
+            passengersCapacity++;
+            System.out.println("Passangers in the elevator: "+ passengersCapacity);
         } else {
             job = null;
             printThreadInfo();

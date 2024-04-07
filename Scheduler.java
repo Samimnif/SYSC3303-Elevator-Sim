@@ -26,13 +26,15 @@ public class Scheduler implements Runnable{
     private boolean elevatorProgram = false;
     private DatagramPacket sendPacket, receivePacket;
     private DatagramSocket floorComSocket, elevatorComSocket;
+    private View simView;
 
 
     //Constructor for class Scheduler
-    public Scheduler(int maxJobs, int numElevators, int elevatorComPort, int floorComPort) {
+    public Scheduler(int maxJobs, int numElevators, int elevatorComPort, int floorComPort, View frameView) {
         this.jobList = new ArrayList<Job>(maxJobs);
         this.MAX_SIZE = maxJobs;
         this.TOTAL_ELEVATORS = numElevators;
+        this.simView = frameView;
         try {
             this.elevatorComSocket = new DatagramSocket(elevatorComPort);
             this.floorComSocket = new DatagramSocket(floorComPort);
@@ -359,8 +361,22 @@ public class Scheduler implements Runnable{
                 }
             }
         };
+        Thread simFrameView = new Thread("JFrame View Simultaor Board"){
+            @Override
+            public void run(){
+                while(true){
+                    simView.updateElevatorsBoard(elevatorsList);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
         floorSideThread.start();
         elevatorSideThread.start();
+        simFrameView.start();
 
 
         /*while(!endProgram){
@@ -451,7 +467,9 @@ public class Scheduler implements Runnable{
         System.out.println("\033[1;34mScheduler Floor Port: \033[0m" + SCHEDULER_PORTF);
         System.out.println();
 
-        Scheduler scheduler = new Scheduler(MAX_JOB, NUM_ELEVATOR, SCHEDULER_PORTE, SCHEDULER_PORTF);
+        View frameView = new View();
+
+        Scheduler scheduler = new Scheduler(MAX_JOB, NUM_ELEVATOR, SCHEDULER_PORTE, SCHEDULER_PORTF, frameView);
         Thread Scheduler = new Thread(scheduler, "Scheduler Thread");
         Scheduler.start();
     }

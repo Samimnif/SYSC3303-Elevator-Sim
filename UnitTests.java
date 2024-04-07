@@ -11,7 +11,9 @@ public class UnitTests {
         System.out.println("Test 1");
         Job job;
 
-        Scheduler scheduler = new Scheduler(4, 1,24, 23);
+
+        View newView = new View();
+        Scheduler scheduler = new Scheduler(4, 1,24, 23,newView);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
         FloorSubsystem floor = new FloorSubsystem(1, 100, 23);
 
@@ -27,7 +29,8 @@ public class UnitTests {
     public void passDataToSchedulerTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(4, 1,64, 63);
+        View newView = new View();
+        Scheduler scheduler = new Scheduler(4, 1,64, 63, newView);
         FloorSubsystem floor = new FloorSubsystem(1, 150, 63);
 
         job = floor.getNextJob();
@@ -48,7 +51,8 @@ public class UnitTests {
     public void UpdateElevators(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(4, 1,34, 33);
+        View newView = new View();
+        Scheduler scheduler = new Scheduler(4, 1,34, 33, newView);
         ElevatorSubsystem elevator = new ElevatorSubsystem(1, 5, 1, 70, 34);
 
         scheduler.putElevators(elevator.elevatorsList);
@@ -62,7 +66,8 @@ public class UnitTests {
     public void AssignJobTest(){
         Job job;
 
-        Scheduler scheduler = new Scheduler(4, 1,44, 43);
+        View newView = new View();
+        Scheduler scheduler = new Scheduler(4, 1,44, 43, newView);
         FloorSubsystem floor = new FloorSubsystem(1, 102, 43);
         Elevator elevator = new Elevator(1, 1, 5);
 
@@ -83,8 +88,8 @@ public class UnitTests {
     public void elevatorStateTest(){
         Job job;
 
-
-        Scheduler scheduler = new Scheduler(4, 1,54, 53);
+        View newView = new View();
+        Scheduler scheduler = new Scheduler(4, 1,54, 53, newView);
         SchedulerStateMachine schedulerStateMachine = new SchedulerStateMachine(scheduler);
         Elevator elevator = new Elevator(1,2, 5);
         ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem(1, 5,5, 71, 54);

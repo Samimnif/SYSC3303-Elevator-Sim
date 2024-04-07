@@ -1,5 +1,10 @@
-/**
+/** Elevator.java
+ * The Elevator class will be running as a sepearte Thread along with other elevators (depending on config file)
+ * This Elevator class will respomd to jobs it is assigned to, and it will move to the floor needed to pick up
+ * the riders, then deliver them to destination floor.
+ * There is a capacity limit for each elevator, this can be changed in the config file.
  *
+ * @authors Sami Mnif, Jalal Mourad, Omar Hamzat, Muaadh Ali, Jordan Bayne
  */
 
 import java.io.Serializable;
@@ -29,6 +34,12 @@ public class Elevator implements Serializable, Runnable {
     private boolean goingUp = true, isLoaded = false, idle = true;
     private final static double TRIP_TIME=5.22, SPEED=1.37, ACCELERATION=0.26;
 
+    /**
+     * Elevator
+     * @param id
+     * @param numButtons
+     * @param capacity
+     */
     public Elevator(int id, int numButtons, int capacity){
         this.id = id;
         this.capacity = capacity;
