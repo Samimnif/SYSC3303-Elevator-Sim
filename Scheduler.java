@@ -138,7 +138,7 @@ public class Scheduler implements Runnable{
 
         // Print received data
         int len = receivePacket.getLength();
-        /*printThreadInfo();
+        printThreadInfo();
         System.out.println("\033[0;36m\nElevator Packet received:");
         System.out.println("From host: " + receivePacket.getAddress());
         System.out.println("Host port: " + receivePacket.getPort());
@@ -153,7 +153,7 @@ public class Scheduler implements Runnable{
         for (int i = 0; i < len; i++) {
             System.out.print((byte) data[i] + " ");
         }
-        System.out.println("\033[0m");*/
+        System.out.println("\033[0m");
 
         if (!empty) {
             assignJob();
@@ -187,7 +187,7 @@ public class Scheduler implements Runnable{
 
         // Print sending data
         len = sendPacket.getLength();
-        /*printThreadInfo();
+        printThreadInfo();
         System.out.println("\033[0;36m\nSending Elevator Packet:");
         System.out.println("From host: " + sendPacket.getAddress());
         System.out.println("Host port: " + sendPacket.getPort());
@@ -202,7 +202,7 @@ public class Scheduler implements Runnable{
         for (int i = 0; i < len; i++) {
             System.out.print((byte) msg[i] + " ");
         }
-        System.out.println("\033[0m");*/
+        System.out.println("\033[0m");
 
         try {
             //System.out.println("Sending packet back to elevator");
