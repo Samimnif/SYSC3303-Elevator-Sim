@@ -125,7 +125,11 @@ public class ElevatorSubsystem implements Runnable {
             Elevator e1 = elevatorsList.get(i);
             Elevator e2 = eList.get(i);
             if (e1.getId() == e2.getId() && e1.isIdle()){
-               e1.setJob(e2.getCurrentJob());
+                Job job = e2.getCurrentJob();
+                e1.setJob(job);
+                if(job != null && job.getFault() == 1){
+                    e1.triggerTransientFault();
+                }
             }
         }
     }
