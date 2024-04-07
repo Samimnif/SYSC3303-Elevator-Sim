@@ -10,16 +10,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Properties;
 
 
-public class View extends JFrame{
+public class View extends JFrame {
     private JPanel[][] simBoard;
     private int[] elevatorPos;
     private final int NUM_FLOORS, NUM_ELEVATOR;
-    private JPanel mainPanel;
+    private JPanel mainPanel, buttonPanel, errorPanel;
     private JTextArea errorArea;
-    private JPanel errorPanel;
+    private String previousString = "";
 
     /**
      * Constructs a new View.
@@ -55,6 +56,13 @@ public class View extends JFrame{
         this.add(mainPanel,BorderLayout.CENTER);
         //this.add(ElevatorLablePanel,BorderLayout.PAGE_END);
         this.add(FloorLablePanel,BorderLayout.WEST);
+       /* buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        JLabel button1 = new JLabel("up");
+        JLabel button2 = new JLabel("down");
+        buttonPanel.add(button1);
+        buttonPanel.add(button2);
+        this.add(buttonPanel, BorderLayout.NORTH);*/
 
         
         for (int i = NUM_FLOORS; i > 0; i-- ){
@@ -88,6 +96,18 @@ public class View extends JFrame{
                 }
             }
         }
+
+        /*
+        buttonPanel.setLayout(new GridLayout(NUM_FLOORS,NUM_ELEVATOR, 10, 10));
+        Buttons = new JPanel[2];
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                Buttons[j] = ;
+                buttonPanel.add(Buttons);
+            }
+        }
+
+         */
 
 
         // Initialize errorPanel and errorArea for displaying errors
@@ -129,9 +149,12 @@ public class View extends JFrame{
 
     public void updateElevatorsBoard(ArrayList<Elevator> elevatorList){
         for (Elevator e : elevatorList){
-            int eFloor = e.getCurrentFloor(), eID = e.getId();
+            int eFloor = e.getCurrentFloor(), eID = e.getId(), people=0;
             String error = e.getError_Output();
-            Boolean isIdle = e.isIdle();
+            Boolean isIdle = e.isIdle(), isStuck = e.isStuck();
+            if (e.getCurrentJob() != null){
+                people = e.getCurrentJob().capacity;
+            }
 
             JPanel p = new JPanel();
             p.setBackground(Color.WHITE);
@@ -140,11 +163,15 @@ public class View extends JFrame{
 
             JPanel newP = new JPanel();
             newP.setSize(10,15);
-            JLabel label = new JLabel("Elevator "+eID);
+            JLabel label = new JLabel("Elevator "+eID+ ", People: "+people);
             if (isIdle){
                 newP.setBackground(Color.YELLOW);
                 label.setForeground(Color.BLACK);
-            }else{
+            } else if(isStuck){
+                newP.setBackground(Color.RED);
+                label.setForeground(Color.WHITE);
+            }
+            else{
                 newP.setBackground(Color.BLUE);
                 label.setForeground(Color.WHITE);
             }
@@ -160,9 +187,12 @@ public class View extends JFrame{
                     mainPanel.add(simBoard[i][j]);
                 }
             }
-            if (error != null){
+            if (error != null && !e.isStuck() && !Objects.equals(previousString, error)){
                 updateErrorText(error);
-                e.resetError_Output();
+                previousString = error;
+            } else if(e.isStuck() && !Objects.equals(previousString, error)){
+                updateErrorText(error);
+                previousString = error;
             }
 
             mainPanel.revalidate(); // Revalidate the main panel

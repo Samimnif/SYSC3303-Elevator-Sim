@@ -70,7 +70,12 @@ public class Elevator implements Serializable, Runnable {
     }
 
     public void resetError_Output() {
+        System.out.println("Reset Output");
         this.error_Output = null;
+    }
+
+    public int getMaxCapacity() {
+        return capacity;
     }
 
     public Boolean isStuck(){
@@ -252,6 +257,7 @@ public class Elevator implements Serializable, Runnable {
                             } catch(Exception ie){
                                 ie.printStackTrace();
                             }
+                            resetError_Output();
                         }
                         currentState = elevatorStates.UNLOAD;
                         System.out.println(printThreadInfo()+"Unloading");
@@ -262,6 +268,8 @@ public class Elevator implements Serializable, Runnable {
                             System.out.print(printThreadInfo());
                             mainDoor.openDoor();
                         } catch (Exception e){
+                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+                            error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                             System.out.println("Fault: " + e);
                             try{
                                 Thread.sleep(5000);
@@ -269,6 +277,7 @@ public class Elevator implements Serializable, Runnable {
                             } catch(Exception ie){
                                 ie.printStackTrace();
                             }
+                            resetError_Output();
                         }
                         currentState = elevatorStates.LOAD;
                         System.out.println(printThreadInfo()+"Loading");
@@ -287,6 +296,8 @@ public class Elevator implements Serializable, Runnable {
                         System.out.print(printThreadInfo());
                         mainDoor.closeDoor();
                     } catch (Exception e){
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+                        error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                         System.out.println("Fault: " + e);
                         try{
                             Thread.sleep(5000);
@@ -294,6 +305,7 @@ public class Elevator implements Serializable, Runnable {
                         } catch(Exception ie){
                             ie.printStackTrace();
                         }
+                        resetError_Output();
                     }
                     currentState = elevatorStates.IDLE;
                     System.out.println(printThreadInfo()+"\033[1;33mIdle\033[0m");
@@ -310,6 +322,8 @@ public class Elevator implements Serializable, Runnable {
                         System.out.print(printThreadInfo());
                         mainDoor.closeDoor();
                     } catch (Exception e){
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+                        error_Output = sdf.format(new Timestamp(System.currentTimeMillis()))+ " - "+ Thread.currentThread().getName()+": Door Issue: "+e;
                         System.out.println("Fault: " + e);
                         try{
                             Thread.sleep(5000);
@@ -317,6 +331,7 @@ public class Elevator implements Serializable, Runnable {
                         } catch(Exception ie){
                             ie.printStackTrace();
                         }
+                        resetError_Output();
                     }
                     currentState = elevatorStates.MOVING;
                     System.out.println(printThreadInfo()+"Moving");

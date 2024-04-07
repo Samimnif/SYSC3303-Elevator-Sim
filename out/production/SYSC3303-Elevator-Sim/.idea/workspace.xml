@@ -4,16 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added view and other stuff">
+    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Gui somewhat working, added some capacity stuff">
+      <change beforePath="$PROJECT_DIR$/ButtonShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Canvas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Elevator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElevatorShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FloorShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FloorSubsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/FloorSubsystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/Job.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Scheduler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator$elevatorStates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator$elevatorStates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XMLParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/events.txt" beforeDir="false" afterPath="$PROJECT_DIR$/events.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ButtonShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Canvas$CanvasPane.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Canvas$ShapeDescription.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Canvas.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Elevator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/ElevatorShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/FloorShape.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/FloorSubsystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/FloorSubsystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Job.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Job.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/Scheduler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/XMLParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/events.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/events.txt" afterDir="false" />
     </list>
     <list id="316388d1-e94a-48b2-a5d1-0dcf71f70a58" name="Changes by amuaa" comment="" />
     <list id="cb95ea09-97a1-47eb-9761-0f3ac380159a" name="Changes by Jalal" comment="">
-      <change beforePath="$PROJECT_DIR$/FloorSubsystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/FloorSubsystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Scheduler.java" afterDir="false" />
     </list>
     <list id="42395604-40d1-4873-87e6-6d0ed0c7f9ae" name="Changes by Omar" comment="">
       <change beforePath="$PROJECT_DIR$/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/View.java" afterDir="false" />
@@ -56,21 +81,25 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/View.java">
       <ranges>
-        <range start1="5" end1="5" start2="5" end2="6" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="12" end1="12" start2="13" end2="16" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="35" end1="36" start2="39" end2="40" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="83" end1="83" start2="87" end2="103" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="85" end1="86" start2="105" end2="106" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="90" end1="91" start2="110" end2="110" changelist="42395604-40d1-4873-87e6-6d0ed0c7f9ae" />
-        <range start1="92" end1="92" start2="111" end2="116" changelist="42395604-40d1-4873-87e6-6d0ed0c7f9ae" />
-        <range start1="94" end1="94" start2="118" end2="119" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="96" end1="96" start2="121" end2="123" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="100" end1="101" start2="127" end2="128" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="103" end1="104" start2="130" end2="130" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="106" end1="107" start2="132" end2="139" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="108" end1="109" start2="140" end2="162" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
-        <range start1="114" end1="116" start2="167" end2="167" changelist="42395604-40d1-4873-87e6-6d0ed0c7f9ae" />
-        <range start1="117" end1="118" start2="168" end2="168" changelist="42395604-40d1-4873-87e6-6d0ed0c7f9ae" />
+        <range start1="15" end1="16" start2="15" end2="16" changelist="42395604-40d1-4873-87e6-6d0ed0c7f9ae" />
+        <range start1="18" end1="18" start2="18" end2="19" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="19" end1="20" start2="20" end2="21" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="57" end1="57" start2="58" end2="65" changelist="42395604-40d1-4873-87e6-6d0ed0c7f9ae" />
+        <range start1="90" end1="90" start2="98" end2="110" changelist="42395604-40d1-4873-87e6-6d0ed0c7f9ae" />
+        <range start1="133" end1="134" start2="153" end2="154" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="146" end1="147" start2="166" end2="171" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="162" end1="163" start2="186" end2="187" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="164" end1="165" start2="188" end2="188" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/Scheduler.java">
+      <ranges>
+        <range start1="141" end1="141" start2="141" end2="142" changelist="c2756886-c45b-4131-88d6-f0f57a40bd34" />
+        <range start1="194" end1="194" start2="195" end2="196" changelist="cb95ea09-97a1-47eb-9761-0f3ac380159a" />
+        <range start1="343" end1="348" start2="345" end2="346" changelist="cb95ea09-97a1-47eb-9761-0f3ac380159a" />
+        <range start1="349" end1="354" start2="347" end2="369" changelist="cb95ea09-97a1-47eb-9761-0f3ac380159a" />
+        <range start1="357" end1="358" start2="372" end2="373" changelist="cb95ea09-97a1-47eb-9761-0f3ac380159a" />
+        <range start1="380" end1="380" start2="395" end2="397" changelist="cb95ea09-97a1-47eb-9761-0f3ac380159a" />
       </ranges>
     </file>
   </component>
@@ -253,7 +282,7 @@
       <workItem from="1711829851824" duration="1840000" />
       <workItem from="1712236653215" duration="395000" />
       <workItem from="1712237080577" duration="3015000" />
-      <workItem from="1712502772243" duration="11649000" />
+      <workItem from="1712502772243" duration="20021000" />
     </task>
     <task id="LOCAL-00001" summary="Added diagrams">
       <option name="closed" value="true" />
@@ -527,7 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712511389754</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Gui somewhat working, added some capacity stuff">
+      <option name="closed" value="true" />
+      <created>1712516764919</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1712516764919</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +582,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Events txt file input" />
     <MESSAGE value="Added Config File input&#10;You can now edit values in &quot;config.properties&quot; file" />
     <MESSAGE value="backend" />
     <MESSAGE value="Modified Elevator.java and ElevatorSubsystem.java, added states" />
@@ -570,7 +606,8 @@
     <MESSAGE value="UnitTest updated" />
     <MESSAGE value="Added Comments, and Capacity for Elevator" />
     <MESSAGE value="Added view and other stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added view and other stuff" />
+    <MESSAGE value="Gui somewhat working, added some capacity stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gui somewhat working, added some capacity stuff" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

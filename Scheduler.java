@@ -139,6 +139,7 @@ public class Scheduler implements Runnable{
 
         if (!empty) {
             assignJob();
+            //capacity1();
         }
         else {
             //byte[] message = {0, 1, 0, 1};
@@ -191,6 +192,7 @@ public class Scheduler implements Runnable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
     }
 
@@ -293,7 +295,13 @@ public class Scheduler implements Runnable{
         for (Elevator i : elevatorsList) {
             if (i.isIdle()) {
                 Job job = get();
-                System.out.println("FLOOR: assigned a job: "+jobList.size());
+                if (job.capacity > i.getMaxCapacity()){
+                    Job newJob = new Job(job.getTimeStamp(), job.getDestinationFloor(), job.getPickupFloor(), job.getButton(), job.getFault());
+                    newJob.capacity = job.capacity - i.getMaxCapacity();
+                    put(newJob);
+                    job.capacity = i.getMaxCapacity();
+                }
+
                 i.setJob(job); //jobList.remove(0)
                 empty = jobList.isEmpty();
                 assignjob = true;
@@ -341,21 +349,34 @@ public class Scheduler implements Runnable{
         System.out.print("END\n");
     }
 
-    public int capacity(){
+    public void capacity1(){
 
-        LocalTime time = (LocalTime.parse((CharSequence) jobList.get(0)));
-        int seconds = time.getSecond();
-        int hours = time.getHour();
-
-        for(int i = 0; i<jobList.size();i++){
-            for (int j = 0;j<jobList.s;j++){
-                if()
-
-                {}
+        for(int i = 0; i<jobList.size()-1;i++){
+            for (int j = 1;j<jobList.size();j++){
+                LocalTime time = (LocalTime.parse((CharSequence) jobList.get(i).getTimeStamp()));
+                LocalTime time2 = (LocalTime.parse((CharSequence) jobList.get(j).getTimeStamp()));
+                int hour = time.getHour();
+                int minute = time.getMinute();
+                int hour2 = time2.getHour();
+                int minute2 = time2.getMinute();
+                int cap = 0;
+                int maxCap;
+                System.out.println("hour minute1: "+hour+" "+minute+" hour2 minute 2: "+hour2+" "+minute2);
+                if(minute == minute2 && hour== hour2)
+                {
+                  cap++;
+                  maxCap = cap%5;
+                  System.out.println("Job "+i +"and Job "+j +"are the same job");
+                        }
+                else {
+                    cap++;
+                    maxCap = cap%5;
+                    System.out.println("Total number of jobs for the elevator: "+ maxCap);
+                }
             }
 
         }
-       // if(jobList.getFirst())
+
     }
 
     public ArrayList<Job> getJobList() {
@@ -378,6 +399,8 @@ public class Scheduler implements Runnable{
             public void run() {
                 while (true){
                     receiveAndSendElevator();
+
+
                 }
             }
         };

@@ -2,13 +2,14 @@ import java.io.Serializable;
 
 public class Job implements Serializable {
     private String timeStamp;
-    private int destinationFloor;
-    private int pickupFloor;
+    private int destinationFloor, pickupFloor;
+    public int capacity;
     private String button;
     private int fault;
 
 
     public Job(String timeStamp, int destinationFloor, int pickupFloor, String button, int fault) {
+        capacity = 1;
         this.timeStamp = timeStamp;
         this.destinationFloor = destinationFloor;
         this.pickupFloor = pickupFloor;

@@ -26,7 +26,7 @@ public class FloorSubsystem implements Runnable {
 
     HashMap<Integer, Job> jobsMap;
     ArrayList<Integer> timestampsInSecsArr;
-    int passengersCapacity;
+    int passengersCapacity, hour, minutes, tempID;
 
 
 
@@ -35,6 +35,9 @@ public class FloorSubsystem implements Runnable {
     FloorSubsystem(int numOfFloors, int port, int schedulerFPort) {
         //this.scheduler = scheduler;
         //this.schedulerStateMachine = schedulerStateMachine;
+        hour = 0;
+        minutes= 0;
+        tempID = 0;
         jobsMap = new HashMap<Integer, Job>();
         timestampsInSecsArr = new ArrayList<>();
 
@@ -81,11 +84,38 @@ public class FloorSubsystem implements Runnable {
 
         if (raw != null) {
             String[] rawSplit = raw.split(" ");
-            job = new Job(rawSplit[0], Integer.parseInt(rawSplit[3]), Integer.parseInt(rawSplit[1]), rawSplit[2], Integer.parseInt(rawSplit[4]));
+            String[] timeParts = rawSplit[0].split(":");
             int secs = convertToSecs(rawSplit[0]);
-            jobsMap.put(secs, job);
-            timestampsInSecsArr.add(secs);
-            passengersCapacity++;
+
+            if (hour == 0 && minutes == 0){
+                hour = Integer.parseInt(timeParts[0]);
+                minutes = Integer.parseInt(timeParts[1]);
+                tempID = secs;
+
+                job = new Job(rawSplit[0], Integer.parseInt(rawSplit[3]), Integer.parseInt(rawSplit[1]), rawSplit[2], Integer.parseInt(rawSplit[4]));
+                jobsMap.put(secs, job);
+                timestampsInSecsArr.add(secs);
+            }
+            else if (hour == Integer.parseInt(timeParts[0]) && minutes == Integer.parseInt(timeParts[1])){
+                System.out.println(rawSplit[0]);
+                jobsMap.get(tempID).capacity++;
+                System.out.println(jobsMap.get(tempID).capacity);
+                hour = Integer.parseInt(timeParts[0]);
+                minutes = Integer.parseInt(timeParts[1]);
+            }
+            else{
+                hour = Integer.parseInt(timeParts[0]);
+                minutes = Integer.parseInt(timeParts[1]);
+                tempID = secs;
+
+                job = new Job(rawSplit[0], Integer.parseInt(rawSplit[3]), Integer.parseInt(rawSplit[1]), rawSplit[2], Integer.parseInt(rawSplit[4]));
+                jobsMap.put(secs, job);
+                timestampsInSecsArr.add(secs);
+            }
+
+
+            //passengersCapacity++;
+            //int cap = passengersCapacity%5;
         } else {
             job = null;
             printThreadInfo();
@@ -166,21 +196,6 @@ public class FloorSubsystem implements Runnable {
         //while (!scheduler.getProgramStatus() && !scheduler.isElevatorProgram()) {
         Job newJob = getNextJob();
         while(newJob != null){
-//            sendPacket(newJob);
-            // this.elevatorsList = scheduler.getElevators();
-            // System.out.println("\n" + System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ Floor Elevator Information -----");
-            //for (Elevator e : elevatorsList) {
-            //    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Elevator " + e.getId() + " is currently @ floor# " + e.getCurrentFloor());
-            //}
-            //System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": ------ End Information -----\n");
-//            if (scheduler.isEmpty()) {
-//                this.job = getNextJob();
-//                if (this.job != null) {
-//                    System.out.println(System.currentTimeMillis() + " - " + Thread.currentThread().getName() + ": Sending Job @" + job.getTimeStamp() + " for floor #" + job.getPickupFloor() + " Pressed the Button " + job.getButton() + " going to " + job.getDestinationFloor());
-////                    scheduler.put(job);
-//                }
-//                schedulerStateMachine.pressFloorButton(job);
-//            }
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
