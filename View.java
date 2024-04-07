@@ -152,8 +152,10 @@ public class View extends JFrame {
             int eFloor = e.getCurrentFloor(), eID = e.getId(), people=0;
             String error = e.getError_Output();
             Boolean isIdle = e.isIdle(), isStuck = e.isStuck();
-            if (e.getCurrentJob() != null){
+            if (e.getCurrentJob() != null && e.isLoaded()){
                 people = e.getCurrentJob().capacity;
+            }else{
+                people = 0;
             }
 
             JPanel p = new JPanel();

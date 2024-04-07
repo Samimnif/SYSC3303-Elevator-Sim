@@ -92,6 +92,14 @@ public class Elevator implements Serializable, Runnable {
     }
 
     /**
+     * Returns if the elevator has loaded the passengers in
+     * @return Boolean isLoaded
+     */
+    public boolean isLoaded() {
+        return isLoaded;
+    }
+
+    /**
      * Gets the maximum capacity of the elevator.
      *
      * @return the maximum capacity
