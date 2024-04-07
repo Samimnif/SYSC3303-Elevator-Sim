@@ -99,7 +99,7 @@ public class Canvas
     }
 
 
-    public void setForegroundColor(String colorString)
+    public void setColor(String colorString)
     {
         if(colorString.equals("red")) {
             graphic.setColor(new Color(235, 25, 25));
@@ -195,7 +195,7 @@ public class Canvas
 
         public void draw(Graphics2D graphic)
         {
-            setForegroundColor(colorString);
+            setColor(colorString);
             graphic.fill(shape);
             graphic.setColor(Color.BLACK);
             graphic.drawString(label, (int) shape.getBounds().getCenterX(), (int) shape.getBounds().getCenterY());
