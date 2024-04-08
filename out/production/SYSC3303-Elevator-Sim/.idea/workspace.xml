@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added Comments" />
+    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="uncommented scheduler output" />
     <list id="316388d1-e94a-48b2-a5d1-0dcf71f70a58" name="Changes by amuaa" comment="" />
     <list id="cb95ea09-97a1-47eb-9761-0f3ac380159a" name="Changes by Jalal" comment="" />
     <list id="42395604-40d1-4873-87e6-6d0ed0c7f9ae" name="Changes by Omar" comment="" />
@@ -222,7 +222,7 @@
       <workItem from="1711829851824" duration="1840000" />
       <workItem from="1712236653215" duration="395000" />
       <workItem from="1712237080577" duration="3015000" />
-      <workItem from="1712502772243" duration="24072000" />
+      <workItem from="1712502772243" duration="26456000" />
     </task>
     <task id="LOCAL-00001" summary="Added diagrams">
       <option name="closed" value="true" />
@@ -520,7 +520,31 @@
       <option name="project" value="LOCAL" />
       <updated>1712527346902</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Added Comments, and fixed correct time">
+      <option name="closed" value="true" />
+      <created>1712528855461</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1712528855461</updated>
+    </task>
+    <task id="LOCAL-00039" summary="added a small change to the gui">
+      <option name="closed" value="true" />
+      <created>1712529178737</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1712529178737</updated>
+    </task>
+    <task id="LOCAL-00040" summary="uncommented scheduler output">
+      <option name="closed" value="true" />
+      <created>1712529421483</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1712529421483</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,9 +562,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified Elevator.java and ElevatorSubsystem.java, added states" />
-    <MESSAGE value="Added SCHEDULER PORT to classes: Scheduler.java, ElevatorSubsystem.java" />
-    <MESSAGE value="Added some more ports for scheduler, one to communicate to Floor, and onw to communicate with floor" />
     <MESSAGE value="Some changes, still not working" />
     <MESSAGE value="Major Update - It's Working!!" />
     <MESSAGE value="Some changes, some what working" />
@@ -563,7 +584,10 @@
     <MESSAGE value="Gui somewhat working, added some capacity stuff" />
     <MESSAGE value="full gui implementation and capacity limit" />
     <MESSAGE value="Added Comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Comments" />
+    <MESSAGE value="Added Comments, and fixed correct time" />
+    <MESSAGE value="added a small change to the gui" />
+    <MESSAGE value="uncommented scheduler output" />
+    <option name="LAST_COMMIT_MESSAGE" value="uncommented scheduler output" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

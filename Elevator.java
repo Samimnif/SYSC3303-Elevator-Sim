@@ -68,9 +68,9 @@ public class Elevator implements Serializable, Runnable {
         floorsPassed = 0;
         this.ElevatorButton = new ArrayList<Button>(numButtons);
         for (int i = 0; i < numButtons; i++) {
-            Lamp floorLamp = new Lamp(i);
-            lamps.put(i, floorLamp);
-            Button floorButton = new Button(i, floorLamp);
+            Lamp floorLamp = new Lamp(i+1);
+            lamps.put(i+1, floorLamp);
+            Button floorButton = new Button(i+1, floorLamp);
             this.ElevatorButton.add(floorButton);
         }
     }

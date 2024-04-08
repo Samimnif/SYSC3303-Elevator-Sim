@@ -120,10 +120,12 @@ public class FloorSubsystem implements Runnable {
                 System.out.println(jobsMap.get(tempID).capacity);
                 hour = Integer.parseInt(timeParts[0]);
                 minutes = Integer.parseInt(timeParts[1]);
+                pickupF = Integer.parseInt(rawSplit[1]);
             }
             else{
                 hour = Integer.parseInt(timeParts[0]);
                 minutes = Integer.parseInt(timeParts[1]);
+                pickupF = Integer.parseInt(rawSplit[1]);
                 tempID = secs;
 
                 job = new Job(rawSplit[0], Integer.parseInt(rawSplit[3]), Integer.parseInt(rawSplit[1]), rawSplit[2], Integer.parseInt(rawSplit[4]));
