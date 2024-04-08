@@ -9,6 +9,7 @@
 
 import java.io.*;
 import java.net.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -27,6 +28,8 @@ public class ElevatorSubsystem implements Runnable {
     private int SCHEDULER_PORT, TOTAL_ELEVATORS;
     private Thread[] listEleThreads;
 
+    private int jobsCount;
+
 
     /**
      * Constructs an ElevatorSubsystem with the specified parameters.
@@ -39,6 +42,7 @@ public class ElevatorSubsystem implements Runnable {
      */
     public ElevatorSubsystem(int numElevators, int elevatorCapacity, int numFloors, int elevatorPort, int schedulerPort){
         //this.scheduler = scheduler;
+        jobsCount = 0;
         this.SCHEDULER_PORT = schedulerPort;
         this.TOTAL_ELEVATORS = numElevators;
         this.schedulerStateMachine = schedulerStateMachine;
@@ -140,6 +144,13 @@ public class ElevatorSubsystem implements Runnable {
             Elevator e2 = eList.get(i);
             if (e1.getId() == e2.getId() && e1.isIdle()){
                 Job job = e2.getCurrentJob();
+                if(job != null && jobsCount == 0){
+                    System.out.println("First request processed: " + new Timestamp(System.currentTimeMillis()));
+                }
+                if(job != null){
+                    jobsCount++;
+                }
+
                 e1.setJob(job);
                 if(job != null && job.getFault() == 1){
                     e1.triggerTransientFault();
