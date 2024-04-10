@@ -164,6 +164,10 @@ public class FloorSubsystem implements Runnable {
 
         printThreadInfo();
         System.out.println("Sending packet...");
+        printThreadInfo();
+
+        //job.getButton();
+        System.out.println("button: " + newJob.getPickupFloor()  + " " + newJob.getButton());
 
         try {
             sendPacket = new DatagramPacket(msg, msg.length, InetAddress.getLocalHost(), SCHEDULERF_PORT);
@@ -226,7 +230,7 @@ public class FloorSubsystem implements Runnable {
         Job newJob = getNextJob();
         while(newJob != null){
             try {
-                Thread.sleep(1500);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
