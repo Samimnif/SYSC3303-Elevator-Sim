@@ -28,7 +28,7 @@ public class View extends JFrame {
      */
     public View() {
         super("Elevator Simulation");
-        this.setResizable(false);
+        this.setResizable(true);
 
         try {
             FileInputStream propsInput = new FileInputStream("config.properties");

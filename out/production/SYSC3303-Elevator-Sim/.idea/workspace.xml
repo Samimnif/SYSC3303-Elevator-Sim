@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added Comments" />
+    <list default="true" id="c2756886-c45b-4131-88d6-f0f57a40bd34" name="Changes" comment="Added the new input file">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/UnitTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/View.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SYSC3303-Elevator-Sim/config.properties" afterDir="false" />
+    </list>
     <list id="316388d1-e94a-48b2-a5d1-0dcf71f70a58" name="Changes by amuaa" comment="" />
     <list id="cb95ea09-97a1-47eb-9761-0f3ac380159a" name="Changes by Jalal" comment="" />
     <list id="42395604-40d1-4873-87e6-6d0ed0c7f9ae" name="Changes by Omar" comment="" />
@@ -55,45 +62,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.ElevatorSubsystem.executor": "Run",
-    "Application.FloorSubsystem.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Scheduler.executor": "Run",
-    "Application.View.executor": "Run",
-    "Compound.A.executor": "Run",
-    "Compound.B.executor": "Run",
-    "Compound.Sim-Demo.executor": "Run",
-    "DefaultPlantUmlFileTemplate": "UML Sequence",
-    "JUnit.UnitTests.AssignJobTest.executor": "Run",
-    "JUnit.UnitTests.UpdateElevators.executor": "Run",
-    "JUnit.UnitTests.checkReadInputFileTest.executor": "Run",
-    "JUnit.UnitTests.elevatorStateTest.executor": "Run",
-    "JUnit.UnitTests.executor": "Run",
-    "JUnit.UnitTests.getDataFromSchedulerTest.executor": "Run",
-    "JUnit.UnitTests.passDataToSchedulerTest.executor": "Run",
-    "JUnit.UnitTests.schedulerStateTest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/samim/Downloads",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.ElevatorSubsystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FloorSubsystem.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Scheduler.executor&quot;: &quot;Run&quot;,
+    &quot;Application.View.executor&quot;: &quot;Run&quot;,
+    &quot;Compound.A.executor&quot;: &quot;Run&quot;,
+    &quot;Compound.B.executor&quot;: &quot;Run&quot;,
+    &quot;Compound.Sim-Demo.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Sequence&quot;,
+    &quot;JUnit.UnitTests.AssignJobTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.UpdateElevators.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.checkReadInputFileTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.elevatorStateTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.getDataFromSchedulerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.passDataToSchedulerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTests.schedulerStateTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/samim/Downloads&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\samim\IdeaProjects\SYSC3303-Elevator-Sim\Diagrams" />
@@ -222,7 +229,12 @@
       <workItem from="1711829851824" duration="1840000" />
       <workItem from="1712236653215" duration="395000" />
       <workItem from="1712237080577" duration="3015000" />
-      <workItem from="1712502772243" duration="24072000" />
+      <workItem from="1712502772243" duration="26456000" />
+      <workItem from="1712535982334" duration="3641000" />
+      <workItem from="1712590670318" duration="754000" />
+      <workItem from="1712591591201" duration="779000" />
+      <workItem from="1712668851682" duration="2904000" />
+      <workItem from="1712765903609" duration="889000" />
     </task>
     <task id="LOCAL-00001" summary="Added diagrams">
       <option name="closed" value="true" />
@@ -520,7 +532,39 @@
       <option name="project" value="LOCAL" />
       <updated>1712527346902</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Added Comments, and fixed correct time">
+      <option name="closed" value="true" />
+      <created>1712528855461</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1712528855461</updated>
+    </task>
+    <task id="LOCAL-00039" summary="added a small change to the gui">
+      <option name="closed" value="true" />
+      <created>1712529178737</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1712529178737</updated>
+    </task>
+    <task id="LOCAL-00040" summary="uncommented scheduler output">
+      <option name="closed" value="true" />
+      <created>1712529421483</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1712529421483</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added the new input file">
+      <option name="closed" value="true" />
+      <created>1712548586751</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1712548586751</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,10 +582,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified Elevator.java and ElevatorSubsystem.java, added states" />
-    <MESSAGE value="Added SCHEDULER PORT to classes: Scheduler.java, ElevatorSubsystem.java" />
-    <MESSAGE value="Added some more ports for scheduler, one to communicate to Floor, and onw to communicate with floor" />
-    <MESSAGE value="Some changes, still not working" />
     <MESSAGE value="Major Update - It's Working!!" />
     <MESSAGE value="Some changes, some what working" />
     <MESSAGE value="UML Diagrams Package" />
@@ -563,7 +603,11 @@
     <MESSAGE value="Gui somewhat working, added some capacity stuff" />
     <MESSAGE value="full gui implementation and capacity limit" />
     <MESSAGE value="Added Comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Comments" />
+    <MESSAGE value="Added Comments, and fixed correct time" />
+    <MESSAGE value="added a small change to the gui" />
+    <MESSAGE value="uncommented scheduler output" />
+    <MESSAGE value="Added the new input file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the new input file" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
